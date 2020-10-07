@@ -1,0 +1,66 @@
+// @import '../../styles/main.scss';
+
+
+.dashboard {
+    display: flex;  
+    flex-flow: row wrap;
+    min-height: 100vh;
+    background-color: red;
+
+    & > * {
+        flex: 1 100%;
+    }
+
+    &__sidebar {
+        background-color: #00ffff;
+    }
+
+    &__main-content {
+        background-color: #2bff00;
+    }
+
+    // &__main {
+    //     background-image: linear-gradient( $color-tertiary-dark -44%, $color-primary-dark 72%);
+    //     padding: 15px;
+    //     color: white;
+    //     display: flex;
+    //     flex-flow: column wrap;
+    //     justify-content: center;
+    //     align-content: space-around;
+    //     align-items: flex-start;
+
+    //     .dashHeader {
+    //         width: 100%;
+    //         background-color: $color-secondary-dark;
+    //         margin-bottom: 1.5rem;
+    //     }
+        
+    //     .wrapper {
+    //         width: 90%;
+    //         // height: 97vh;
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: space-around;
+
+    //         @media (max-width: 375px) {
+    //             width: 100%;
+    //         }
+    //     }
+
+    //     @media (max-width: 375px) {
+    //         padding: 0;
+    //     }
+    // }
+    
+    // NOTE controls the sidebar width
+    &__sidebar {
+        flex: 1 0 0;
+    }
+
+    @media all and (min-width: 800px) {
+        &__main-content { flex: 5 0px; }
+        &__sidebar { order: 1; } 
+        &__main-content { order: 2; }
+    }
+}
+ 
