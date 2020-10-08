@@ -61,7 +61,7 @@ class Login extends Component {
                             Log-in to your account
                         </header>
 
-                        <form size="large">
+                        <form>
                             <div className="input-container">
 
                                 <input

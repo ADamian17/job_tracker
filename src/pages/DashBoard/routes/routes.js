@@ -4,12 +4,12 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Jobs from '../../../containers/JobsContainer/JobsContainer';
-import JobContainerDetails from '../../../containers/JobsContainer/JobContainerDetails/JobContainerDetails';
-import Form from '../../../components/Form/Form';
-import Profile from '../../../containers/ProfileContainer/ProfileContainer';
-import EditProfile from '../../../containers/ProfileContainer/ProfileEdit/ProfileEdit';
+// import JobContainerDetails from '../../../containers/JobsContainer/JobContainerDetails/JobContainerDetails';
+// import Form from '../../../components/Form/Form';
+// import Profile from '../../../containers/ProfileContainer/ProfileContainer';
+// import EditProfile from '../../../containers/ProfileContainer/ProfileEdit/ProfileEdit';
 // import Reports from '../../../containers/ReportContainer/ReportContainer';
-import NotFound from '../../404/404';
+// import NotFound from '../../404/404';
 
 // coupoling
 const routes = [
@@ -17,25 +17,25 @@ const routes = [
         path: '/dashboard/jobs',
         component: () => <Jobs />,
         exact: true
-    },
-    {
-        path: '/dashboard/jobs/details/:id',
-        component: () => <JobContainerDetails />
-    },
-    {
-        path: '/dashboard/jobs/edit/:id',
-        component: () => <Form />
-    },
-    {
-        path: '/dashboard/profile',
-        component: () => <Profile />,
-        exact: true
-    },
-    {
-        path: '/dashboard/profile/edit',
-        component: () => <EditProfile />,
-        exact: true
     }
+    // {
+    //     path: '/dashboard/jobs/details/:id',
+    //     component: () => <JobContainerDetails />
+    // },
+    // {
+    //     path: '/dashboard/jobs/edit/:id',
+    //     component: () => <Form />
+    // },
+    // {
+    //     path: '/dashboard/profile',
+    //     component: () => <Profile />,
+    //     exact: true
+    // },
+    // {
+    //     path: '/dashboard/profile/edit',
+    //     component: () => <EditProfile />,
+    //     exact: true
+    // }
 ];
 
 const mapStateToProps = state => ({
@@ -69,9 +69,9 @@ export default connect( mapStateToProps )( withRouter(({ match, history, current
                 ) )
             }
             
-            <Route path="*">
+            {/* <Route path="*">
                 <NotFound />
-            </Route>
+            </Route> */}
         </Switch>
     );
 }));

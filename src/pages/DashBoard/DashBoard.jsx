@@ -9,17 +9,28 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './DashBoard.scss';
 
+// eslint-disable-next-line no-unused-vars
 const DashBoard = ( { history, match } ) => {
     return (
         <Router>
+            {/* <div className="wrapper">
+                <div className="aside">
+                    sidebar
+                </div>
+                <div className="main">
+                    <p>content.</p>  
+                </div>
+            </div> */}
 
             <div className="dashboard">
 
                 <div className="dashboard__sidebar">
-                    sidebar
+                    {/* <SideBar history={ history } /> */}
+                    side
                 </div>
 
                 <div className="dashboard__main-content">
+                    {/* <Routes history={ history } match={ match } /> */}
                     content
                 </div>
 

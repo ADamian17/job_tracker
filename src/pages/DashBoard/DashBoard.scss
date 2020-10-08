@@ -1,11 +1,8 @@
-// @import '../../styles/main.scss';
-
+@import '../../styles/main.scss';
 
 .dashboard {
     display: flex;  
     flex-flow: row wrap;
-    min-height: 100vh;
-    background-color: red;
 
     & > * {
         flex: 1 100%;
@@ -16,7 +13,8 @@
     }
 
     &__main-content {
-        background-color: #2bff00;
+        background-image: linear-gradient( $color-tertiary-dark -44%, $color-primary-dark 72%);
+        min-height: 100vh;
     }
 
     // &__main {
@@ -53,14 +51,64 @@
     // }
     
     // NOTE controls the sidebar width
-    &__sidebar {
-        flex: 1 0 0;
-    }
+    // &__sidebar {
+    //     flex: 1 0 0;
+    // }
 
-    @media all and (min-width: 800px) {
-        &__main-content { flex: 5 0px; }
-        &__sidebar { order: 1; } 
-        &__main-content { order: 2; }
-    }
+    // @media all and (min-width: 375px) {
+    //     &__sidebar { flex: 1 0 0; }
+    // }
+
+    // @media all and (min-width: 600px) {
+    //     &__sidebar { flex: 1 0 0; }
+    // }
+
+    // @media all and (min-width: 800px) {
+    //     &__main-content { flex: 5 0px; }
+    //     &__sidebar { order: 1; } 
+    //     &__main-content { order: 2; }
+    // }
+}
+
+@media all and (min-width: 600px) {
+    .dashboard__sidebar { flex: 1 0 0; }
+}
+
+@media all and (min-width: 800px) {
+    .dashboard__main-content { flex: 3 0px; }
+    .dashboard__sidebar { order: 1; } 
+    .dashboard__main-content { order: 2; }
 }
  
+
+
+// .wrapper {
+//     display: flex;  
+//     flex-flow: row wrap;
+//     min-height: 100vh;
+
+// }
+  
+//   .wrapper > * {
+//     padding: 10px;
+//     flex: 1 100%;
+//   }
+  
+//   .aside {
+//     background: gold;
+//   }
+  
+//   .main {
+//     text-align: left;
+//     background: deepskyblue;
+//   }
+  
+//   @media all and (min-width: 600px) {
+//     .aside { flex: 1 0 0; }
+//   }
+  
+//   @media all and (min-width: 800px) {
+//     .main    { flex: 5 0px; }
+//     .aside { order: 1; } 
+//     .main    { order: 2; }
+//   }
