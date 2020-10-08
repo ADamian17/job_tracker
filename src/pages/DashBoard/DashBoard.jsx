@@ -26,12 +26,10 @@ const DashBoard = ( { history, match } ) => {
 
                 <div className="dashboard__sidebar">
                     {/* <SideBar history={ history } /> */}
-                    side
                 </div>
 
                 <div className="dashboard__main-content">
                     {/* <Routes history={ history } match={ match } /> */}
-                    content
                 </div>
 
                 {/* <div className="dashboard__sidebar">
