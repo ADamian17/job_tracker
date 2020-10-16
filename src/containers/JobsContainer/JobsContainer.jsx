@@ -77,10 +77,9 @@ class JobsContainer extends Component {
         }
     }
     
+    
     render() { 
-        // console.log(this.props);
-        // eslint-disable-next-line no-unused-vars
-        const { jobs, showJobDetails, showModal } = this.props;
+        const { jobs } = this.props;
         // const TableRows = jobs.map((items) => <TBody jobs={items} key={items._id} showJobDetails={showJobDetails} handleDelete={this.handleDeleteJob} />);
         const jobsLength = jobs.length;
 
@@ -92,20 +91,22 @@ class JobsContainer extends Component {
                     
                 <div className="table">
 
-                    <div className="add-job">
-                        {/* <p>Count: {jobsLength}</p> */}
-                        {/* <!-- Button trigger modal --> */}
+                    {/* <div className="add-job">
+                        <p>Count: {jobsLength}</p>
+                         <!-- Button trigger modal -->
                         <button variant="link" onClick={() => showModal() }>
                             add job
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* NOTE  Table header */}
                     <div className="table__header">
+                        header
                         {/* <THeaders /> */}
                     </div>
 
                     <div className="table__body">
+                        content
                         {
                             jobsLength !== 0 ? (
                                 <div>

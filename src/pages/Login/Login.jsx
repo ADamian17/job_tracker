@@ -9,7 +9,14 @@ import { setCurrentUser, setTokenExp } from '../../redux/user/user.actions';
 // NOTE helpers
 import Auth from '../../models/auth';
 
-// import './Login.scss';
+// F focus
+// i independent
+// reusable
+// small
+// testable
+
+import './Login.scss';
+
 class Login extends Component {
 
     state = {
@@ -52,45 +59,59 @@ class Login extends Component {
     };
 
     render() {
+
+        const invalidUser = this.state.error;
+        
         return (
-            <> 
-                <div className="container">
+         
+            <div className=" container-fluid">
+                <div className="row justify-content-center full-screen ">
 
-                    <div className="segment">
-                        <header >
-                            Log-in to your account
-                        </header>
+                    <div className="col-4 align-self-center">
+                       
+                        <div className="card p-3 shadow">
+                            { invalidUser ?  <div className="error"> Email or Password are wrong. Please try agian! </div> : '' }
+                            <header className="text-center">
+                                Log-in to your account
+                            </header>
 
-                        <form>
-                            <div className="input-container">
+                            <form className="">
 
-                                <input
-                                    placeholder="E-mail address"
-                                    name="email"
-                                    onChange={this.handleChange}
-                                    required />
-                                <input
-                                   
-                                    placeholder="Password"
-                                    type="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                    required/>
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        placeholder="E-mail address"
+                                        name="email"
+                                        onChange={this.handleChange}
+                                        required />
+                                </div>
 
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        placeholder="Password"
+                                        type="password"
+                                        name="password"
+                                        onChange={this.handleChange}
+                                        required/>
+                                </div>
+
+                                <button type="submit"  className="btn btn-primary btn-block" onClick={this.handleLogin} >
+                                    Login
+                                </button>
+
+                            </form>
+
+                            <div>
+                                New to us? <Link to="/register">Sign Up</Link>
                             </div>
-
-                            <button type="submit" onClick={this.handleLogin} >
-                                Login
-                            </button>
-
-                        </form>
-
-                        <div>
-                            New to us? <Link to="/register">Sign Up</Link>
                         </div>
                     </div>
+
                 </div>
-            </>
+
+                      
+            </div>
         );
     }
 }

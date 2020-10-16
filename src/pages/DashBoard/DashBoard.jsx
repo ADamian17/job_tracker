@@ -1,54 +1,39 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// import Routes from './routes/routes';
-// import SideBar from '../../components/UI/Sidebar/Sidebar';
+import Routes from './routes/routes';
+import SideBar from '../../components/UI/Sidebar/Sidebar';
+import Divider from '../../components/UI/Divider/Divider';
 // import TopNavbar from '../../components/UI/topNavBar/topNavBAr';
 // import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
-// import DashHeader from '../../components/DashBoardHeader/DashBoardHeader';
+import DashHeader from '../../components/UI/DashHeader/DashHeader';
 
-import './DashBoard.scss';
+// import './DashBoard.scss';
 
-// eslint-disable-next-line no-unused-vars
+
 const DashBoard = ( { history, match } ) => {
     return (
         <Router>
-            {/* <div className="wrapper">
-                <div className="aside">
-                    sidebar
-                </div>
-                <div className="main">
-                    <p>content.</p>  
-                </div>
-            </div> */}
-
             <div className="dashboard">
 
+                {/* NOTE sidebar */}
                 <div className="dashboard__sidebar">
-                    {/* <SideBar history={ history } /> */}
-                </div>
-
-                <div className="dashboard__main-content">
-                    {/* <Routes history={ history } match={ match } /> */}
-                </div>
-
-                {/* <div className="dashboard__sidebar">
-                    NOTE sidebar container
                     <SideBar history={ history } />
                 </div>
 
-                <main className="dashboard__main">
-
+                {/* NOTE main content */}
+                <main className="dashboard__main-content">
                     <div className="wrapper" >
                         <div className="dashHeader">
                             < DashHeader match={ match }/> 
                         </div>
 
-                        NOTE dashboard routes
+                        <Divider />
+
+                        {/* NOTE dashboard routes */}
                         <Routes history={ history } match={ match } />
                     </div>
-
-                </main> */}
+                </main>
 
             </div>
             

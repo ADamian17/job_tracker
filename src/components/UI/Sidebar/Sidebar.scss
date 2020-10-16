@@ -1,7 +1,6 @@
 @import "../../../styles/main.scss";
 
 .sidebar {
-    grid-column: sidebar;
     background-color: $color-secondary-dark;
     width: 100%;
     height: 100%;
@@ -11,76 +10,62 @@
     justify-items: center;
     text-transform: uppercase;
     border: 1px solid black;
-    color: white;
+    color: $color-white;
 
-    // &__header {
-    //     align-self: center;
-    //     font-size: 1.6rem;
+    &__header {
+        align-self: center;
+        font-size: 1.5rem;
 
-    //     @media (max-width: 375px ) {
-    //         font-size: 1rem;
-    //     }
-    // }
+        @media (min-width: 80rem ) {
+            font-size: 1.3rem;
+        }
+    }
 
-    // &__menu {
-    //     width: 100%;
-    //     height: 100%;
-    //     padding: 10px;
-    //     font-size: 18px;
-    //     display: flex;
-    //     flex-direction: column;
+    &__menu {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
        
 
-    //     &--item {
-    //         width: 100%;
-    //         height: 1.5rem;
-    //         padding: 1.5rem;
-    //         display: flex;
-    //         justify-content: flex-start;
-    //         align-items: center;
-    //         border-right: 2px solid transparent;
+        &--item {
+            width: 100%;
+            height: 1.5rem;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid transparent;
 
-    //         &:focus,
-    //         &:hover {
-    //             background-color: $color-primary-dark;
-    //             // border-right: 2px solid $color-tertiary-light;
-    //         }
-    //     }
+            // background-color: aliceblue;
 
-    //     &--link {
-    //         width: 100px;
-    //         display: grid;
-    //         grid-template-columns: 35% auto;
+            &:focus,
+            &:hover {
+                background-color: $color-primary-dark;
+            }
+        }
+
+        &--link {
+            width: 100px;
+            display: grid;
+            grid-template-columns: 35% auto;
            
-    //     }
+        }
 
-    //     &--link a {
+        &--link a {
             
-    //         &:link,
-    //         &:visited {
-    //             color: $color-white;
-    //             text-decoration: none;
-    //             cursor: pointer;
-    //         }
-    //     }
-    // }
+            &:link,
+            &:visited {
+                color: $color-white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+    }
 
-    // @media (max-width: 375px ) {
-    //     // display: none;
-    //     // width: 68rem;
-    // }
-
-    // @media ( min-width: 600px ) {
-    //     flex: 1 0 0; 
-    // }
+    @media (max-width: 375px ) {
+        display: none;
+    }
 }
-
-
-// .d-md-block right now display block
-
-// #sidebarMenu {
-//     background-color: #111430 !important;
-//     color: white;
-//     width: 18rem;
-//     height: 100vh;
-// }

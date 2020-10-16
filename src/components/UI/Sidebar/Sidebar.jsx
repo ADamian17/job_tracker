@@ -4,29 +4,29 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/user/user.actions';
 
-import './Sidebar.scss';
+// import './Sidebar.scss';
 
 const SIDEBAR_ROUTES = [
     {
         name: 'jobs',
         url: '/dashboard/jobs',
         icon: 'fas fa-suitcase'
+    },
+    {
+        name: 'reports',
+        url: '/dashboard/reports',
+        icon: 'fas fa-chart-line'
+    },
+    {
+        name: 'account',
+        url: '/dashboard/profile',
+        icon: 'fas fa-sliders-h'
+    },
+    {
+        name: 'logout',
+        url: '#',
+        icon: 'fas fa-sign-out-alt'
     }
-    // {
-    //     name: 'reports',
-    //     url: '/dashboard/reports',
-    //     icon: 'fas fa-chart-line'
-    // },
-    // {
-    //     name: 'account',
-    //     url: '/dashboard/profile',
-    //     icon: 'fas fa-sliders-h'
-    // },
-    // {
-    //     name: 'logout',
-    //     url: '#',
-    //     icon: 'fas fa-sign-out-alt'
-    // }
 ];
 
 class Sidebar extends React.Component {
@@ -58,15 +58,15 @@ class Sidebar extends React.Component {
         return (
             <nav className="sidebar">
     
-                {/* <div className="sidebar">
+                <div className="sidebar__header">
                     <p>Track that job</p>
-                </div> */}
+                </div>
                 
-                {/* <ul className="sidebar__menu nav flex-column">
+                <ul className="sidebar__menu nav flex-column">
     
                     { links }
     
-                </ul> */}
+                </ul>
     
             </nav>
         );
