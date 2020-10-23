@@ -10,7 +10,7 @@
     justify-items: center;
     text-transform: uppercase;
     border: 1px solid black;
-    color: $color-white;
+    color: $color-grey-dark-2;
 
     &__header {
         align-self: center;
@@ -58,7 +58,7 @@
             
             &:link,
             &:visited {
-                color: $color-white;
+                color: $color-grey-dark-2;
                 text-decoration: none;
                 cursor: pointer;
             }
@@ -68,4 +68,8 @@
     @media (max-width: 375px ) {
         display: none;
     }
+}
+
+.fa, .fas {
+    align-self: center;
 }

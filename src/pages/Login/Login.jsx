@@ -1,120 +1,111 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { setCurrentUser, setTokenExp } from '../../redux/user/user.actions';
 
 // NOTE components
+import LoginRegisterContainer from '../../components/LoginRegisterContainer/LoginRegisterContainer';
+import Message from '../../components/Message/Message';
 
 // NOTE helpers
 import Auth from '../../models/auth';
 
-// F focus
-// i independent
-// reusable
-// small
-// testable
-
 import './Login.scss';
 
-class Login extends Component {
+const Login = ( props ) => {
 
-    state = {
-        email: '',
-        password: '',
-        error: null
-    };
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ message, setMessage ] = useState('');
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
-
-    handleLogin = async (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
 
-        const { setCurrentUser } = this.props;
-        const userData = this.state;
+        const { setCurrentUser } = props;
+        const userData = { email, password };
 
         try {
             const user = await Auth.login( userData );
             const token = await user.data.signedJwt;
-
-            if (token) {
-                setCurrentUser(token);
-                
-                this.setState({
-                    email: '',
-                    password: ''
-                });
-                this.props.history.push('/dashboard/jobs');
-            }
+            
+            setCurrentUser(token);
+            props.history.push('/dashboard/jobs');
 
         } catch (error) {
-            this.setState({
-                error: error.response.data.message
-            });
+            setMessage(error.response.data.message);
         }
     };
 
-    render() {
-
-        const invalidUser = this.state.error;
+    const errMessage = message;
         
-        return (
+    return (
          
-            <div className=" container-fluid">
-                <div className="row justify-content-center full-screen ">
+        <LoginRegisterContainer colZise={4} >
 
-                    <div className="col-4 align-self-center">
-                       
-                        <div className="card p-3 shadow">
-                            { invalidUser ?  <div className="error"> Email or Password are wrong. Please try agian! </div> : '' }
-                            <header className="text-center">
-                                Log-in to your account
-                            </header>
+            <div className="card p-3 shadow">
 
-                            <form className="">
+                { errMessage ?  
+                    <div className=" alert alert-danger text-center" role="alert" > 
+                        { errMessage } 
+                    </div> 
+                    : '' 
+                }
 
-                                <div className="form-group">
-                                    <input
-                                        className="form-control"
-                                        placeholder="E-mail address"
-                                        name="email"
-                                        onChange={this.handleChange}
-                                        required />
-                                </div>
+                <div className="row">
 
-                                <div className="form-group">
-                                    <input
-                                        className="form-control"
-                                        placeholder="Password"
-                                        type="password"
-                                        name="password"
-                                        onChange={this.handleChange}
-                                        required/>
-                                </div>
+                    <div className="col p-2">
 
-                                <button type="submit"  className="btn btn-primary btn-block" onClick={this.handleLogin} >
-                                    Login
-                                </button>
+                        <header className="text-center">
 
-                            </form>
+                            Log-in to your account
 
-                            <div>
-                                New to us? <Link to="/register">Sign Up</Link>
-                            </div>
-                        </div>
+                        </header>
+
                     </div>
 
                 </div>
 
-                      
+                <form>
+
+                    <div className="form-group">
+                        <input
+                            className="form-control"
+                            placeholder="E-mail address"
+                            name="email"
+                            onChange={ (e) => setEmail(e.target.value) }
+                            required />
+                                        
+                        <div className="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+
+                        <input
+                            className="form-control"
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            onChange={ (e) => setPassword(e.target.value) }
+                            required/>
+
+                    </div>
+
+                    <button type="submit"  className="btn btn-primary btn-block" onClick={handleLogin} >
+                        Login
+                    </button>
+
+                </form>
+
+                <Message message=" New to us?" url="/register" title="Sign Up" />
+                            
             </div>
-        );
-    }
-}
+
+        </LoginRegisterContainer>
+    );
+
+};
 
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: (token) => dispatch(setCurrentUser(token)),

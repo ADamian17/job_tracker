@@ -3,37 +3,62 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Routes from './routes/routes';
 import SideBar from '../../components/UI/Sidebar/Sidebar';
-import Divider from '../../components/UI/Divider/Divider';
+// import Divider from '../../components/UI/Divider/Divider';
 // import TopNavbar from '../../components/UI/topNavBar/topNavBAr';
 // import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import DashHeader from '../../components/UI/DashHeader/DashHeader';
 
-// import './DashBoard.scss';
-
+import './DashBoard.scss';
 
 const DashBoard = ( { history, match } ) => {
     return (
         <Router>
-            <div className="dashboard">
+            <div className="container-fluid p-0">
 
-                {/* NOTE sidebar */}
-                <div className="dashboard__sidebar">
-                    <SideBar history={ history } />
+                <div className="onlyDesktop">
+                    <p>sorry mobile version is not currently availible, come back to desktop</p> 
+                </div>
+
+                <div className="row">
+
+                    <div className="col-2 p-0">
+                        {/* NOTE sidebar */}
+                        <SideBar history={ history } />
+                        {/* <div className="dashboard__sidebar">
+                        </div> */}
+                    </div>
+
+                    <div className="col main-content">
+
+                        <div className="container">
+
+                            <div className="row">
+                                <div className="dashHeader">
+                                    < DashHeader match={ match }/>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    {/* NOTE dashboard routes */}
+                                    <Routes history={ history } match={ match } /> 
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
                 {/* NOTE main content */}
-                <main className="dashboard__main-content">
+                {/* <main className="dashboard__main-content">
                     <div className="wrapper" >
-                        <div className="dashHeader">
-                            < DashHeader match={ match }/> 
-                        </div>
+                        
 
                         <Divider />
 
-                        {/* NOTE dashboard routes */}
-                        <Routes history={ history } match={ match } />
+                        
                     </div>
-                </main>
+                </main> */}
 
             </div>
             

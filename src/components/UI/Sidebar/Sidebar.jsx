@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/user/user.actions';
 
-// import './Sidebar.scss';
+import './Sidebar.scss';
 
 const SIDEBAR_ROUTES = [
     {
@@ -29,50 +29,48 @@ const SIDEBAR_ROUTES = [
     }
 ];
 
-class Sidebar extends React.Component {
+const Sidebar = ( props ) => {
 
-    handleLogout = () => {
-        const { logout, history } = this.props;
+    const handleLogout = () => {
+        const { logout, history } = props;
         logout();
         history.push('/login');
-    }
+    };
 
-    render () {
-        // eslint-disable-next-line no-unused-vars
-        const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
+    const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
 
-            if( route.name === 'logout') {
-                route['logout'] = this.handleLogout;
-            }
-
-            return (
-                <li key={idx} className="sidebar__menu--item nav-item" >
-                    <div className="sidebar__menu--link" onClick={route.logout}> 
-                        <i className={route.icon} /> 
-                        <Link to={route.url}>{route.name}</Link>
-                    </div>
-                </li>
-            );
-        }); 
+        if( route.name === 'logout') {
+            route['logout'] = handleLogout;
+        }
 
         return (
-            <nav className="sidebar">
-    
-                <div className="sidebar__header">
-                    <p>Track that job</p>
+            <li key={idx} className="sidebar__menu--item nav-item" >
+                <div className="sidebar__menu--link" onClick={route.logout}> 
+                    <i className={route.icon} /> 
+                    <Link to={route.url}>{route.name}</Link>
                 </div>
-                
-                <ul className="sidebar__menu nav flex-column">
-    
-                    { links }
-    
-                </ul>
-    
-            </nav>
+            </li>
         );
+    }); 
 
-    }  
-}
+    return (
+        <nav className="sidebar p-4">
+    
+            <div className="sidebar__header ">
+                <p>Track that job</p>
+            </div>
+                
+            <ul className="sidebar__menu nav flex-column ">
+    
+                { links }
+    
+            </ul>
+    
+        </nav>
+    );
+
+ 
+};
                     
 
 const mapDispatchToProps = dispatch => ({

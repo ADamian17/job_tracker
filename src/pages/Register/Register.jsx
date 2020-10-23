@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+
+
+// NOTE components
+import LoginRegisterContainer from '../../components/LoginRegisterContainer/LoginRegisterContainer';
+import Message from '../../components/Message/Message';
+import ErrorBanner from '../../components/ErrorBanner/ErrotBanner';
 
 // NOTE Internal Module
 import Auth from '../../models/auth';
 
 class Register extends Component {
+
     state = {
         first_name: '',
         last_name: '',
         email: '',
         password: '',
         password2: '',
-        profession: ''
+        profession: '',
+        error: null
     };
 
     handleChange = (event) => {
@@ -20,91 +27,123 @@ class Register extends Component {
         });
     };
 
-    handleRegister = async ( event) => {
+    handleRegister = async ( event ) => {
         event.preventDefault();
         const userData = this.state;
 
         try {
-            const newUser = await Auth.register( userData );
+
+            await Auth.register( userData );
             
-            if (newUser) {
-                this.setState({
-                    first_name: '',
-                    last_name: '',
-                    email: '',
-                    password: '',
-                    password2: '',
-                    profession: ''
-                });
-            }
+            this.setState({
+                first_name: '',
+                last_name: '',
+                email: '',
+                password: '',
+                password2: '',
+                profession: ''
+            });
             
             this.props.history.push('/login');
+            
         } catch (err) {
-            console.log(err);
+
+            this.setState({
+                error : err.response.data
+            });
+
         }
     };
-
-    render() {
-        return (
-            <div >
-                <div style={{ width: 900 }}>
-                    <header>
-                        Log-in to your account
-                    </header>
-                    
-                    <form >
-                        <div >
-                            <div >
-                                <input
-                                    icon="user"
     
+    render() {
+        const errMessage = this.state.error;
+
+        return (
+            <LoginRegisterContainer colZise={6} >
+
+                <div className="card p-3 shadow">
+                    
+                    { errMessage ?  
+                        <ErrorBanner message={ errMessage.message } />
+                        : '' 
+                    }
+
+                    <div className="row">
+
+                        <div className="form-group col p-2">
+
+                            <header className="text-center">
+                                create a new account
+                            </header>
+                            
+                        </div>
+
+                    </div>
+                    
+                    <form>
+
+                        {/* row 1 */}
+                        <div className="form-row">
+
+                            <div className="form-group col">
+                                <input
+                                    className="form-control"
                                     placeholder="First Name"
                                     name="first_name"
                                     onChange={this.handleChange}
                                     required />
+                            </div>
 
+                            <div className="form-group col">
                                 <input
-                                
-                                    icon="user"
-    
+                                    className="form-control"
                                     placeholder="Last Name"
                                     type="text"
                                     name="last_name"
                                     onChange={this.handleChange}
                                     required/>
+                            </div>
+
+                            <div className="form-group col">
                                 <input
-                                
-                                    icon="user"
-    
+                                    className="form-control"
                                     placeholder="Profession"
                                     type="text"
                                     name="profession"
                                     onChange={this.handleChange}
                                     required/>
-                            </div>
+                            </div> 
 
+                        </div>
+
+                        {/* row 2 */}
+                        <div className="form-group">
                             <input
-                                icon="envelope"
-
+                                className="form-control"
                                 placeholder="E-mail address"
                                 name="email"
                                 onChange={this.handleChange}
                                 required />
+                            
+                        </div>
 
-                            <div widths="equal">
+                        {/* row 3  */}
+                        <div className="form-row">
+                            
+                            <div className="form-group col">
                                 <input
-                                    icon="lock"
-    
+                                    className="form-control"
                                     placeholder="Password"
                                     type="password"
                                     name="password"
                                     onChange={this.handleChange}
                                     required />
 
+                            </div>
+
+                            <div className="form-group col">
                                 <input
-                                
-                                    icon="lock"
-    
+                                    className="form-control"
                                     placeholder="Confirm Password"
                                     type="password"
                                     name="password2"
@@ -112,18 +151,21 @@ class Register extends Component {
                                     required/>
                             </div>
 
-                            <button type="submit" onClick={this.handleRegister}>
-                                Register
-                            </button>
                         </div>
+
+                        <button type="submit" className="btn btn-primary btn-block" onClick={this.handleRegister}>
+                            Register
+                        </button>
+    
                     </form>
-                    <div>
-                        Already have an Account? <Link to="/login">Login</Link>
-                    </div>
+
+                    <Message message="Already have an Account?" url="/login" title="Login" />
+
                 </div>
-            </div>
+
+            </LoginRegisterContainer>
         );
     }
 }
 
-export default withRouter( Register );
+export default Register;
