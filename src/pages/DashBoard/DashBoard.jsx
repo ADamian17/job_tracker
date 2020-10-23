@@ -11,21 +11,20 @@ import DashHeader from '../../components/UI/DashHeader/DashHeader';
 import './DashBoard.scss';
 
 const DashBoard = ( { history, match } ) => {
+
     return (
         <Router>
-            <div className="container-fluid p-0">
-
+            <div className="container-fluid">
+    
                 <div className="onlyDesktop">
                     <p>sorry mobile version is not currently availible, come back to desktop</p> 
                 </div>
 
                 <div className="row">
 
-                    <div className="col-2 p-0">
+                    <div className="col-2 p-0" style={{ backgroundColor: 'red'}}>
                         {/* NOTE sidebar */}
                         <SideBar history={ history } />
-                        {/* <div className="dashboard__sidebar">
-                        </div> */}
                     </div>
 
                     <div className="col main-content">
@@ -33,7 +32,7 @@ const DashBoard = ( { history, match } ) => {
                         <div className="container">
 
                             <div className="row">
-                                <div className="dashHeader">
+                                <div className="col">
                                     < DashHeader match={ match }/>
                                 </div>
                             </div>

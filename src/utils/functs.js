@@ -1,7 +1,10 @@
 export const truncateString = (str, range ) => {
+    range = parseInt(range);
+
     if ( range >= str.length ) {
         return str;
     }
+
     const newFormat = str.substr(0, range);
     return `${newFormat}...`;
 };

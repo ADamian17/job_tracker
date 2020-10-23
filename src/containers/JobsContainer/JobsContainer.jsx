@@ -7,13 +7,10 @@ import { showModal } from '../../redux/modal/modal.action';
 
 import Job from '../../models/Job';
 
-// import NewJob from '../../components/NewJob/NewJob';
-// import MyModal from '../../components/Modal/MyModal';
-// import TBody from '../../components/Table/Body/TBody';
-// import THeaders from '../../components/Table/Headers/THeaders';
-// import JobFooter from '../../components/JobTable/JobFooter/JobFooter';
+import JobHeader from './JobHeader/JobHeader';
+import JobList from './JobList/JobList';
 
-// import './JobContainer.scss';
+import './JobContainer.scss';
 
 class JobsContainer extends Component {
 
@@ -80,48 +77,33 @@ class JobsContainer extends Component {
     
     render() { 
         const { jobs } = this.props;
-        // const TableRows = jobs.map((items) => <TBody jobs={items} key={items._id} showJobDetails={showJobDetails} handleDelete={this.handleDeleteJob} />);
         const jobsLength = jobs.length;
 
-        return (
-            <> 
-                {/* <div className="search-container">
-                    search container
-                </div> */}
-                    
-                <div className="table">
+        return (     
+            <div className="table p-4 rounded">
 
-                    {/* <div className="add-job">
-                        <p>Count: {jobsLength}</p>
-                         <!-- Button trigger modal -->
-                        <button variant="link" onClick={() => showModal() }>
-                            add job
-                        </button>
-                    </div> */}
-
-                    {/* NOTE  Table header */}
-                    <div className="table__header">
-                        header
-                        {/* <THeaders /> */}
+                {/* NOTE  Table header */}
+                <div className="row">
+                    <div className="col table__header">
+                        <JobHeader />
                     </div>
+                </div>
 
-                    <div className="table__body">
-                        content
-                        {
-                            jobsLength !== 0 ? (
-                                <div>
-                                    {/* {TableRows} */}
-                                </div>  
-                            )  : (
-                                <div>
-                                    <p>Jobs added: {jobsLength}</p>
-                                </div>
-                            )
-                        }
+                <div className="table__body">
+                    {
+                        jobsLength !== 0 ? (
+                            <>
+                                <JobList jobs={jobs} />
+                            </> 
+                        )  : (
+                            <>
+                                <p>Jobs added: { jobsLength }</p>
+                            </>
+                        )
+                    }
 
-                    </div>
-                </div>  
-            </>
+                </div>
+            </div>  
         );
     }
 }

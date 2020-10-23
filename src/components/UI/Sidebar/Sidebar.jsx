@@ -54,7 +54,7 @@ const Sidebar = ( props ) => {
     }); 
 
     return (
-        <nav className="sidebar p-4">
+        <nav className="sidebar">
     
             <div className="sidebar__header ">
                 <p>Track that job</p>

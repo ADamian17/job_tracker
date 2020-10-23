@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-// import './DashHeader.scss';
+import './DashHeader.scss';
 
 
 const DashBoardHeader = () => {
@@ -21,11 +21,14 @@ const DashBoardHeader = () => {
         return title.join().replace(re, ' ');  
     };
 
-    console.log(getTitle());
-
     return (
-        <div className="header">
-            <h1>{ getTitle() }</h1>
+        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 className="header" >{ getTitle() }</h1>
+            <div className="btn-toolbar mb-2 mb-md-0">
+                <div className="btn-group mr-2">
+                    <button type="button" className="btn btn-sm btn-outline-secondary">Add Job</button>
+                </div>
+            </div>
         </div>
     );
 };

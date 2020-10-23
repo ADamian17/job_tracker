@@ -1,6 +1,7 @@
 @import "../../../styles/main.scss";
 
 .header {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
+    color: $color-grey-dark-2;
 }
 
