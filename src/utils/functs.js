@@ -9,6 +9,10 @@ export const truncateString = (str, range ) => {
     return `${newFormat}...`;
 };
 
+export const formatDate = ( str ) => {
+    if ( !str ) return '';
+    return new Date( str ).toLocaleDateString();
+};
 
 export const parseJwt = ( token ) => {
     let base64Url = token.split('.')[1];
@@ -19,3 +23,4 @@ export const parseJwt = ( token ) => {
 
     return JSON.parse(jsonPayload);
 };
+

@@ -4,7 +4,7 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Jobs from '../../../containers/JobsContainer/JobsContainer';
-// import JobContainerDetails from '../../../containers/JobsContainer/JobContainerDetails/JobContainerDetails';
+import JobDetails from '../../../containers/JobsContainer/JobDetails/JobDetails';
 // import Form from '../../../components/Form/Form';
 // import Profile from '../../../containers/ProfileContainer/ProfileContainer';
 // import EditProfile from '../../../containers/ProfileContainer/ProfileEdit/ProfileEdit';
@@ -17,11 +17,11 @@ const routes = [
         path: '/dashboard/jobs',
         component: () => <Jobs />,
         exact: true
-    }
-    // {
-    //     path: '/dashboard/jobs/details/:id',
-    //     component: () => <JobContainerDetails />
-    // },
+    },
+    {
+        path: '/dashboard/jobs/details/:id',
+        component: () => <JobDetails />
+    },
     // {
     //     path: '/dashboard/jobs/edit/:id',
     //     component: () => <Form />
@@ -68,10 +68,6 @@ export default connect( mapStateToProps )( withRouter(({ match, history, current
                         Component={route.component} />
                 ) )
             }
-            
-            {/* <Route path="*">
-                <NotFound />
-            </Route> */}
         </Switch>
     );
 }));

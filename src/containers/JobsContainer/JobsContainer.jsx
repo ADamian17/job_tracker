@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+// NOTE Reduxs
 import { connect } from 'react-redux';
 import { getJobs } from '../../redux/jobs/jobs.actions';
 import { showModal } from '../../redux/modal/modal.action';
@@ -28,7 +29,7 @@ class JobsContainer extends Component {
         const { currentUser, getJobs } = this.props;
        
         try {
-            const jobs = await Job.getJobData( currentUser );
+            const jobs = await Job.getAllJobs( currentUser );
             getJobs(jobs.data.data);
 
         } catch (error) {
