@@ -16,13 +16,15 @@ const Login = ( props ) => {
 
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+
     const [ message, setMessage ] = useState('');
+
+    const userData = { email, password };
 
     const handleLogin = async (event) => {
         event.preventDefault();
 
         const { setCurrentUser } = props;
-        const userData = { email, password };
 
         try {
             const user = await Auth.login( userData );
@@ -40,9 +42,9 @@ const Login = ( props ) => {
         
     return (
          
-        <LoginRegisterContainer colZise={4} >
+        <LoginRegisterContainer colZise={6} >
 
-            <div className="card p-3 shadow">
+            <>
 
                 { errMessage ?  
                     <div className=" alert alert-danger text-center" role="alert" > 
@@ -51,9 +53,9 @@ const Login = ( props ) => {
                     : '' 
                 }
 
-                <div className="row">
+                <div className="row mb-2">
 
-                    <div className="col p-2">
+                    <div className="col">
 
                         <header className="text-center">
 
@@ -65,42 +67,50 @@ const Login = ( props ) => {
 
                 </div>
 
-                <form>
+                <div className="row">
 
-                    <div className="form-group">
-                        <input
-                            className="form-control"
-                            placeholder="E-mail address"
-                            name="email"
-                            onChange={ (e) => setEmail(e.target.value) }
-                            required />
-                                        
-                        <div className="invalid-feedback">
-                            Please choose a username.
-                        </div>
+                    <div className="col-6">
+                        <form>
+
+                            <div className="form-group">
+                                <input
+                                    className="form-control"
+                                    placeholder="E-mail address"
+                                    name="email"
+                                    onChange={ ( e ) => setEmail( e.target.value ) }
+                                    required />
+                    
+                                <div className="invalid-feedback">
+                                    Please choose a username.
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+
+                                <input
+                                    className="form-control"
+                                    placeholder="Password"
+                                    type="password"
+                                    name="password"
+                                    onChange={ (e) => setPassword( e.target.value ) }
+                                    required/>
+
+                            </div>
+
+                            <button type="submit"  className="btn btn-primary btn-block" onClick={handleLogin} >
+                                Login
+                            </button>
+
+                        </form>
+
                     </div>
 
-                    <div className="form-group">
-
-                        <input
-                            className="form-control"
-                            placeholder="Password"
-                            type="password"
-                            name="password"
-                            onChange={ (e) => setPassword(e.target.value) }
-                            required/>
-
-                    </div>
-
-                    <button type="submit"  className="btn btn-primary btn-block" onClick={handleLogin} >
-                        Login
-                    </button>
-
-                </form>
+                    <div className="col-6" />
+                </div>
 
                 <Message message=" New to us?" url="/register" title="Sign Up" />
                             
-            </div>
+            </>
 
         </LoginRegisterContainer>
     );

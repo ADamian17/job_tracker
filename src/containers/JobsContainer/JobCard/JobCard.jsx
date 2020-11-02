@@ -20,7 +20,6 @@ const JobCard = ( { job } ) => {
     } = job;
 
     const date = new Date( applied_date ).toLocaleDateString();
-    console.log(job_position.length);
 
     return (
         <TableCard>

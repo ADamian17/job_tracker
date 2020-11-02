@@ -6,7 +6,7 @@ const Message = ({ message, url, title }) => {
     return (
         <Row className="row">
 
-            <Col className="p-3 text-center">
+            <Col className="p-3 text-start">
                             
                 <p>{ message } <Link to={ url }>{ title }</Link></p>
                             
