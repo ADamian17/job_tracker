@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
-import { showModal } from '../../../redux/modal/modal.action';
+import { showModal, hideModal } from '../../../redux/modal/modal.action';
 
 import Job from '../../../models/Job';
 
@@ -25,7 +25,8 @@ const QuestionModal = ( props ) => {
     return (
         <Modal
             show={ props.show }
-            size="md"
+            onHide={ props.hideModal }
+            size={props.size}
             centered>
 
             <Modal.Body>
@@ -41,10 +42,17 @@ const QuestionModal = ( props ) => {
                 }
             </Modal.Body>
 
-            <Modal.Footer>
-                <Button variant="secondary" onClick={ props.showModal }>Close</Button>
-                <Button variant="danger" onClick={ () => handleDeleteJob(jobId) }>yes</Button>
-            </Modal.Footer>
+            {
+                !props.children ? (
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={ props.hideModal }>Close</Button>
+                        <Button variant="danger" onClick={ () => handleDeleteJob(jobId) }>yes</Button>
+                    </Modal.Footer>
+                    
+                ) : ''
+            }
+
 
         </Modal> 
     );
@@ -56,7 +64,8 @@ const mapStateToProps = ( state ) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    showModal: () => dispatch( showModal() )
+    showModal: () => dispatch( showModal() ),
+    hideModal: () => dispatch( hideModal() )
 });
 
 

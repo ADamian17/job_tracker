@@ -1,2 +1,6 @@
 @import './styles/main.scss';
 
+.main-bg-card {
+    background-color: $color-secondary-dark !important;
+    color: $color-grey-dark-2;
+}

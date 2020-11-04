@@ -9,7 +9,12 @@ const modalReducer = ( state = INITIAL_STATE, action ) => {
         case ModalActionTypes.SHOW_MODAL:
             return {
                 ...state,
-                show: !state.show
+                show: true
+            };
+        case ModalActionTypes.HIDE_MODAL:
+            return {
+                ...state,
+                show: false
             };
         default:
             return state;

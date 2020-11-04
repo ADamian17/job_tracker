@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 // NOTE Reduxs
@@ -13,85 +13,67 @@ import JobList from './JobList/JobList';
 
 import './JobContainer.scss';
 
-class JobsContainer extends Component {
+const JobsContainer = ( props ) => {
 
-    state = {
-        error: null,
-        activeItem: 'home'
-    };
+    const [ error, setError ] = useState( null );
+    const { currentUser, getJobs } = props;
 
-    componentDidMount() {
-        this.handleJobData();
-    }
+    useEffect( () => {
+        handleJobData();
+    }, []); 
 
     // NOTE Get all job
-    handleJobData = async () => {
-        const { currentUser, getJobs } = this.props;
+    const handleJobData = async () => {
        
         try {
             const jobs = await Job.getAllJobs( currentUser );
             getJobs(jobs.data.data);
 
         } catch (error) {
-            return console.log(error);
+            setError( error.response.data );
         }
     };
 
 
     // NOTE Hanlde Add Job
-    handleAddJob = async (event, state) => {
-        event.preventDefault();
-        const currentUser = this.props.currentUser;
+    // const handleAddJob = async (event, state) => {
+    //     event.preventDefault();
+    //     const currentUser = this.props.currentUser;
 
-        try {
-            const new_job = await Job.addJob(currentUser, state);
-            console.log(new_job);
+    //     try {
+    //         const new_job = await Job.addJob(currentUser, state);
+    //         console.log(new_job);
 
-            if (new_job) {
-                this.getJobData();
-                showModal();
-            }
+    //         if (new_job) {
+    //             this.getJobData();
+    //             showModal();
+    //         }
 
-        } catch (error) {
-            this.setState({
-                error: error
-            });
-        }
-    }
-
-
-    // NOTE get job details
-    handleDeleteJob = async ( id ) => {
-        const currentUser = this.props.currentUser;
-        try {
-            const deletedJob = await Job.deleteJob( currentUser, id );
-
-            if ( deletedJob ) {
-                this.handleJobData();
-            }
-
-        } catch (error) {
-            return error;
-        }
-    }
+    //     } catch (error) {
+    //         this.setState({
+    //             error: error
+    //         });
+    //     }
+    // };
     
     
-    render() { 
-        const { jobs } = this.props;
-        const jobsLength = jobs.length;
+    const { jobs } = props;
+    const jobsLength = jobs.length;
+    console.log('state:', error);
 
-        return (     
-            <div className="table p-4 rounded">
+    return (     
+        <div className="table p-4 rounded">
 
-                {/* NOTE  Table header */}
-                <div className="row">
-                    <div className="col table__header">
-                        <JobHeader />
-                    </div>
+            {/* NOTE  Table header */}
+            <div className="row">
+                <div className="col table__header">
+                    <JobHeader />
                 </div>
+            </div>
 
-                <div className="table__body">
-                    {
+            <div className="table__body">
+                { 
+                    jobs && (
                         jobsLength !== 0 ? (
                             <>
                                 <JobList jobs={jobs} />
@@ -101,13 +83,14 @@ class JobsContainer extends Component {
                                 <p>Jobs added: { jobsLength }</p>
                             </>
                         )
-                    }
+                    )
+                } 
 
-                </div>
-            </div>  
-        );
-    }
-}
+            </div>
+        </div>  
+    );
+    
+};
 
 const mapStateToProps = state => ({
     jobs: state.jobs.jobsList,

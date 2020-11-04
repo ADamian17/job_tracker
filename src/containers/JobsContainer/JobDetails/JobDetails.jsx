@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 
 // NOTE REDUX
 import { connect } from 'react-redux';
@@ -11,8 +11,12 @@ import Job from '../../../models/Job';
 import JobCardBody from './JobCardBody/JobCardBody';
 import Modal from '../../../components/UI/Modal/Modal';
 
+import './JobDetails.scss';
+
 const JobDetails = ( props ) => {
     const { match, showJobDetails, jobDetails, history, showModal } = props;
+    const [ error, setError ] = useState( null );
+
 
     const jobId = match.params.id;
 
@@ -34,16 +38,16 @@ const JobDetails = ( props ) => {
 
         } catch (error) {
 
-            return error;
+            setError( error.response.data.message );
         }
     };
-
+    console.log( 'job details:', error );
     return (
         <> 
             {
                 jobDetails && (
                     <>
-                        <div className="card">
+                        <div className="card main-bg-card">
 
                             <JobCardBody details={ jobDetails } />
 
