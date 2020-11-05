@@ -2,8 +2,8 @@ import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
     currentUser: localStorage.getItem('uid'),
-    tokenExp: null,
-    userDetails: {}
+    userDetails: {},
+    tokenExpired: false
 };
 
 const userReducer = ( state = INITIAL_STATE, action ) => {
@@ -17,7 +17,7 @@ const userReducer = ( state = INITIAL_STATE, action ) => {
         case UserActionTypes.SET_TOKEN_EXP:
             return {
                 ...state,
-                tokenExp: action.payload
+                tokenExpired: action.payload
             };    
         case UserActionTypes.SET_USER_DETAILS:
             return {

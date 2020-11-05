@@ -21,7 +21,7 @@ const routes = [
     {
         path: '/dashboard/jobs/details/:id',
         component: () => <JobDetails />
-    },
+    }
     // {
     //     path: '/dashboard/jobs/edit/:id',
     //     component: () => <Form />
@@ -39,11 +39,12 @@ const routes = [
 ];
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    tokenExpired: state.user.tokenExpired
 });
 
 // eslint-disable-next-line no-unused-vars
-export default connect( mapStateToProps )( withRouter(({ match, history, currentUser }) => {
+export default connect( mapStateToProps )( withRouter(({ match, history, currentUser, tokenExpired }) => {
 
     const PrivateRoute = ({ Component, ...rest }) => {
         return <Route 

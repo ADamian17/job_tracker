@@ -31,10 +31,12 @@ const Login = ( props ) => {
             const token = await user.data.signedJwt;
             
             setCurrentUser(token);
+            setTokenExp( false );
             props.history.push('/dashboard/jobs');
 
         } catch (error) {
             setMessage(error.response.data.message);
+
         }
     };
 
@@ -119,7 +121,7 @@ const Login = ( props ) => {
 
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: (token) => dispatch(setCurrentUser(token)),
-    setTokenExp: (token) => dispatch(setTokenExp(token))
+    setTokenExp: ( boolean ) => dispatch(setTokenExp( boolean ) )
 });
 
 export default connect( null, mapDispatchToProps )(Login);

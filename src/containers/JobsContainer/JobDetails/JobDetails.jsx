@@ -5,17 +5,22 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 import { showModal } from '../../../redux/modal/modal.action';
+import { setTokenExp } from '../../../redux/user/user.actions';
 
 import Job from '../../../models/Job';
+import { formatDate } from '../../../utils/functs';
 
 import JobCardBody from './JobCardBody/JobCardBody';
+import JobEdit from '../jobEdit/JobEdit';
 import Modal from '../../../components/UI/Modal/Modal';
 
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
-    const { match, showJobDetails, jobDetails, history, showModal } = props;
+    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp } = props;
     const [ error, setError ] = useState( null );
+    const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
+    const [ ShowEdit, setShowEdit ] = useState(false);
 
 
     const jobId = match.params.id;
@@ -25,8 +30,6 @@ const JobDetails = ( props ) => {
         getJobDetails();
 
     }, []);
-
-    console.log('details page props:', props);
 
     const getJobDetails = async () => {
 
@@ -38,22 +41,34 @@ const JobDetails = ( props ) => {
 
         } catch (error) {
 
-            setError( error.response.data.message );
+            setError( error.response );
+
+            setTokenExp( true );
+            // if (error.response.status === 500 ) {
+
+            // } 
         }
     };
-    console.log( 'job details:', error );
+    console.log(error);
     return (
         <> 
             {
                 jobDetails && (
                     <>
                         <div className="card main-bg-card">
+                            <div className="card-header">
+                                <p className="text-center m-0 fields">
+                                    applied date: { date }
+                                </p> 
+                            </div>
 
-                            <JobCardBody details={ jobDetails } />
+                            {
+                                ShowEdit ? <JobEdit details={ jobDetails } /> : <JobCardBody details={ jobDetails } />
+                            }
 
-                            <div className="card-footer">
+                            <div className="card-footer p-3">
                                 <button className="btn btn-success float-right" onClick={showModal}>Delete</button>
-                                <button className="btn btn-primary float-right mr-3">Edit</button>
+                                <button className="btn btn-primary float-right mr-3" onClick={() => setShowEdit( !ShowEdit )}>Edit</button>
                             </div>
 
                         </div>
@@ -75,19 +90,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     showJobDetails: ( job ) => dispatch(showJobDetails( job )),
-    showModal: () => dispatch( showModal() )
+    showModal: () => dispatch( showModal() ),
+    setTokenExp:  (boolean) => dispatch( setTokenExp( boolean ) )
 });
 
 
 const job = withRouter(JobDetails);
 export default connect( mapStateToProps, mapDispatchToProps )(job);
-
-
-// {/* <div>
-// <button>
-// <Link to={`/dashboard/jobs/edit/${id}`}>Edit</Link>
-// </button>
-// <button basic color="red" onClick={() => this.handleDeleteJob( id ) }>
-// Delete
-// </button>
-// </div> */}

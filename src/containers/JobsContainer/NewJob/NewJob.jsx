@@ -73,7 +73,8 @@ const JobFrom = ( props ) => {
                     <Form.Group as={Col}>
                         <Form.Label>On Site</Form.Label>
                         <Form.Control as="select" name="on_site" onChange={(e) => setOnSite(e.target.value) } >
-                            <option defaultValue value="no">No</option>
+                            <option defaultValue value="" >Select One....</option>
+                            <option value="no">No</option>
                             <option value="yes">Yes</option>
                         </Form.Control>
                     </Form.Group>
@@ -121,7 +122,7 @@ const JobFrom = ( props ) => {
                     <Button variant="primary" onClick={handleSubmit}>
                         Add Job
                     </Button>
-                    <Button variant="secondary">
+                    <Button variant="secondary" onClick={hideModal}>
                         cancel
                     </Button>
                 </Form.Row>

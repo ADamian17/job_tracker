@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 // NOTE Reduxs
@@ -13,84 +13,87 @@ import JobList from './JobList/JobList';
 
 import './JobContainer.scss';
 
-const JobsContainer = ( props ) => {
+class JobsContainer extends Component {
 
-    const [ error, setError ] = useState( null );
-    const { currentUser, getJobs } = props;
+    state = {
+        error: null
+    };
 
-    useEffect( () => {
-        handleJobData();
-    }, []); 
+    componentDidMount() {
+        this.handleJobData();
+    }
 
     // NOTE Get all job
-    const handleJobData = async () => {
+    handleJobData = async () => {
+        const { currentUser, getJobs } = this.props;
        
         try {
             const jobs = await Job.getAllJobs( currentUser );
             getJobs(jobs.data.data);
 
         } catch (error) {
-            setError( error.response.data );
+            return console.log( error );
         }
     };
 
 
     // NOTE Hanlde Add Job
-    // const handleAddJob = async (event, state) => {
-    //     event.preventDefault();
-    //     const currentUser = this.props.currentUser;
+    handleAddJob = async (event, state) => {
+        event.preventDefault();
+        const currentUser = this.props.currentUser;
 
-    //     try {
-    //         const new_job = await Job.addJob(currentUser, state);
-    //         console.log(new_job);
+        try {
+            const new_job = await Job.addJob(currentUser, state);
+            console.log(new_job);
 
-    //         if (new_job) {
-    //             this.getJobData();
-    //             showModal();
-    //         }
+            if (new_job) {
+                this.getJobData();
+                showModal();
+            }
 
-    //     } catch (error) {
-    //         this.setState({
-    //             error: error
-    //         });
-    //     }
-    // };
+        } catch (error) {
+            this.setState({
+                error: error.response
+            });
+        }
+    }
     
     
-    const { jobs } = props;
-    const jobsLength = jobs.length;
-    console.log('state:', error);
+    render() { 
+        const { jobs } = this.props;
+        const jobsLength = jobs.length;
+        console.log('state:', this.state.error);
 
-    return (     
-        <div className="table p-4 rounded">
+        return (     
+            <div className="table p-4 rounded">
 
-            {/* NOTE  Table header */}
-            <div className="row">
-                <div className="col table__header">
-                    <JobHeader />
+                {/* NOTE  Table header */}
+                <div className="row">
+                    <div className="col table__header">
+                        <JobHeader />
+                    </div>
                 </div>
-            </div>
 
-            <div className="table__body">
-                { 
-                    jobs && (
-                        jobsLength !== 0 ? (
-                            <>
-                                <JobList jobs={jobs} />
-                            </> 
-                        )  : (
-                            <>
-                                <p>Jobs added: { jobsLength }</p>
-                            </>
+                <div className="table__body">
+                    { 
+                        jobs && (
+                            jobsLength !== 0 ? (
+                                <>
+                                    <JobList jobs={jobs} />
+                                </> 
+                            )  : (
+                                <>
+                                    <p>Jobs added: { jobsLength }</p>
+                                </>
+                            )
                         )
-                    )
-                } 
+                    } 
 
-            </div>
-        </div>  
-    );
-    
-};
+                </div>
+            </div>  
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     jobs: state.jobs.jobsList,
