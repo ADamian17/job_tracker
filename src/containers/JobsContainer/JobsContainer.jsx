@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJobs } from '../../redux/jobs/jobs.actions';
 import { showModal } from '../../redux/modal/modal.action';
+import { setTokenExp } from '../../redux/user/user.actions';
 
 import Job from '../../models/Job';
 
@@ -61,8 +62,8 @@ class JobsContainer extends Component {
     
     render() { 
         const { jobs } = this.props;
-        const jobsLength = jobs.length;
-        console.log('state:', this.state.error);
+        const jobsLength = jobs ? jobs.length : 0;
+        console.log('job container error', this.state.error);
 
         return (     
             <div className="table p-4 rounded">
@@ -76,19 +77,18 @@ class JobsContainer extends Component {
 
                 <div className="table__body">
                     { 
-                        jobs && (
-                            jobsLength !== 0 ? (
-                                <>
-                                    <JobList jobs={jobs} />
-                                </> 
-                            )  : (
-                                <>
-                                    <p>Jobs added: { jobsLength }</p>
-                                </>
-                            )
+                      
+                        jobsLength !== 0 ? (
+                            <>
+                                <JobList jobs={jobs} />
+                            </> 
+                        )  : (
+                            <>
+                                <p>Jobs added: { jobsLength }</p>
+                            </>
                         )
+                        
                     } 
-
                 </div>
             </div>  
         );

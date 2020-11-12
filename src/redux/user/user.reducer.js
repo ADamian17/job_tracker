@@ -3,7 +3,7 @@ import { UserActionTypes } from './user.types';
 const INITIAL_STATE = {
     currentUser: localStorage.getItem('uid'),
     userDetails: {},
-    tokenExpired: false
+    tokenExpired: ''
 };
 
 const userReducer = ( state = INITIAL_STATE, action ) => {

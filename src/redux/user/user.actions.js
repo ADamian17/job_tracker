@@ -5,9 +5,9 @@ export const setCurrentUser = ( token ) => ({
     payload: token
 });
 
-export const setTokenExp = ( boolean ) => ({
+export const setTokenExp = ( message ) => ({
     type: UserActionTypes.SET_TOKEN_EXP,
-    payload: boolean
+    payload: message
 });
 
 export const setUserDetails = ( user ) => ({

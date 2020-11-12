@@ -1,7 +1,7 @@
 import { JobsActionTypes } from './jobs.types';
 
 const INITIAL_STATE = {
-    jobsList: [],
+    jobsList: null,
     jobDetails: {}
 };
 
