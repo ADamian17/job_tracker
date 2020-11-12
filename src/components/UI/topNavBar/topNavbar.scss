@@ -1,0 +1,11 @@
+@import "../../../styles/main.scss";
+
+.bg-dark-custom {
+    background-color: $color-secondary-dark !important;
+    text-transform: uppercase;
+    color: $color-white;
+}
+
+.navbar-brand {
+    margin-right: 0 !important;
+}

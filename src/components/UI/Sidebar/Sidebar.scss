@@ -1,0 +1,71 @@
+@import "../../../styles/main.scss";
+
+.sidebar {
+    background-color: $color-secondary-dark;
+    width: 100%;
+    height: 100%;
+    padding:10px;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    justify-items: center;
+    text-transform: uppercase;
+    border: 1px solid black;
+    color: $color-grey-dark-2;
+
+    &__header {
+        align-self: center;
+        font-size: 1.5rem;
+
+        @media (min-width: 80rem ) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__menu {
+        width: 100%;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+       
+
+        &--item {
+            width: 100%;
+            height: 1.5rem;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid transparent;
+
+            &:focus,
+            &:hover {
+                background-color: $color-primary-dark;
+            }
+        }
+
+        &--link {
+            width: 100px;
+            display: grid;
+            grid-template-columns: 35% auto;
+           
+        }
+
+        &--link a {
+            
+            &:link,
+            &:visited {
+                color: $color-grey-dark-2;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    @media (max-width: 375px ) {
+        display: none;
+    }
+}
+
+.fa, .fas {
+    align-self: center;
+}

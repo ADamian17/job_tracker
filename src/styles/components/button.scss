@@ -1,0 +1,23 @@
+.btn {
+
+    &:hover {
+        box-shadow: 0 0 1rem rgba( $color-grey-light-2, .2);
+    }
+}
+
+.btn-primary {
+    @include btn-custom-color ( primary );
+}
+
+.btn-success {
+    @include btn-custom-color ( success ); 
+}
+
+
+.btn-danger {
+    @include btn-custom-color ( danger ); 
+}
+
+.btn-secondary {
+    @include btn-custom-color ( secondary ); 
+}
