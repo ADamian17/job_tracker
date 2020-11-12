@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { getJobs } from '../../../redux/jobs/jobs.actions';
