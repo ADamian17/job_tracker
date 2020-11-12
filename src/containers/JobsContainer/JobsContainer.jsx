@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJobs } from '../../redux/jobs/jobs.actions';
 import { showModal } from '../../redux/modal/modal.action';
-import { setTokenExp } from '../../redux/user/user.actions';
+// import { setTokenExp } from '../../redux/user/user.actions';
 
 import Job from '../../models/Job';
 
@@ -33,7 +33,9 @@ class JobsContainer extends Component {
             getJobs(jobs.data.data);
 
         } catch (error) {
-            return console.log( error );
+            this.setState({
+                error: error
+            });
         }
     };
 
@@ -45,7 +47,6 @@ class JobsContainer extends Component {
 
         try {
             const new_job = await Job.addJob(currentUser, state);
-            console.log(new_job);
 
             if (new_job) {
                 this.getJobData();
@@ -54,7 +55,7 @@ class JobsContainer extends Component {
 
         } catch (error) {
             this.setState({
-                error: error.response
+                error: error
             });
         }
     }
@@ -62,7 +63,6 @@ class JobsContainer extends Component {
     
     render() { 
         const { jobs } = this.props;
-        const jobsLength = jobs ? jobs.length : 0;
         console.log('job container error', this.state.error);
 
         return (     
@@ -76,16 +76,19 @@ class JobsContainer extends Component {
                 </div>
 
                 <div className="table__body">
-                    { 
+                    {
+                        jobs && (
                       
-                        jobsLength !== 0 ? (
-                            <>
-                                <JobList jobs={jobs} />
-                            </> 
-                        )  : (
-                            <>
-                                <p>Jobs added: { jobsLength }</p>
-                            </>
+                            jobs.length !== 0 ? (
+                                <>
+                                    <JobList jobs={jobs} />
+                                </> 
+                            )  : (
+                                <>
+                                    <p>Jobs added: { jobs.length }</p>
+                                </>
+                            )
+
                         )
                         
                     } 

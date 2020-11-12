@@ -54,6 +54,7 @@ const Sidebar = ( props ) => {
     }); 
 
     return (
+       
         <nav className="sidebar">
     
             <div className="sidebar__header ">
@@ -78,3 +79,28 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(null, mapDispatchToProps)(Sidebar);
+
+
+// <>
+//     <div className="col-3 city-sidebar bg-light p-4 mr-3">
+//         <h3 className="city-header">cities</h3>
+//         <div className="card mb-3 p-2 shadow-sm city-sidebar-cards rounded-lg">
+//             <div className="row no-gutters">
+
+//                 <div className="col-md-4">
+//                     <img src="{{ city.image }}" className="card-img" alt="..." />
+//                 </div>
+
+//                 <div className="col-md-8">
+//                     <div id="{{ city.id }}" className="card-body">
+//                         <h5 className="card-title">
+//                             <a id="{{ city.id }}" className="city-link" href="{% url 'cities' city.id %}" />
+//                         </h5>
+//                     </div>
+//                 </div>
+
+//             </div>
+
+//         </div>
+//     </div>  
+// </>

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 import { showModal } from '../../../redux/modal/modal.action';
+import { setShowEdit } from '../../../redux/form/form.actions';
 import { setTokenExp } from '../../../redux/user/user.actions';
 
 import Job from '../../../models/Job';
@@ -17,11 +18,9 @@ import Modal from '../../../components/UI/Modal/Modal';
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
-    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp } = props;
+    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp, setShowEdit } = props;
     const [ error, setError ] = useState( null );
     const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
-    const [ ShowEdit, setShowEdit ] = useState(false);
-
 
     const jobId = match.params.id;
 
@@ -44,11 +43,9 @@ const JobDetails = ( props ) => {
             setError( error.response );
 
             setTokenExp( true );
-            // if (error.response.status === 500 ) {
-
-            // } 
         }
     };
+
     console.log(error);
     return (
         <> 
@@ -63,13 +60,20 @@ const JobDetails = ( props ) => {
                             </div>
 
                             {
-                                ShowEdit ? <JobEdit details={ jobDetails } /> : <JobCardBody details={ jobDetails } />
+                                props.showEdit ? 
+                                    (
+                                        <JobEdit details={ jobDetails } jobId={jobId} />
+                                    ) : 
+                                    ( 
+                                        <>
+                                            <JobCardBody details={ jobDetails } /> 
+                                            <div className="card-footer p-3">
+                                                <button className="btn btn-danger float-right" onClick={showModal}>Delete</button>
+                                                <button className="btn btn-primary float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
+                                            </div>
+                                        </>
+                                    )
                             }
-
-                            <div className="card-footer p-3">
-                                <button className="btn btn-success float-right" onClick={showModal}>Delete</button>
-                                <button className="btn btn-primary float-right mr-3" onClick={() => setShowEdit( !ShowEdit )}>Edit</button>
-                            </div>
 
                         </div>
 
@@ -85,13 +89,15 @@ const JobDetails = ( props ) => {
 
 const mapStateToProps = state => ({
     jobDetails: state.jobs.jobDetails,
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    showEdit: state.form.showEdit 
 });
 
 const mapDispatchToProps = dispatch => ({
     showJobDetails: ( job ) => dispatch(showJobDetails( job )),
     showModal: () => dispatch( showModal() ),
-    setTokenExp:  (boolean) => dispatch( setTokenExp( boolean ) )
+    setTokenExp:  (boolean) => dispatch( setTokenExp( boolean ) ),
+    setShowEdit: () => dispatch( setShowEdit() )
 });
 
 

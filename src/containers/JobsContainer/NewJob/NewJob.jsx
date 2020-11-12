@@ -12,20 +12,14 @@ const JobFrom = ( props ) => {
 
     const [job_position, setJobPosition] = useState('');
     const [job_post_url, setJobPostUrl] = useState('');
-    const [job_status, setJobStatus] = useState('applied');
     const [company_name, setCompanyName] = useState('');
-    const [on_site, setOnSite] = useState('no');
-    const [phone_screen, setPhoneScreen ] = useState('no');
     const [ point_of_contact, setPointOfContact ] = useState('');
     const [ error, setError ] = useState( null );
 
     const jobData = {
         job_position,
         job_post_url,
-        job_status,
         company_name,
-        on_site,
-        phone_screen,
         point_of_contact
     };
 
@@ -42,7 +36,12 @@ const JobFrom = ( props ) => {
             setError( error.response );
         }
         
-    }; 
+    };
+    
+    const handleCancel = (e) => {
+        e.preventDefault();
+        hideModal();
+    };
     
     console.log('err', error);
 
@@ -63,45 +62,11 @@ const JobFrom = ( props ) => {
                 </Form.Row>
   
                 {/* row 2 */}
-                <Form.Group>
-                    <Form.Label>Job Post Url</Form.Label>
-                    <Form.Control type="text" name="job_post_url" placeholder="Job Post Url" onChange={(e) => setJobPostUrl(e.target.value)} />
-                </Form.Group>
-  
-                {/* row 3 */}
-                <Form.Row>
-                    <Form.Group as={Col}>
-                        <Form.Label>On Site</Form.Label>
-                        <Form.Control as="select" name="on_site" onChange={(e) => setOnSite(e.target.value) } >
-                            <option defaultValue value="" >Select One....</option>
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </Form.Control>
-                    </Form.Group>
-  
-                    <Form.Group as={Col}>
-                        <Form.Label>Job Status</Form.Label>
-                        <Form.Control as="select" name="job_status" onChange={(e) => setJobStatus(e.target.value) } >
-                            <option defaultValue value="" >Select One....</option>
-                            <option value="applied">Applied</option>
-                            <option value="no response">No Response</option>
-                            <option value="In progress">In Progress</option>
-                            <option value="rejected">Rejected</option>
-                            <option value="complete">Complete</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Form.Row>
-  
-                {/* Row 4 */}
                 <Form.Row>
 
                     <Form.Group as={Col}>
-                        <Form.Label>Phone Screen</Form.Label>
-                        <Form.Control as="select" name="phone_screen" onChange={( e ) => setPhoneScreen( e.target.value ) } >
-                            <option defaultValue value="" >Select One....</option>
-                            <option value="no">No</option>
-                            <option value="scheduled">Scheduled</option>
-                        </Form.Control>
+                        <Form.Label>Job Post Url</Form.Label>
+                        <Form.Control type="text" name="job_post_url" placeholder="Job Post Url" onChange={(e) => setJobPostUrl(e.target.value)} />
                     </Form.Group>
   
                     <Form.Group as={Col}>
@@ -119,12 +84,12 @@ const JobFrom = ( props ) => {
                 </Form.Row>
 
                 <Form.Row>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Add Job
-                    </Button>
-                    <Button variant="secondary" onClick={hideModal}>
+                    <button className="btn btn-secondary mr-2" onClick={handleCancel}>
                         cancel
-                    </Button>
+                    </button>
+                    <button className="btn btn-primary" onClick={handleSubmit}>
+                        Add Job
+                    </button>
                 </Form.Row>
             </Form>
         </>

@@ -12,3 +12,12 @@
 .btn-success {
     @include btn-custom-color ( success ); 
 }
+
+
+.btn-danger {
+    @include btn-custom-color ( danger ); 
+}
+
+.btn-secondary {
+    @include btn-custom-color ( secondary ); 
+}
