@@ -8,7 +8,7 @@ import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 import Job from '../../../models/Job';
 
 
-const JobEdit = ( { details, setShowEdit, showJobDetails, jobId } ) => {
+const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } ) => {
     console.log( 'details', details);
 
     const [job_position, setJobPosition] = useState(details.job_position);
@@ -39,7 +39,7 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId } ) => {
 
         try {
 
-            const updatedJob = await Job.editJob( jobData, jobId );
+            const updatedJob = await Job.editJob( currentUser, jobData, jobId );
             showJobDetails(updatedJob.data.data );
             setShowEdit();
             
@@ -118,16 +118,19 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId } ) => {
             <button className="btn btn-primary float-right" onClick={handleSubmit}>Edit</button>
             <button className="btn btn-danger float-right mr-2" onClick={handleCancel}>cancel</button>
 
-
         </form>
 
     );
 
 };
 
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
     setShowEdit: () => dispatch( setShowEdit() ),
     showJobDetails: ( job ) => dispatch( showJobDetails(job) )
 });
 
-export default connect( null, mapDispatchToProps )(JobEdit);
+export default connect( mapStateToProps, mapDispatchToProps )(JobEdit);

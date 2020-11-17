@@ -1,26 +1,10 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { showModal, hideModal } from '../../../redux/modal/modal.action';
 
-import Job from '../../../models/Job';
-
 const QuestionModal = ( props ) => {
-
-    const { history, jobId } = props;
-
-    const handleDeleteJob = async ( id ) => {
-
-        try {
-            const deletedJob = await Job.deleteJob( id );
-            console.log(deletedJob);
-            history.push('/dashboard/jobs');
-
-        } catch (error) {
-            return console.log(error);
-        }
-    };
 
     return (
         <Modal
@@ -31,28 +15,9 @@ const QuestionModal = ( props ) => {
 
             <Modal.Body>
                 {
-                    props.children ? (
-
-                        props.children
-
-                    ) : (
-
-                        <h4>Are you sure want to delete this job ? </h4>
-                    )
+                    props.children 
                 }
             </Modal.Body>
-
-            {
-                !props.children ? (
-
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={ props.hideModal }>Close</Button>
-                        <Button variant="danger" onClick={ () => handleDeleteJob(jobId) }>yes</Button>
-                    </Modal.Footer>
-                    
-                ) : ''
-            }
-
 
         </Modal> 
     );
@@ -60,7 +25,8 @@ const QuestionModal = ( props ) => {
 };
 
 const mapStateToProps = ( state ) => ({
-    show: state.modal.show
+    show: state.modal.show,
+    currentUser: state.user.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

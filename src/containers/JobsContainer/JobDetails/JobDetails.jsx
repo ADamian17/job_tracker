@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import {Button, Modal } from 'react-bootstrap';
 
 // NOTE REDUX
 import { connect } from 'react-redux';
@@ -13,16 +14,20 @@ import { formatDate } from '../../../utils/functs';
 
 import JobCardBody from './JobCardBody/JobCardBody';
 import JobEdit from '../jobEdit/JobEdit';
-import Modal from '../../../components/UI/Modal/Modal';
+// import Modal from '../../../components/UI/Modal/Modal';
 
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
-    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp, setShowEdit } = props;
-    const [ error, setError ] = useState( null );
+    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp, setShowEdit, currentUser } = props;
     const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
-
     const jobId = match.params.id;
+
+    const [ error, setError ] = useState( null );
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
 
     useEffect( () => {
 
@@ -33,7 +38,7 @@ const JobDetails = ( props ) => {
     const getJobDetails = async () => {
 
         try {
-            const jobDetails = await Job.getJobDetails( jobId );
+            const jobDetails = await Job.getJobDetails( currentUser, jobId );
 
             const { data } = jobDetails.data; 
             showJobDetails(data);
@@ -45,6 +50,18 @@ const JobDetails = ( props ) => {
             setTokenExp( true );
         }
     };
+
+    const handleDeleteJob = async () => {
+
+        try {
+            await Job.deleteJob( currentUser, jobId );
+            history.push('/dashboard/jobs');
+
+        } catch (error) {
+            return console.log(error);
+        }
+    };
+    
 
     console.log(error);
     return (
@@ -68,8 +85,8 @@ const JobDetails = ( props ) => {
                                         <>
                                             <JobCardBody details={ jobDetails } /> 
                                             <div className="card-footer p-3">
-                                                <button className="btn btn-danger float-right" onClick={showModal}>Delete</button>
-                                                <button className="btn btn-primary float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
+                                                <button className="btn btn-danger float-right" onClick={handleShow}>Delete</button>
+                                                <button className="btn btn-success float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
                                             </div>
                                         </>
                                     )
@@ -77,7 +94,22 @@ const JobDetails = ( props ) => {
 
                         </div>
 
-                        <Modal history={history} jobId={jobId} />
+                        <Modal
+                            show={ show }
+                            onHide={ handleClose }
+                            size="lg"
+                            centered >
+
+                            <Modal.Body>
+                                <h4>Are you sure want to delete this job ? </h4>
+                            </Modal.Body>
+
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={ handleClose }>Close</Button>
+                                <Button variant="danger" onClick={ handleDeleteJob }>yes</Button>
+                            </Modal.Footer>
+
+                        </Modal> 
                     </>
                 )
 
