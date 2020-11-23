@@ -12,11 +12,11 @@ const SIDEBAR_ROUTES = [
         url: '/dashboard/jobs',
         icon: 'sidebar__nav__icon  fas fa-suitcase'
     },
-    {
-        name: 'reports',
-        url: '/dashboard/reports',
-        icon: 'sidebar__nav__icon fas fa-chart-line'
-    },
+    // {
+    //     name: 'reports',
+    //     url: '/dashboard/reports',
+    //     icon: 'sidebar__nav__icon fas fa-chart-line'
+    // },
     {
         name: 'account',
         url: '/dashboard/profile',
