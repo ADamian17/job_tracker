@@ -13,16 +13,16 @@ const SIDEBAR_ROUTES = [
         icon: 'sidebar__nav__icon  fas fa-suitcase',
         active: true
     },
-    {
-        name: 'reports',
-        url: '/dashboard/reports',
-        icon: 'sidebar__nav__icon fas fa-chart-line',
-        active: false
-    },
+    // {
+    //     name: 'reports',
+    //     url: '/dashboard/reports',
+    //     icon: 'sidebar__nav__icon fas fa-chart-line',
+    //     active: false
+    // },
     {
         name: 'profile',
         url: '/dashboard/profile',
-        icon: 'sidebar__nav__icon  fas fa-sliders-h',
+        icon: 'sidebar__nav__icon  fas fa-user',
         active: false
     },
     {
