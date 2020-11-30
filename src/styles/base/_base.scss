@@ -12,4 +12,8 @@ body {
     box-sizing: border-box;
 }
 
+.active {
+    background-image: linear-gradient( 45deg, $color-tertiary-light-b 35%, $color-tertiary-light-a );
+}
+
 

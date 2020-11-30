@@ -10,26 +10,32 @@ const SIDEBAR_ROUTES = [
     {
         name: 'jobs',
         url: '/dashboard/jobs',
-        icon: 'fas fa-suitcase'
+        icon: 'sidebar__nav__icon  fas fa-suitcase',
+        active: true
     },
+    // {
+    //     name: 'reports',
+    //     url: '/dashboard/reports',
+    //     icon: 'sidebar__nav__icon fas fa-chart-line',
+    //     active: false
+    // },
     {
-        name: 'reports',
-        url: '/dashboard/reports',
-        icon: 'fas fa-chart-line'
-    },
-    {
-        name: 'account',
+        name: 'profile',
         url: '/dashboard/profile',
-        icon: 'fas fa-sliders-h'
+        icon: 'sidebar__nav__icon  fas fa-user',
+        active: false
     },
     {
         name: 'logout',
         url: '#',
-        icon: 'fas fa-sign-out-alt'
+        icon: 'sidebar__nav__icon fas fa-sign-out-alt',
+        active: false
     }
 ];
 
 const Sidebar = ( props ) => {
+    
+    const location = props.history.location.pathname.split('/');
 
     const handleLogout = () => {
         const { logout, history } = props;
@@ -40,37 +46,39 @@ const Sidebar = ( props ) => {
     const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
 
         if( route.name === 'logout') {
-            route['logout'] = handleLogout;
+            route['logout'] = () => handleLogout();
         }
 
+        if (location[2] === route.name ) {
+            route.active = true;
+        } else {
+            route.active = false;
+        }
+    
         return (
-            <li key={idx} className="sidebar__menu--item nav-item" >
-                <div className="sidebar__menu--link" onClick={route.logout}> 
-                    <i className={route.icon} /> 
-                    <Link to={route.url}>{route.name}</Link>
-                </div>
-            </li>
+            <Link 
+                key={idx} 
+                to={route.url} 
+                onClick={route.logout}
+                className={`sidebar__nav__item  ${ route.active === true ? 'active' : '' }`}>
+                <i className={route.icon} /> 
+                <p className="sidebar__nav__text">{route.name}</p>
+            </Link>
         );
     }); 
 
     return (
-       
-        <nav className="sidebar">
+        <aside className="col-2 sidebar">
+            <section>
+                <h3 className="sidebar__header text-center mb-3">Track that job</h3>
+            </section>
+            <section>
+                {/* NOTE sidebar */}
+                {links}
+            </section> 
+        </aside>
+    ); 
     
-            <div className="sidebar__header ">
-                <p>Track that job</p>
-            </div>
-                
-            <ul className="sidebar__menu nav flex-column ">
-    
-                { links }
-    
-            </ul>
-    
-        </nav>
-    );
-
- 
 };
                     
 
@@ -79,28 +87,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(null, mapDispatchToProps)(Sidebar);
-
-
-// <>
-//     <div className="col-3 city-sidebar bg-light p-4 mr-3">
-//         <h3 className="city-header">cities</h3>
-//         <div className="card mb-3 p-2 shadow-sm city-sidebar-cards rounded-lg">
-//             <div className="row no-gutters">
-
-//                 <div className="col-md-4">
-//                     <img src="{{ city.image }}" className="card-img" alt="..." />
-//                 </div>
-
-//                 <div className="col-md-8">
-//                     <div id="{{ city.id }}" className="card-body">
-//                         <h5 className="card-title">
-//                             <a id="{{ city.id }}" className="city-link" href="{% url 'cities' city.id %}" />
-//                         </h5>
-//                     </div>
-//                 </div>
-
-//             </div>
-
-//         </div>
-//     </div>  
-// </>

@@ -8,35 +8,11 @@
 
     &__header {
         color: $color-grey-dark-2 !important;
-        // height: 3rem;
-        // padding: .5rem;
-        // display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        // justify-items: center;
-        // font-size: medium;
-        // align-items: center;
-        // font-size: medium;
-        // text-align: center;
-
-        // div {
-        //     padding: .3rem;
-        // }
     }
 
-    &__body {
+    &__body,
+    &__body a:visited,
+    &__body a:link {
         color: $color-grey-dark-2 !important;
-        // display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        // justify-items: center;
-        // font-size: medium;
-        // align-items: center;
-        // margin-top: .5rem;
-        // overflow: scroll ;
-        // padding: .5rem;
-
-        // & :not( :last-child ) {
-        //     margin-bottom: .5rem;
-        // }
-
     }
 } 

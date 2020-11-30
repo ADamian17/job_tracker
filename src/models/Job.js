@@ -1,40 +1,39 @@
 import axios from 'axios';
-import { API_LOCAL_URL } from '../utils/consts';
-// import { API_ROUTE_URL } from '../utils/consts';
+// import { API_LOCAL_URL } from '../utils/consts';
+import { API_ROUTE_URL } from '../utils/consts';
 
-const currentUser = localStorage.getItem('uid');
+// const currentUser = localStorage.getItem('uid');
 class Job {
 
-    static getAllJobs () {
-        return axios.get(`${API_LOCAL_URL}/jobs`, {
+    static getAllJobs ( currentUser ) {
+        return axios.get(`${API_ROUTE_URL}/jobs`, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
-    static getJobDetails ( id ) {
-        return axios.get(`${API_LOCAL_URL}/jobs/${id}`, {
+    static getJobDetails ( currentUser, id ) {
+        return axios.get(`${API_ROUTE_URL}/jobs/${id}`, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
-    static addJob ( state ) {
-        return axios.post(`${API_LOCAL_URL}/jobs/newjob`, state, {
+    static addJob ( currentUser, state ) {
+        return axios.post(`${API_ROUTE_URL}/jobs/newjob`, state, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
-    static editJob ( state, id ) {
-        return axios.put(`${API_LOCAL_URL}/jobs/update/${ id }`, state, {
+    static editJob ( currentUser, state, id ) {
+        return axios.put(`${API_ROUTE_URL}/jobs/update/${ id }`, state, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
-    static deleteJob ( id ) {
-        return axios.delete(`${API_LOCAL_URL}/jobs/delete/${id}`, {
+    static deleteJob ( currentUser, id ) {
+        return axios.delete(`${API_ROUTE_URL}/jobs/delete/${id}`, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
-
 
 }
 

@@ -20,10 +20,7 @@ const DashBoard = ( { history, match } ) => {
 
             <div className="row">
 
-                <div className="col-2 p-0" style={{ backgroundColor: 'red'}}>
-                    {/* NOTE sidebar */}
-                    <SideBar history={ history } />
-                </div>
+                <SideBar history={ history } />
 
                 <div className="col main-content">
 

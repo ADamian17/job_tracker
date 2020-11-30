@@ -9,6 +9,10 @@
     @include btn-custom-color ( primary );
 }
 
+.btn-secondary {
+    @include btn-custom-color ( secondary ); 
+}
+
 .btn-success {
     @include btn-custom-color ( success ); 
 }
@@ -18,6 +22,6 @@
     @include btn-custom-color ( danger ); 
 }
 
-.btn-secondary {
-    @include btn-custom-color ( secondary ); 
+.btn-warning {
+    @include btn-custom-color ( warning ); 
 }

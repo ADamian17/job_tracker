@@ -8,7 +8,7 @@ import { hideModal } from '../../../redux/modal/modal.action';
 import Job from '../../../models/Job';
 
 const JobFrom = ( props ) => {
-    const { getJobs, hideModal } = props;
+    const { getJobs, hideModal, currentUser } = props;
 
     const [job_position, setJobPosition] = useState('');
     const [job_post_url, setJobPostUrl] = useState('');
@@ -27,9 +27,9 @@ const JobFrom = ( props ) => {
         e.preventDefault();
 
         try {
-            await Job.addJob(jobData);
-            const jobs = await Job.getAllJobs();
-            getJobs( jobs.data.data );
+            await Job.addJob( currentUser ,jobData );
+            const jobs = await Job.getAllJobs( currentUser );
+            getJobs( jobs.data.jobs );
             hideModal();
             
         } catch ( error ) {
@@ -102,4 +102,8 @@ const mapDispatchToProps = dispatch => ({
     hideModal: () => dispatch( hideModal() )
 });
 
-export default connect( null, mapDispatchToProps )( JobFrom );
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+});
+
+export default connect( mapStateToProps, mapDispatchToProps )( JobFrom );

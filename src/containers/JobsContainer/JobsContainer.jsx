@@ -29,8 +29,8 @@ class JobsContainer extends Component {
         const { currentUser, getJobs } = this.props;
        
         try {
-            const jobs = await Job.getAllJobs( currentUser );
-            getJobs(jobs.data.data);
+            const jobs = await Job.getAllJobs(currentUser);
+            getJobs(jobs.data.jobs);
 
         } catch (error) {
             this.setState({

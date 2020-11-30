@@ -1,19 +1,13 @@
 @import "../../../styles/main.scss";
 
 .sidebar {
-    background-color: $color-secondary-dark;
-    width: 100%;
-    height: 100%;
-    padding:10px;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    justify-items: center;
-    text-transform: uppercase;
-    border: 1px solid black;
+    background-color: $color-secondary-dark !important;
     color: $color-grey-dark-2;
+    text-transform: uppercase;
+    padding: 1rem 0 0 0 !important;
+ 
 
     &__header {
-        align-self: center;
         font-size: 1.5rem;
 
         @media (min-width: 80rem ) {
@@ -21,51 +15,80 @@
         }
     }
 
-    &__menu {
+    &__nav__item:not(:last-of-type) {
+        margin-bottom: 10px;
+    } 
+
+    &__nav__item {
         width: 100%;
-        font-size: 18px;
-        display: flex;
-        flex-direction: column;
+        height: 3rem;
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 6rem 1fr;
+        color: $color-grey-dark-2;
+        justify-content: center;
+    }
+
+    &__nav__icon {
+        align-self: center;
+        justify-self: end;
+        font-size: 1.2rem;
+        padding: 1px 10px 2px 0;
+    }
+
+    &__nav__text {
+        margin: 0;
+        padding: 2px 1px 1px 0;
+        font-size: 1.2rem;
+        align-self: center;
+        // justify-self: center;
+    }
+
+    // &__menu {
+    //     width: 100%;
+    //     font-size: 18px;
+    //     display: flex;
+    //     flex-direction: column;
        
 
-        &--item {
-            width: 100%;
-            height: 1.5rem;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-right: 2px solid transparent;
+    //     &--item {
+    //         width: 100%;
+    //         height: 1.5rem;
+    //         padding: 1.5rem;
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         border-right: 2px solid transparent;
 
-            &:focus,
-            &:hover {
-                background-color: $color-primary-dark;
-            }
-        }
+    //         &:focus,
+    //         &:hover {
+    //             background-color: $color-primary-dark;
+    //         }
+    //     }
 
-        &--link {
-            width: 100px;
-            display: grid;
-            grid-template-columns: 35% auto;
+    //     &--link {
+    //         width: 100px;
+    //         display: grid;
+    //         grid-template-columns: 35% auto;
            
-        }
+    //     }
 
-        &--link a {
+    //     &--link a {
             
-            &:link,
-            &:visited {
-                color: $color-grey-dark-2;
-                text-decoration: none;
-                cursor: pointer;
-            }
-        }
-    }
+    //         &:link,
+    //         &:visited {
+    //             color: $color-grey-dark-2;
+    //             text-decoration: none;
+    //             cursor: pointer;
+    //         }
+    //     }
+    // }
 
-    @media (max-width: 375px ) {
-        display: none;
-    }
+    // @media (max-width: 375px ) {
+    //     display: none;
+    // }
 }
 
-.fa, .fas {
-    align-self: center;
-}
+// .fa, .fas {
+//     align-self: center;
+// }
