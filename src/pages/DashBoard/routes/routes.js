@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import Jobs from '../../../containers/JobsContainer/JobsContainer';
 import JobDetails from '../../../containers/JobsContainer/JobDetails/JobDetails';
-// import Form from '../../../components/Form/Form';
-// import Profile from '../../../containers/ProfileContainer/ProfileContainer';
+import Profile from '../../../containers/ProfileContainer/ProfileContainer';
 // import EditProfile from '../../../containers/ProfileContainer/ProfileEdit/ProfileEdit';
 // import Reports from '../../../containers/ReportContainer/ReportContainer';
 // import NotFound from '../../404/404';
@@ -21,16 +20,12 @@ const routes = [
     {
         path: '/dashboard/jobs/details/:id',
         component: () => <JobDetails />
+    },
+    {
+        path: '/dashboard/profile',
+        component: () => <Profile />,
+        exact: true
     }
-    // {
-    //     path: '/dashboard/jobs/edit/:id',
-    //     component: () => <Form />
-    // },
-    // {
-    //     path: '/dashboard/profile',
-    //     component: () => <Profile />,
-    //     exact: true
-    // },
     // {
     //     path: '/dashboard/profile/edit',
     //     component: () => <EditProfile />,
