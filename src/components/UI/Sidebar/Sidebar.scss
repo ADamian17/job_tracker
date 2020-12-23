@@ -6,8 +6,11 @@
     text-transform: uppercase;
     padding: 1rem 0 0 0 !important;
 
-    &__header h2 {
+    @media ( max-width: 75rem ) {
+        max-width: 7rem !important;
+    }
 
+    &__header h2 {
         @include respond ( tab-port ) {
             font-size: 1.2rem !important;
             padding: 0 !important;
@@ -45,7 +48,6 @@
         grid-template-columns: 1fr 2fr;
         width: 130px;
 
-
         @media ( max-width: 75rem ) {
             display: flex;
             justify-content: center;
@@ -68,55 +70,4 @@
         font-size: 1.8rem;
     }
 
-
-    // &__menu {
-    //     width: 100%;
-    //     font-size: 18px;
-    //     display: flex;
-    //     flex-direction: column;
-       
-
-    //     &--item {
-    //         width: 100%;
-    //         height: 1.5rem;
-    //         padding: 1.5rem;
-    //         display: flex;
-    //         justify-content: center;
-    //         align-items: center;
-    //         border-right: 2px solid transparent;
-
-    //         &:focus,
-    //         &:hover {
-    //             background-color: $color-primary-dark;
-    //         }
-    //     }
-
-    //     &--link {
-    //         width: 100px;
-    //         display: grid;
-    //         grid-template-columns: 35% auto;
-           
-    //     }
-
-    //     &--link a {
-            
-    //         &:link,
-    //         &:visited {
-    //             color: $color-grey-dark-2;
-    //             text-decoration: none;
-    //             cursor: pointer;
-    //         }
-    //     }
-    // }
-
-    // @media (max-width: 375px ) {
-    //     display: none;
-    // }
 }
-
-
-.sidebar {
-    @media ( max-width: 75rem ) {
-        max-width: 7rem !important;
-    }
-} 
