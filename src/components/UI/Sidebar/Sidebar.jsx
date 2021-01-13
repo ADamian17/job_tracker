@@ -43,10 +43,12 @@ const Sidebar = ( props ) => {
         history.push('/login');
     };
 
+    console.log('adonis');
+
     const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
 
         if( route.name === 'logout') {
-            route['logout'] = () => handleLogout();
+            route.logout = () => handleLogout();
         }
 
         if (location[2] === route.name ) {
@@ -61,16 +63,18 @@ const Sidebar = ( props ) => {
                 to={route.url} 
                 onClick={route.logout}
                 className={`sidebar__nav__item  ${ route.active === true ? 'active' : '' }`}>
-                <i className={route.icon} /> 
-                <p className="sidebar__nav__text">{route.name}</p>
+                <div className="sidebar__nav__text">
+                    <i className={route.icon} /> 
+                    <span>{route.name}</span>
+                </div>
             </Link>
         );
     }); 
 
     return (
         <aside className="col-2 sidebar">
-            <section>
-                <h3 className="sidebar__header text-center mb-3">Track that job</h3>
+            <section className="sidebar__header p-4">
+                <h2 className=" text-center">Track that job</h2>
             </section>
             <section>
                 {/* NOTE sidebar */}
