@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 // NOTE Reduxs
@@ -14,7 +14,7 @@ import JobList from './JobList/JobList';
 
 import './JobContainer.scss';
 
-class JobsContainer extends Component {
+class JobsContainer extends React.Component {
 
     state = {
         error: null
@@ -26,18 +26,21 @@ class JobsContainer extends Component {
 
     // NOTE Get all job
     handleJobData = async () => {
+
         const { currentUser, getJobs } = this.props;
        
         try {
             const jobs = await Job.getAllJobs(currentUser);
-            getJobs(jobs.data.jobs);
 
-        } catch (error) {
+            getJobs(jobs.data.data);
+
+        } catch ( error ) {
+
             this.setState({
-                error: error
+                error
             });
         }
-    };
+    }
 
 
     // NOTE Hanlde Add Job
@@ -49,13 +52,13 @@ class JobsContainer extends Component {
             const new_job = await Job.addJob(currentUser, state);
 
             if (new_job) {
-                this.getJobData();
+                this.handleJobData();
                 showModal();
             }
 
         } catch (error) {
             this.setState({
-                error: error
+                error
             });
         }
     }
