@@ -31,34 +31,13 @@ class JobsContainer extends React.Component {
        
         try {
             const jobs = await Job.getAllJobs(currentUser);
-
-            getJobs(jobs.data.data);
+            console.log(jobs.data.data);
+            getJobs(jobs.data.jobs);
 
         } catch ( error ) {
-
+            console.log(error);
             this.setState({
-                error
-            });
-        }
-    }
-
-
-    // NOTE Hanlde Add Job
-    handleAddJob = async (event, state) => {
-        event.preventDefault();
-        const currentUser = this.props.currentUser;
-
-        try {
-            const new_job = await Job.addJob(currentUser, state);
-
-            if (new_job) {
-                this.handleJobData();
-                showModal();
-            }
-
-        } catch (error) {
-            this.setState({
-                error
+                error: error
             });
         }
     }
@@ -66,7 +45,6 @@ class JobsContainer extends React.Component {
     
     render() { 
         const { jobs } = this.props;
-        console.log('job container error', this.state.error);
 
         return (     
             <div className="table p-4 rounded">
@@ -83,17 +61,12 @@ class JobsContainer extends React.Component {
                         jobs && (
                       
                             jobs.length !== 0 ? (
-                                <>
-                                    <JobList jobs={jobs} />
-                                </> 
-                            )  : (
-                                <>
-                                    <p>Jobs added: { jobs.length }</p>
-                                </>
-                            )
-
-                        )
+                                <JobList jobs={jobs} />
                         
+                            )  : (
+                                <p>Jobs added: { jobs.length }</p>
+                            )
+                        )
                     } 
                 </div>
             </div>  
@@ -111,7 +84,5 @@ const mapDispatchToProps = dispatch => ({
     showModal: () => dispatch(showModal())
 });
 
-
 const Jobs = withRouter( JobsContainer );
-
 export default connect( mapStateToProps, mapDispatchToProps )(Jobs);
