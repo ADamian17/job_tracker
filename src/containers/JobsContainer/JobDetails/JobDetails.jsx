@@ -106,7 +106,7 @@ const JobDetails = ( props ) => {
 
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={ handleClose }>Close</Button>
-                                <Button variant="danger" onClick={ handleDeleteJob }>yes</Button>
+                                <Button variant="danger" onClick={ handleDeleteJob }>Yes</Button>
                             </Modal.Footer>
 
                         </Modal> 
