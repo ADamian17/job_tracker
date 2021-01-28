@@ -31,11 +31,9 @@ class JobsContainer extends React.Component {
        
         try {
             const jobs = await Job.getAllJobs(currentUser);
-            console.log(jobs.data.data);
             getJobs(jobs.data.jobs);
 
         } catch ( error ) {
-            console.log(error);
             this.setState({
                 error: error
             });

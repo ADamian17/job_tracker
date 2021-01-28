@@ -5,6 +5,7 @@
     // padding: .6rem;
     background-color: $color-secondary-dark;
     color: $color-grey-dark-2;
+    transition: all .5 linear;
 
     &__header {
         color: $color-grey-dark-2 !important;
@@ -14,5 +15,9 @@
     &__body a:visited,
     &__body a:link {
         color: $color-grey-dark-2 !important;
+    }
+
+    &__body a:hover {
+        color: $color-grey-dark-1 !important;
     }
 } 

@@ -28,8 +28,8 @@ const Home = () => {
                 <div className="jumbotron custom-jumbotron d-flex justify-content-evenly align-items-center ">
                     <div className="container">
                         <h1 className="display-3 text-center">Welcome to Track that Job!</h1>
-                        <p className="text-center">Track that Job offers an easy way to keep track of you jobs applications while searching for a job</p>
-                        <p className="text-center"><Link className="btn btn-primary btn-lg" to="/regiter" role="button">Register »</Link></p>
+                        <p className="text-center">Track that Job offers an easy way to keep track of your jobs applications while searching for a job</p>
+                        <p className="text-center"><Link className="btn btn-primary btn-lg" to="/register" role="button">Register »</Link></p>
                     </div>
                 </div>
             </main>
