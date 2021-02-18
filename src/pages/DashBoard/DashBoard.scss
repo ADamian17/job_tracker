@@ -14,10 +14,14 @@
     
 
     &__main {
-        background-color: red;
+        background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
         width: 120rem;
         max-width: 120rem;
-        min-height: 50rem;
+        min-height: 75rem;
+        // padding: 1.5rem;
+        box-shadow: 0 0rem 1rem #787575;
+        border-radius: 1.5rem;
+        overflow: hidden;
 
         display: flex;
     }
