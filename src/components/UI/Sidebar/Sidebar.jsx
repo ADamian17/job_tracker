@@ -4,13 +4,19 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/user/user.actions';
 
+/* Icons */
+import Briefcase from './Icons/Briefcase/Briefcase';
+import Exit from './Icons/Exit/Exit';
+import User from './Icons/User/User';
+
+
 import './Sidebar.scss';
 
 const SIDEBAR_ROUTES = [
     {
         name: 'jobs',
         url: '/dashboard/jobs',
-        icon: 'sidebar__nav__icon  fas fa-suitcase',
+        icon: <Briefcase />,
         active: true
     },
     // {
@@ -22,13 +28,13 @@ const SIDEBAR_ROUTES = [
     {
         name: 'profile',
         url: '/dashboard/profile',
-        icon: 'sidebar__nav__icon  fas fa-user',
+        icon: <User />,
         active: false
     },
     {
         name: 'logout',
         url: '#',
-        icon: 'sidebar__nav__icon fas fa-sign-out-alt',
+        icon: <Exit />,
         active: false
     }
 ];
@@ -58,29 +64,35 @@ const Sidebar = ( props ) => {
         }
     
         return (
-            <Link 
+            <li 
                 key={idx} 
-                to={route.url} 
-                onClick={route.logout}
-                className={`sidebar__nav__item  ${ route.active === true ? 'active' : '' }`}>
-                <div className="sidebar__nav__text">
-                    <i className={route.icon} /> 
+                className={`sidebar__nav__item  ${ route.active === true ? 'sidebar__nav__item--active' : '' }`}>
+
+                <Link 
+                    to={route.url} 
+                    onClick={route.logout}
+                    className="sidebar__nav__link">
+                    {route.icon}
                     <span>{route.name}</span>
-                </div>
-            </Link>
+                </Link>
+
+            </li>
         );
     }); 
 
+    {/* NOTE sidebar */}
     return (
-        <aside className="col-2 sidebar">
-            <section className="sidebar__header p-4">
-                <h2 className=" text-center">Track that job</h2>
+        <nav className="col-2 sidebar">
+
+            <section className="sidebar__header">
+                <h2>Track that job</h2>
             </section>
-            <section>
-                {/* NOTE sidebar */}
+
+            <ul className="sidebar__nav">
                 {links}
-            </section> 
-        </aside>
+            </ul>
+
+        </nav>
     ); 
     
 };

@@ -1,5 +1,28 @@
 @import '../../styles/main.scss';
 
+.dashboard {
+    background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+
+    &__main {
+        background-color: red;
+        width: 120rem;
+        max-width: 120rem;
+        min-height: 50rem;
+
+        display: flex;
+    }
+}
+
 .main-content {
     background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
     min-height: 100vh;

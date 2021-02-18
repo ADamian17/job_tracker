@@ -1,22 +1,60 @@
+:root {
+    --color-primary: #eb2f64;
+    --color-primary-light: #FF3366;
+    --color-primary-dark: #BA265D;
+  
+    --color-grey-light-1: #faf9f9;
+    --color-grey-light-2: #f4f2f2;
+    --color-grey-light-3: #f0eeee;
+    --color-grey-light-4: #ccc;
+  
+    --color-grey-dark-1: #333;
+    --color-grey-dark-2: #777;
+    --color-grey-dark-3: #999;
+  
+    // shadow box
+    --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+    --shadow-light:  0 2rem 5rem rgba(145, 145, 145, 0.06);
+  
+    --line: 1px solid var(--color-grey-light-2)
+}
+
+
+$bp-largest: 75em; // 1200px / 16
+$bp-large: 68.75em; // 1100px / 16
+$bp-medium: 56.25em; // 900px / 16
+$bp-small: 37em; // 600px / 16
+$bp-smallest: 31.25em; // 500px / 16
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
     box-sizing: inherit;
 }
 
 html {
     // this defines what 1rem is
-    font-size: 62.5%; // 1rem = 10px
+    font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+    box-sizing: border-box;
+
+    @media only screen and ( max-width: $bp-large ) {
+        font-size: 50%;
+      }
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--color-grey-dark-2);
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
-.active {
-    background-image: linear-gradient( 45deg, $color-tertiary-light-b 35%, $color-tertiary-light-a );
-}
 
 

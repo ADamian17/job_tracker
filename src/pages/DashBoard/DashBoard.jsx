@@ -12,39 +12,46 @@ import './DashBoard.scss';
 const DashBoard = ( { history, match } ) => {
 
     return (
-        <div className="container-fluid">
-    
-            <div className="onlyDesktop">
-                <p>sorry mobile version is not currently availible, come back to desktop</p> 
-            </div>
+        <section className="dashboard">
 
-            <div className="row">
-
+            <div className="dashboard__main">
                 <SideBar history={ history } />
-
-                <div className="col main-content">
-
-                    <div className="container">
-
-                        <div className="row">
-                            <div className="col">
-                                <DashHeader match={ match }/>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col">
-                                {/* NOTE dashboard routes */}
-                                <Routes history={ history } match={ match } /> 
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
+    
+            {/* <div className="onlyDesktop">
+                <p>sorry mobile version is not currently availible, come back to desktop</p> 
+            </div> */}
 
-        </div>
+        </section>
     );
 };
 
 export default DashBoard;
+
+
+{/* <div className="row">
+
+
+
+<div className="col main-content">
+
+    <div className="container">
+
+        <div className="row">
+            <div className="col">
+                <DashHeader match={ match }/>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div> */}
+
+
+//  <div className="row">
+//     <div className="col">
+//         {/* NOTE dashboard routes */}
+//         <Routes history={ history } match={ match } /> 
+//     </div>
+// </div>
