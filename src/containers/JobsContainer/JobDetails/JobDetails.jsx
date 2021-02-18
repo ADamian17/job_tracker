@@ -19,7 +19,7 @@ import JobEdit from '../jobEdit/JobEdit';
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
-    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp, setShowEdit, currentUser } = props;
+    const { match, showJobDetails, jobDetails, history, setTokenExp, setShowEdit, currentUser } = props;
     const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
     const jobId = match.params.id;
 

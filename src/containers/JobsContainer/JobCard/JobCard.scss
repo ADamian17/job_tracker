@@ -2,6 +2,9 @@
     font-size: 1.8rem;
 }
 
+.jobs {
+    transition: all .5s linear;
+}
 
 .jobs:hover {
     transform: scale(1.1);

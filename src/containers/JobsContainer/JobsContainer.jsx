@@ -45,12 +45,12 @@ class JobsContainer extends React.Component {
         const { jobs } = this.props;
 
         return (     
-            <div className="table p-4 rounded">
+            <div className="table p-5 rounded">
 
                 {/* NOTE  Table header */}
                 <div className="row">
                     <div className="col table__header">
-                        <JobHeader />
+                        <JobHeader /> 
                     </div>
                 </div>
 

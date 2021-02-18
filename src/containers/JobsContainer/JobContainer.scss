@@ -2,10 +2,9 @@
 
 .table {
     font-size: .5rem;
-    // padding: .6rem;
     background-color: $color-secondary-dark;
     color: $color-grey-dark-2;
-    transition: all .5 linear;
+    transition: all .5s linear;
 
     &__header {
         color: $color-grey-dark-2 !important;

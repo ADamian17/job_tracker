@@ -28,7 +28,7 @@ const DashBoard = ( { history, match } ) => {
 
                         <div className="row">
                             <div className="col">
-                                < DashHeader match={ match }/>
+                                <DashHeader match={ match }/>
                             </div>
                         </div>
 
