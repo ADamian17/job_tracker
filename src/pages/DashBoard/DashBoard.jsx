@@ -14,8 +14,12 @@ const DashBoard = ( { history, match } ) => {
     return (
         <section className="dashboard">
 
-            <div className="dashboard__main">
+            <div className="dashboard__container">
                 <SideBar history={ history } />
+
+                <main className="dashboard__main">
+                    <DashHeader match={ match }/>
+                </main>
             </div>
     
             {/* <div className="onlyDesktop">
@@ -39,7 +43,7 @@ export default DashBoard;
 
         <div className="row">
             <div className="col">
-                <DashHeader match={ match }/>
+                
             </div>
         </div>
 

@@ -1,7 +1,17 @@
 @import "../../../styles/main.scss";
 
-.header {
-    text-transform: uppercase !important;
+.dashboard__main__header {
+    padding: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-grey-dark-2;
     color: $color-grey-dark-2;
-}
 
+    &__title {
+        font-size: 2.25rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
