@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { Form, Col } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { getJobs } from '../../../redux/jobs/jobs.actions';
 import { hideModal } from '../../../redux/modal/modal.action';
 
 import Job from '../../../models/Job';
+import ChevronDown from '../../../components/UI/Icons/ChevronDown/ChevronDown';
+import ChevronUp from '../../../components/UI/Icons/ChevronUp/ChevronUp';
 
 import './NewJob.scss';
 
 const JobFrom = ( props ) => {
     const { getJobs, hideModal, currentUser } = props;
 
-    const [job_position, setJobPosition] = useState('');
-    const [job_post_url, setJobPostUrl] = useState('');
-    const [company_name, setCompanyName] = useState('');
-    const [ point_of_contact, setPointOfContact ] = useState('');
+    const [ job_position, setJobPosition ] = useState('');
+    const [ job_post_url, setJobPostUrl ] = useState('');
+    const [ company_name, setCompanyName ] = useState('');
+    const [ point_of_contact, setPointOfContact ] = useState('Point of Contact ...');
     const [ error, setError ] = useState( null );
+
+    // for dropdown
+    const [ show, setShow ] = useState( false );
 
     const jobData = {
         job_position,
@@ -44,6 +48,11 @@ const JobFrom = ( props ) => {
         e.preventDefault();
         hideModal();
     };
+
+    const handlePointOfContact = ( value ) => {
+        setPointOfContact(value)
+        setShow( !show )
+    }
     
     console.log('err', error);
 
@@ -69,16 +78,67 @@ const JobFrom = ( props ) => {
   
             <div className="form__group">
 
-                <select id="point_of_contact" className="form__select" name="point_of_contact" onChange={(e) => setPointOfContact( e.target.value )} >
-                    <option defaultValue value=""> --- Point of Contact --- </option>
-                    <option value="linkedin">Linkedin</option>
-                    <option value="indeed">indeed</option>
-                    <option value="company website">Company Site</option>
-                    <option value="glassdoor">GlassDoor</option>
-                    <option value="angelList">AngelList</option>
-                </select>
+                <div 
+                    id="point_of_contact" 
+                    className="select" 
+                    name="point_of_contact" 
+                    onClick={ () => setShow( !show ) }>
+                    
+                    <span>{point_of_contact}</span> 
 
-                {/* <label htmlFor="point_of_contact" className="form__select__arrow">^</label> */}
+                    {
+                        show ? <ChevronDown /> : <ChevronUp />
+                    }  
+                </div>
+
+                <div 
+                    className="select__options"
+                    style={{ display: show ? 'inline-block' : 'none' }} >
+
+                    <div 
+                        className="option" 
+                        data-option="Point of Contact"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        Point of Contact ...
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="linkedin"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        Linkedin
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="indeed"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        indeed
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="company website"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        company website
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="glassdoor"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        glassdoor
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="angelList"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        angelList
+                    </div>
+                    
+                </div>
+
             </div>
             
 

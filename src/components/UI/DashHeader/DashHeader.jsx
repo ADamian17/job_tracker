@@ -6,7 +6,7 @@ import { showModal } from '../../../redux/modal/modal.action';
 
 import Modal from '../../UI/Modal/Modal';
 import NewJob from '../../../containers/JobsContainer/NewJob/NewJob';
-import PlusIcon from '../Icons/PlusIcon';
+import PlusIcon from '../Icons/PlusIcon/PlusIcon';
 
 import './DashHeader.scss';
 
