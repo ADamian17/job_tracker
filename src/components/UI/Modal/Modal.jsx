@@ -10,8 +10,7 @@ const QuestionModal = ( props ) => {
     return (
         <div 
             className="modal__backdrop" 
-            style={{ display: props.show ? 'flex' : 'none' }} 
-            onClick={ () => props.hideModal() }>
+            style={{ display: props.show ? 'flex' : 'none' }} >
 
             <div className="modal">
                 {

@@ -41,4 +41,11 @@
         text-transform: uppercase;
         letter-spacing: 2px;
     }
-} 
+}
+
+.filter__section {
+    &__header {
+        text-align: center; 
+        font-size: 1.7rem; 
+    }
+}

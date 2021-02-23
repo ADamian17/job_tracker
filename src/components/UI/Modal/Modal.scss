@@ -1,5 +1,5 @@
 .modal__backdrop {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -8,10 +8,16 @@
   width: 100%;
   height: 100vh;
   background-color: #2a2b2ba1;
-  backdrop-filter: blur(2px) grayscale(50%);
+  
   z-index: 1;
   transform-origin: top center;
   animation: fromTop .5s cubic-bezier(.56,.14,.36,.66);
+
+
+  @supports ( backdrop-filter: blur(2px) ) {
+    backdrop-filter: blur(2px) grayscale(50%);
+  }
+
 }
 
 @keyframes fromTop {
@@ -27,10 +33,22 @@
   background-color: #f0f8ff;
   width: 600px;
   height: 400px;
+  font-size: 1.5rem;
   animation: leftToRight 1s cubic-bezier(.56,.14,.36,.66);
   transition: all linear;
   z-index: 5;
-  // animation-delay: .3s;
+  border-radius: 1.5rem;
+
+  padding: 1.5rem;
+
+
+  &--small {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @keyframes leftToRight {

@@ -105,10 +105,10 @@ const JobDetails = ( props ) => {
                             style={{ display: show ? 'flex' : 'none' }} 
                             onClick={ () => setShow( false ) }>
 
-                            <div className="modal">
+                            <div className="modal modal--small">
                                 <h4>Are you sure want to delete this job ? </h4>
 
-                                <div className="modal__footer" >
+                                <div className="btn-group btn-group--small" >
                                     <button className="btn btn-secondary" onClick={ () => setShow( false ) }>Close</button>
                                     <button className="btn btn-danger" onClick={ handleDeleteJob }>Yes</button>
                                 </div>

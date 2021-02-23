@@ -49,26 +49,31 @@ const JobsContainer = ( props ) => {
     console.log(error);
     return (
         <>  
-            <div className="btn-group">
-                <button
-                    onClick={ () => getJobData('applied') } 
-                    className="btn btn-secondary">Applied</button>
-                <button
-                    onClick={ () => getJobData('no response') } 
-                    className="btn btn-info">No Response</button>
-                <button
-                    onClick={ () => getJobData('in progress') } 
-                    className="btn btn-warning">In Progress</button>
-                <button
-                    onClick={ () => getJobData('rejected') } 
-                    className="btn btn-danger">Rejected</button>
-                <button
-                    onClick={ () => getJobData('complete') } 
-                    className="btn btn-success">Complete</button>
-                <button
-                    onClick={ () => getJobData() } 
-                    className="btn btn-primary">reset</button>
-            </div>
+            <section className="filter__section">
+                <h3  className="filter__section__header">Filter By Status</h3>
+
+                <div className="btn-group">
+                    <button
+                        onClick={ () => getJobData('applied') } 
+                        className="btn btn-secondary">Applied</button>
+                    <button
+                        onClick={ () => getJobData('no response') } 
+                        className="btn btn-info">No Response</button>
+                    <button
+                        onClick={ () => getJobData('in progress') } 
+                        className="btn btn-warning">In Progress</button>
+                    <button
+                        onClick={ () => getJobData('rejected') } 
+                        className="btn btn-danger">Rejected</button>
+                    <button
+                        onClick={ () => getJobData('complete') } 
+                        className="btn btn-success">Complete</button>
+                    <button
+                        onClick={ () => getJobData() } 
+                        className="btn btn-primary">reset</button>
+                </div>
+
+            </section> 
 
             <div className="table">
 
