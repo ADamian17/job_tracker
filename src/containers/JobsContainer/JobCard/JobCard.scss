@@ -1,28 +1,23 @@
+@import '../../../styles/main.scss';
+
 .job {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     padding: 1.5rem;
     border-radius: 1.5rem;
+    text-transform: uppercase;
 
     &:nth-child(odd) {
-        background-color: aqua;
+        background-color: #111426;
     }
 
     &:nth-child(even) {
-        background-color: red;
+        background-color: #11151D;
     }
 
     &:not( :last-of-type ) {
         margin-bottom: 1rem;
     }
 }
-
-// .jobs {
-//     transition: all .5s linear;
-// }
-
-// .jobs:hover {
-//     transform: scale(1.1);
-// }

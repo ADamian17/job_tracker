@@ -46,7 +46,7 @@ const JobsContainer = ( props ) => {
     };
     
     const { jobs } = props;
-
+    console.log(error);
     return (
         <>  
             <div className="btn-group">
@@ -85,10 +85,14 @@ const JobsContainer = ( props ) => {
                                 <JobList jobs={jobs} />
                         
                             )  : (
-                                <p>Jobs added: { jobs.length }</p>
+                                ''
                             )
                         )
                     } 
+                </div>
+
+                <div className="table__footer">
+                    count: { jobs && jobs.length }
                 </div>
             </div>
         </>      

@@ -7,27 +7,38 @@
     transition: all .5s linear;
     border-radius: 1.5rem;
     padding: 1.5rem;
+    letter-spacing: 1.5px;
 
     &__header {
         color: $color-grey-dark-2;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         justify-items: center;
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         padding: 1.7rem;
+        text-transform: uppercase;
     }
 
     &__body {
         color: $color-grey-dark-2;
         overflow: scroll;
-        height: 45rem;
+        height: 40rem;
     }
 
     &__body a {
         color: $color-grey-dark-2;
+        text-decoration: none;
     }
 
     &__body a:hover {
         color: $color-grey-dark-1;
+    }
+
+    &__footer {
+        padding: 1.3rem;
+        text-align: center;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 } 
