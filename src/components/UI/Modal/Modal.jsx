@@ -1,25 +1,25 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { showModal, hideModal } from '../../../redux/modal/modal.action';
 
+import './Modal.scss';
+
 const QuestionModal = ( props ) => {
 
     return (
-        <Modal
-            show={ props.show }
-            onHide={ props.hideModal }
-            size={props.size}
-            centered>
+        <div 
+            className="modal__backdrop" 
+            style={{ display: props.show ? 'flex' : 'none' }} 
+            onClick={ () => props.hideModal() }>
 
-            <Modal.Body>
+            <div className="modal">
                 {
                     props.children 
                 }
-            </Modal.Body>
+            </div>
 
-        </Modal> 
+        </div> 
     );
 
 };
