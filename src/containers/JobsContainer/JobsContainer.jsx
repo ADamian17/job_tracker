@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 // NOTE Reduxs
@@ -14,44 +14,67 @@ import JobList from './JobList/JobList';
 
 import './JobContainer.scss';
 
-class JobsContainer extends React.Component {
+const JobsContainer = ( props ) => {
 
-    state = {
-        error: null
-    };
+    const [ error, setError ] = useState( null );
 
-    componentDidMount() {
-        this.handleJobData();
-    }
+    useEffect( () => {
+        getJobData();
+    }, []);
 
     // NOTE Get all job
-    handleJobData = async () => {
-
-        const { currentUser, getJobs } = this.props;
+    const getJobData = async ( query ) => {
+        
+        const { currentUser, getJobs } = props;
        
         try {
-            const jobs = await Job.getAllJobs(currentUser);
+            let jobs = null;
+
+            if ( query ) {
+                jobs = await Job.getAllJobs( currentUser, query );
+                console.log( jobs.data.jobs );
+            } else {
+                jobs = await Job.getAllJobs( currentUser );
+                console.log( jobs.data.jobs );
+            }
+
             getJobs(jobs.data.jobs);
 
         } catch ( error ) {
-            this.setState({
-                error: error
-            });
+            setError( error ); 
         }
-    }
+    };
     
-    
-    render() { 
-        const { jobs } = this.props;
+    const { jobs } = props;
 
-        return (     
-            <div className="table p-5 rounded">
+    return (
+        <>  
+            <div className="btn-group">
+                <button
+                    onClick={ () => getJobData('applied') } 
+                    className="btn btn-secondary">Applied</button>
+                <button
+                    onClick={ () => getJobData('no response') } 
+                    className="btn btn-info">No Response</button>
+                <button
+                    onClick={ () => getJobData('in progress') } 
+                    className="btn btn-warning">In Progress</button>
+                <button
+                    onClick={ () => getJobData('rejected') } 
+                    className="btn btn-danger">Rejected</button>
+                <button
+                    onClick={ () => getJobData('complete') } 
+                    className="btn btn-success">Complete</button>
+                <button
+                    onClick={ () => getJobData() } 
+                    className="btn btn-primary">reset</button>
+            </div>
+
+            <div className="table">
 
                 {/* NOTE  Table header */}
-                <div className="row">
-                    <div className="col table__header">
-                        <JobHeader /> 
-                    </div>
+                <div className="table__header">
+                    <JobHeader /> 
                 </div>
 
                 <div className="table__body">
@@ -67,10 +90,10 @@ class JobsContainer extends React.Component {
                         )
                     } 
                 </div>
-            </div>  
-        );
-    }
-}
+            </div>
+        </>      
+    );
+};
 
 const mapStateToProps = state => ({
     jobs: state.jobs.jobsList,

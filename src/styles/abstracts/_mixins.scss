@@ -71,6 +71,12 @@
         border: none;
     }
 
+    @if $type == info {
+        background-image: linear-gradient( 45deg, $color-info-b 35%, $color-info-a );
+        color: $color-grey-dark-3;
+        border: none;
+    }
+
     @if $type == secondary {
         background-image: linear-gradient( 45deg, $color-grey-dark-3 35%, $color-grey-dark-2 );
         color: $color-grey-light-2;

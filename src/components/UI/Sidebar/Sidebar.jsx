@@ -82,7 +82,7 @@ const Sidebar = ( props ) => {
 
     {/* NOTE sidebar */}
     return (
-        <nav className="col-2 sidebar">
+        <nav className="sidebar">
 
             <section className="sidebar__header">
                 <h2>Track that job</h2>

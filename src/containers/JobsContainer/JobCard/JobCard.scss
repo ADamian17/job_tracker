@@ -1,11 +1,28 @@
-.col {
-    font-size: 1.8rem;
+.job {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    font-size: 1.7rem;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+
+    &:nth-child(odd) {
+        background-color: aqua;
+    }
+
+    &:nth-child(even) {
+        background-color: red;
+    }
+
+    &:not( :last-of-type ) {
+        margin-bottom: 1rem;
+    }
 }
 
-.jobs {
-    transition: all .5s linear;
-}
+// .jobs {
+//     transition: all .5s linear;
+// }
 
-.jobs:hover {
-    transform: scale(1.1);
-}
+// .jobs:hover {
+//     transform: scale(1.1);
+// }

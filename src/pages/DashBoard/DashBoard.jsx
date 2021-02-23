@@ -13,18 +13,21 @@ const DashBoard = ( { history, match } ) => {
 
     return (
         <section className="dashboard">
+        
+            <div className="onlyDesktop">
+                <p>sorry mobile version is not currently availible, come back to desktop</p> 
+            </div>
 
             <div className="dashboard__container">
                 <SideBar history={ history } />
 
                 <main className="dashboard__main">
                     <DashHeader match={ match }/>
+
+                    {/* NOTE dashboard routes */}
+                    <Routes history={ history } match={ match } /> 
                 </main>
             </div>
-    
-            {/* <div className="onlyDesktop">
-                <p>sorry mobile version is not currently availible, come back to desktop</p> 
-            </div> */}
 
         </section>
     );
@@ -34,7 +37,6 @@ export default DashBoard;
 
 
 {/* <div className="row">
-
 
 
 <div className="col main-content">
@@ -55,7 +57,6 @@ export default DashBoard;
 
 //  <div className="row">
 //     <div className="col">
-//         {/* NOTE dashboard routes */}
-//         <Routes history={ history } match={ match } /> 
+//         
 //     </div>
 // </div>

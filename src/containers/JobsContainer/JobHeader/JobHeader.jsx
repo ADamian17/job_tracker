@@ -1,18 +1,13 @@
 import React from 'react';
 
+import './JobHeader.scss';
 const JobHeaders = () => {
 
     const headerFields = [ 'Applied Date', 'Company Name', 'Job Post Url', 'Job Status' ];
 
-    const headers = headerFields.map( (header, idx) => <div className="col" key={idx}>{header}</div> );
+    const headers = headerFields.map( (header, idx) => <span className="col" key={idx}>{header}</span> );
 
-    return (
-        <div className="card mb-5 p-3 bg-dark">
-            <div className="row text-center">
-                { headers }
-            </div>
-        </div>
-    );
+    return headers;
 };
 
 export default JobHeaders;

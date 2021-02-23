@@ -19,12 +19,12 @@ const JobCard = ( { job } ) => {
     const date = new Date( applied_date ).toLocaleDateString();
 
     return (
-        <TableCard>
-            <div className="col">{date}</div>
-            <div className="col"><Link to={`/dashboard/jobs/details/${_id}`}>{company_name}</Link></div>
-            <div className="col"><Link to={job_post_url}>{point_of_contact}</Link></div>
-            <div className="col">{job_status}</div>
-        </TableCard>
+        <div className="job" >
+            <span>{date}</span>
+            <span><Link to={`/dashboard/jobs/details/${_id}`}>{company_name}</Link></span>
+            <span><Link to={job_post_url}>{point_of_contact}</Link></span>
+            <span style={{ color: job_status === 'rejected' ? 'red' : 'inherit' }}>{job_status}</span>
+        </div>
     );
 };
 
