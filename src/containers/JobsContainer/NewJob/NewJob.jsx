@@ -16,7 +16,7 @@ const JobFrom = ( props ) => {
     const [ job_position, setJobPosition ] = useState('');
     const [ job_post_url, setJobPostUrl ] = useState('');
     const [ company_name, setCompanyName ] = useState('');
-    const [ point_of_contact, setPointOfContact ] = useState('Point of Contact ...');
+    const [ point_of_contact, setPointOfContact ] = useState('');
     const [ error, setError ] = useState( null );
 
     // for dropdown
@@ -76,15 +76,17 @@ const JobFrom = ( props ) => {
                 <label htmlFor="job_post_url" className="form__label">Job Post Url</label>
             </div>
   
-            <div className="form__group">
+            <div className="select__wrapper">
 
                 <div 
                     id="point_of_contact" 
                     className="select" 
                     name="point_of_contact" 
                     onClick={ () => setShow( !show ) }>
-                    
-                    <span>{point_of_contact}</span> 
+                    {
+
+                        point_of_contact ? <span>{point_of_contact}</span> : <span>Point of Contact ...</span>
+                    }
 
                     {
                         show ? <ChevronDown /> : <ChevronUp />
@@ -93,11 +95,11 @@ const JobFrom = ( props ) => {
 
                 <div 
                     className="select__options"
-                    style={{ display: show ? 'inline-block' : 'none' }} >
+                    style={{ display: show ? 'flex' : 'none' }} >
 
                     <div 
                         className="option" 
-                        data-option="Point of Contact"
+                        data-option=""
                         onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
                         Point of Contact ...
                     </div>
@@ -136,7 +138,7 @@ const JobFrom = ( props ) => {
                         onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
                         angelList
                     </div>
-                    
+
                 </div>
 
             </div>
