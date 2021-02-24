@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { getJobs } from '../../../redux/jobs/jobs.actions';
@@ -22,6 +22,16 @@ const JobFrom = ( props ) => {
     // for dropdown
     const [ show, setShow ] = useState( false );
 
+    useEffect( () => {
+        return () => {
+            setJobPosition('');
+            setJobPostUrl('');
+            setCompanyName('');
+            setPointOfContact('');
+            setError(null);
+        };
+    }, []);
+
     const jobData = {
         job_position,
         job_post_url,
@@ -36,6 +46,13 @@ const JobFrom = ( props ) => {
             await Job.addJob( currentUser ,jobData );
             const jobs = await Job.getAllJobs( currentUser );
             getJobs( jobs.data.jobs );
+
+            setJobPosition('');
+            setJobPostUrl('');
+            setCompanyName('');
+            setPointOfContact('');
+            setError(null);
+
             hideModal();
             
         } catch ( error ) {
@@ -46,33 +63,70 @@ const JobFrom = ( props ) => {
     
     const handleCancel = (e) => {
         e.preventDefault();
+
+        setJobPosition('');
+        setJobPostUrl('');
+        setCompanyName('');
+        setError(null);
+        setPointOfContact('');
+            
         hideModal();
     };
 
     const handlePointOfContact = ( value ) => {
-        setPointOfContact(value)
-        setShow( !show )
-    }
-    
-    console.log('err', error);
+        setPointOfContact(value);
+        setShow( !show );
+    };
 
     return (
       
         <form className="form">
+            {
+                error ? <span style={{ color: 'red', fontSize: '1.5rem' }}>{error.data.message}</span> : ''
+            }
             
             <div className="form__group">
-                <input id="job_position" className="form__input" type="text" name="job_position" placeholder="Job Position" onChange={(e) => setJobPosition( e.target.value) } required />
+
+                <input 
+                    id="job_position" 
+                    className="form__input" 
+                    type="text" 
+                    name="job_position" 
+                    placeholder="Job Position" 
+                    value={job_position}
+                    onChange={(e) => setJobPosition( e.target.value) } 
+                    required />
+
                 <label htmlFor="job_position" className="form__label">Job Position</label>
             </div>
   
             <div className="form__group">
-                <input id="company_name" className="form__input" type="text" name="company_name" placeholder="Company Name" onChange={(e) => setCompanyName( e.target.value) } />
+
+                <input 
+                    id="company_name" 
+                    className="form__input" 
+                    type="text" name="company_name" 
+                    placeholder="Company Name"
+                    value={company_name} 
+                    onChange={(e) => setCompanyName( e.target.value) } 
+                    required />
+
                 <label htmlFor="company_name" className="form__label">Company Name</label>
             </div>
            
 
             <div className="form__group">
-                <input id="job_post_url" className="form__input" type="text" name="job_post_url" placeholder="Job Post Url" onChange={(e) => setJobPostUrl(e.target.value)} />
+
+                <input 
+                    id="job_post_url" 
+                    className="form__input" 
+                    type="text" 
+                    name="job_post_url" 
+                    placeholder="Job Post Url"
+                    value={job_post_url} 
+                    onChange={(e) => setJobPostUrl(e.target.value)} 
+                    required/>
+                    
                 <label htmlFor="job_post_url" className="form__label">Job Post Url</label>
             </div>
   

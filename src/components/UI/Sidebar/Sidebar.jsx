@@ -49,8 +49,6 @@ const Sidebar = ( props ) => {
         history.push('/login');
     };
 
-    console.log('adonis');
-
     const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
 
         if( route.name === 'logout') {
