@@ -78,6 +78,17 @@
   &--small {
     width: 60%;
   }
+
+  &--start {
+    justify-content: space-evenly;
+    padding: 0;
+    width: 42%;
+
+    & > :last-of-type {
+      margin-left: 1rem;
+    }
+  }
+  
 }
 
 .center-Items {

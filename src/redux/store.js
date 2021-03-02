@@ -3,9 +3,13 @@ import logger from 'redux-logger';
 
 import rootReducer from './root-reducer';
 
-const middlewares = [
-    logger
-];
+let middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+    middlewares = [ logger, ...middlewares ];
+} else {
+    middlewares = [...middlewares ];
+}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

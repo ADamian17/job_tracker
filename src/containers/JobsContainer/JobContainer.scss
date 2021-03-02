@@ -22,7 +22,11 @@
     &__body {
         color: $color-grey-dark-2;
         overflow: scroll;
-        height: 40rem;
+        height: 55rem;
+
+        @include respond ( phone ) {
+            height: 45rem;
+        }
     }
 
     &__body a {

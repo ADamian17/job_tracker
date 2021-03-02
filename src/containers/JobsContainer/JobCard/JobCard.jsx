@@ -13,6 +13,14 @@ const JobCard = ( { job } ) => {
         applied_date
     } = job;
 
+
+    const colors = {
+        rejected: 'red',
+        'no response': 'aqua',
+        'in progress': 'yellow',
+        complete: 'green' 
+    };
+
     const date = new Date( applied_date ).toLocaleDateString();
 
     return (
@@ -20,7 +28,7 @@ const JobCard = ( { job } ) => {
             <span>{date}</span>
             <span>{company_name}</span>
             <span>{point_of_contact}</span>
-            <span style={{ color: job_status === 'rejected' ? 'red' : 'inherit' }}>{job_status}</span>
+            <span style={{ color: job_status !== 'applied' ? colors[job_status] : 'inherit' }}>{job_status}</span>
         </Link>
     );
 };
