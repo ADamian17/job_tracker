@@ -20,4 +20,16 @@
     &:not( :last-of-type ) {
         margin-bottom: 1rem;
     }
+
+    & > :nth-child( 3 ) {
+
+        @include respond ( phone ) {
+            display: none;
+        }
+    }
+
+    @include respond ( phone ) {
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 1.5rem;
+    }
 }

@@ -15,4 +15,9 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
+
+    @include respond( phone ) {
+        padding: 1.8rem;
+        margin: 0 3rem 2.5rem 3rem;
+    }
 }

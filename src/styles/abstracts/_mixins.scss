@@ -37,6 +37,11 @@
 // - big-desktop
 
 @mixin respond ( $breakpoint ) {
+    
+    @if $breakpoint == sm-phone {
+        @media ( max-width: 32em ) { @content };  //300px
+    }
+
     @if $breakpoint == phone {
         @media ( max-width: 37.5em ) { @content };  //600px
     }

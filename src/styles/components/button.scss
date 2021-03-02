@@ -75,6 +75,14 @@
   justify-content: space-evenly;
   padding: 2.5rem;
 
+
+  @include respond ( phone ) {
+    flex-wrap: wrap;
+    height: 15rem;
+    padding: 2rem;
+    align-items: center;
+  }
+
   &--small {
     width: 60%;
   }

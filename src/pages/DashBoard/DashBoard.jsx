@@ -13,10 +13,6 @@ const DashBoard = ( { history, match } ) => {
 
     return (
         <section className="dashboard">
-        
-            <div className="onlyDesktop">
-                <p>sorry mobile version is not currently availible, come back to desktop</p> 
-            </div>
 
             <div className="dashboard__container">
                 <SideBar history={ history } />
