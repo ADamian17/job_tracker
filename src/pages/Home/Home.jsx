@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import TopNavbar from '../../components/UI/TopNavbar/TopNavbar';
-
 import './Home.scss';
 
 const Home = () => {
@@ -11,14 +9,20 @@ const Home = () => {
             {/* <TopNavbar /> */}
             <main className="landing">
 
+                {/* <div className="mountian__a">
+                    1
+                </div> */}
+                {/* <div className="mountian__b">
+                    2
+                </div> */}
+
                 {/* call to action */}
 
                 <div className="landing__cta">
 
-                    <h2 className="landing__secondary__heading">Welcome to</h2>
                     <h1 className="landing__heading">Track that Job!</h1>
 
-                    <p className="landing__text">Track that Job offers an easy way to keep track of your jobs applications while searching for a job</p>
+                    <p className="landing__text">An easy way to keep track of your job applications while searching </p>
 
                     <section className="landing__links"> 
                         <button className="btn btn-primary landing__item">

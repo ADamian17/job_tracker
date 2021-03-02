@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setCurrentUser, setTokenExp } from '../../redux/user/user.actions';
 
 // NOTE components
-import LoginRegisterContainer from '../../components/LoginRegisterContainer/LoginRegisterContainer';
+import Container from '../../components/Container/Container';
 import Message from '../../components/Message/Message';
 
 // NOTE helpers
@@ -44,7 +44,7 @@ const Login = ( props ) => {
         
     return (
          
-        <LoginRegisterContainer colZise={6} >
+        <Container >
 
             <>
 
@@ -82,9 +82,9 @@ const Login = ( props ) => {
                                     onChange={ ( e ) => setEmail( e.target.value ) }
                                     required />
                     
-                                <div className="invalid-feedback">
+                                {/* <div className="invalid-feedback">
                                     Please choose a username.
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className="form-group">
@@ -114,7 +114,7 @@ const Login = ( props ) => {
                             
             </>
 
-        </LoginRegisterContainer>
+        </Container>
     );
 
 };

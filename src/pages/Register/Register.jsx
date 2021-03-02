@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 // NOTE components
-import LoginRegisterContainer from '../../components/LoginRegisterContainer/LoginRegisterContainer';
+import Container from '../../components/Container/Container';
 import Message from '../../components/Message/Message';
 import ErrorBanner from '../../components/ErrorBanner/ErrotBanner';
 
@@ -59,7 +59,7 @@ class Register extends Component {
         const errMessage = this.state.error;
 
         return (
-            <LoginRegisterContainer colZise={6} >
+            <Container >
                
                     
                 { errMessage ?  
@@ -161,7 +161,7 @@ class Register extends Component {
                 <Message message="Already have an Account?" url="/login" title="Login" />
             
 
-            </LoginRegisterContainer>
+            </Container>
         );
     }
 }
