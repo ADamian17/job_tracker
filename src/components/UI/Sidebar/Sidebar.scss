@@ -51,13 +51,12 @@
             height: 100%;
         }
 
-         // li
-
         &__item:not(:last-of-type) {
             margin-bottom: 1rem;
 
             @include respond ( tab-land ) {
                 margin: 0;
+                order: 1;
             }
         }
 
@@ -128,7 +127,6 @@
                     margin: 0;
                 }
             }
-
         }
 
         &__icon {
