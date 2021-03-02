@@ -2,9 +2,6 @@ import React from 'react';
 
 import Routes from './routes/routes';
 import SideBar from '../../components/UI/Sidebar/Sidebar';
-// import Divider from '../../components/UI/Divider/Divider';
-// import TopNavbar from '../../components/UI/topNavBar/topNavBAr';
-// import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import DashHeader from '../../components/UI/DashHeader/DashHeader';
 
 import './DashBoard.scss';
@@ -30,29 +27,3 @@ const DashBoard = ( { history, match } ) => {
 };
 
 export default DashBoard;
-
-
-{/* <div className="row">
-
-
-<div className="col main-content">
-
-    <div className="container">
-
-        <div className="row">
-            <div className="col">
-                
-            </div>
-        </div>
-
-    </div>
-
-</div>
-</div> */}
-
-
-//  <div className="row">
-//     <div className="col">
-//         
-//     </div>
-// </div>
