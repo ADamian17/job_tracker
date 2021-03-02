@@ -101,11 +101,11 @@ const JobDetails = ( props ) => {
                         </div>
 
                         <div 
-                            className="modal__backdrop"
-                            style={{ display: show ? 'flex' : 'none' }} 
-                            onClick={ () => setShow( false ) }>
+                            className="modal"
+                            style={{ display: show ? 'flex' : 'none' }}>
+                            <div className="modal__bg" onClick={ () => setShow( false ) }/>
 
-                            <div className="modal modal--small">
+                            <div className="modal__main modal__main--small">
                                 <h4>Are you sure want to delete this job ? </h4>
 
                                 <div className="btn-group btn-group--small" >

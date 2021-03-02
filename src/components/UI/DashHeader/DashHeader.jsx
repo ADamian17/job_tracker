@@ -43,7 +43,7 @@ const DashBoardHeader = ( props ) => {
 
             </div>
 
-            <Modal size="lg">
+            <Modal>
                 <NewJob />
             </Modal>
         </>  

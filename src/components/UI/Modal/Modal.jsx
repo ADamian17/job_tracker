@@ -9,10 +9,11 @@ const QuestionModal = ( props ) => {
 
     return (
         <div 
-            className="modal__backdrop" 
+            className="modal" 
             style={{ display: props.show ? 'flex' : 'none' }} >
+            <div className="modal__bg" onClick={props.hideModal} />
 
-            <div className="modal">
+            <div className="modal__main">
                 {
                     props.children 
                 }
