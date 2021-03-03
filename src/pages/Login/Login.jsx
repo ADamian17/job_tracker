@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
-import { setCurrentUser, setTokenExp } from '../../redux/user/user.actions';
+import { setCurrentUser } from '../../redux/user/user.actions';
 
 // NOTE components
 import Container from '../../components/CenteredContainer/CenteredContainer';
@@ -20,6 +20,7 @@ const Login = ( props ) => {
 
     const [ message, setMessage ] = useState('');
 
+
     const userData = { email, password };
 
     // call to my api
@@ -31,9 +32,10 @@ const Login = ( props ) => {
         try {
             const user = await Auth.login( userData );
             const token = await user.data.signedJwt;
-            
+            console.log('login');
+
             setCurrentUser(token);
-            setTokenExp( false );
+            
             props.history.push('/dashboard/jobs');
 
         } catch (error) {
@@ -116,8 +118,7 @@ const Login = ( props ) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentUser: (token) => dispatch(setCurrentUser(token)),
-    setTokenExp: ( boolean ) => dispatch(setTokenExp( boolean ) )
+    setCurrentUser: (token) => dispatch(setCurrentUser(token)) 
 });
 
 export default connect( null, mapDispatchToProps )(Login);

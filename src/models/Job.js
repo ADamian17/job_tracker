@@ -5,7 +5,6 @@ import axios from 'axios';
 class Job {
 
     static getAllJobs ( currentUser, query = null ) {
-        console.log(`${process.env.REACT_APP_API_URL}/jobs?job_status=${query}`);
         if ( query ) {
             return axios.get(`${process.env.REACT_APP_API_URL}/jobs?job_status=${query}`, {
                 headers: { authorization: `Bearer ${currentUser}` }

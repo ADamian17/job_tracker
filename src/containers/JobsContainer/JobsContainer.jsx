@@ -32,24 +32,25 @@ const JobsContainer = ( props ) => {
 
             if ( query ) {
                 jobs = await Job.getAllJobs( currentUser, query );
-                console.log( jobs.data.jobs );
             } else {
                 jobs = await Job.getAllJobs( currentUser );
-                console.log( jobs.data.jobs );
             }
 
             getJobs(jobs.data.jobs);
 
         } catch ( error ) {
-            setError( error ); 
+            setError( error.response.data ); 
         }
     };
     
     const { jobs } = props;
-    console.log(error);
+    
     return (
         <>  
             <section className="filter__section">
+                {
+                    error ? <div>{ error.message }</div> : ''
+                }
                 <h3  className="filter__section__header">Filter By Status</h3>
 
                 <div className="btn-group">
