@@ -1,84 +1,37 @@
 @import '../../styles/main.scss';
 
+.dashboard {
+    background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+
+    &__container{
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+
+        display: flex;
+
+        @include respond( tab-land ) { // width < 1200?
+            flex-direction: column;
+        }
+    }
+
+    &__main {
+        flex: 1;
+        background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+        min-height: 80rem;
+        padding: 0 15rem;
+
+        @include respond( tab-land ) {
+            padding: 0 8rem;
+        }
+
+        @include respond( phone ) {
+            padding: 0 0;
+        }
+    } 
+}
+
 .main-content {
     background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
     min-height: 100vh;
 }
-
-.onlyDesktop {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    background-color: #00ffff;
-    z-index: 1;
-
-    @media ( max-width: 672px ) {
-        display: flex;
-    }
-}
-
-// .dashboard {
-//     display: flex;  
-//     flex-flow: row wrap;
-
-//     & > * {
-//         flex: 1 100%;
-//     }
-
-//     &__sidebar {
-//         background-color: #00ffff;
-//     }
-
-//     &__main-content {
-//         background-image: linear-gradient(360deg, $color-primary-dark, $color-tertiary-dark );
-//         min-height: 100vh;
-//         padding: 15px;
-//         color: $color-white;
-//         display: flex;
-//         flex-flow: column wrap;
-//         align-items: center;
-//     }     
-
-//     .dashHeader {
-//         width: 100%;
-//         margin-bottom: 1.5rem;
-//     }
-        
-//     .wrapper {
-//         width: 90%;
-//         min-height: 50%;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: space-evenly;
-//         border-radius: 10px;
-
-//         @media (max-width: 375px) {
-//             width: 100%;
-//         }
-//     }
-    
-//     // NOTE controls the sidebar width
-//     // &__sidebar {
-//     //     flex: 1 0 0;
-//     // }
-
-//     // @media all and (min-width: 375px) {
-//     //     &__sidebar { flex: 1 0 0; }
-//     // }
-
-//     @media all and (min-width: 600px) {
-//         &__sidebar { flex: 1 0 0; }
-//     }
-
-//     @media all and (min-width: 800px) {
-//         &__main-content { flex: 5 0px; }
-//         &__sidebar { order: 1; } 
-//         &__main-content { order: 2; }
-//     }
-// }
-

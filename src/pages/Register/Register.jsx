@@ -1,169 +1,132 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
 
 // NOTE components
-import LoginRegisterContainer from '../../components/LoginRegisterContainer/LoginRegisterContainer';
+import Container from '../../components/CenteredContainer/CenteredContainer';
 import Message from '../../components/Message/Message';
 import ErrorBanner from '../../components/ErrorBanner/ErrotBanner';
+
+import Input from '../../components/Input/Input';
 
 // NOTE Internal Module
 import Auth from '../../models/auth';
 
-class Register extends Component {
+const Register = ( props ) => {
 
-    state = {
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        password2: '',
-        profession: '',
-        error: null
-    };
+    const [ first_name, setFirstName ] = useState('');
+    const [ last_name, setLastName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ password2, setPassword2 ] = useState('');
+    const [ profession, setProfession] = useState('');
+    const [ error, setError ] = useState(null);
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
-
-    handleRegister = async ( event ) => {
+    const handleRegister = async ( event ) => {
         event.preventDefault();
-        const userData = this.state;
 
         try {
 
-            await Auth.register( userData );
-            
-            this.setState({
-                first_name: '',
-                last_name: '',
-                email: '',
-                password: '',
-                password2: '',
-                profession: ''
+            await Auth.register({
+                first_name, 
+                last_name, 
+                email,
+                password,
+                password2,
+                profession 
             });
             
-            this.props.history.push('/login');
+            props.history.push('/login');
             
         } catch (err) {
-
-            this.setState({
-                error : err.response.data
-            });
-
+            setError(err.response.data);
         }
     };
-    
-    render() {
-        const errMessage = this.state.error;
 
-        return (
-            <LoginRegisterContainer colZise={6} >
-               
+    return (
+        <Container>
+                   
+            { error ?  
+                <ErrorBanner message={ error.message } />
+                : '' 
+            }
+
+            <div className="primary__heading">
+
+                <p>Create a New Account</p>
+
+            </div>
                     
-                { errMessage ?  
-                    <ErrorBanner message={ errMessage.message } />
-                    : '' 
-                }
+            <form>
 
-                <div className="row">
+                {/* row 1 */}
+                <Input
+                    type="text"  
+                    name="first_name"
+                    label="First Name"
+                    placeholder="First Name"
+                    handleChange={( e ) => setFirstName( e.target.value )} 
+                    required />
 
-                    <div className="form-group col p-2">
+                <Input
+                    type="text" 
+                    name="last_name"
+                    label="Last Name"
+                    placeholder="Last Name"
+                    handleChange={( e ) => setLastName( e.target.value )} 
+                    required />
 
-                        <header className="text-center">
-                            create a new account
-                        </header>
-                            
-                    </div>
+                <Input
+                    type="text"  
+                    name="profession"
+                    label="Profession"
+                    placeholder="Profession"
+                    handleChange={( e ) => setProfession( e.target.value )} 
+                    required />
 
-                </div>
-                    
-                <form>
+                <Input
+                    type="email"  
+                    name="email"
+                    label="Email"
+                    placeholder="Email"
+                    handleChange={( e ) => setEmail( e.target.value )} 
+                    required />
 
-                    {/* row 1 */}
-                    <div className="form-row">
+                <Input
+                    type="password"  
+                    name="password"
+                    label="Password"
+                    placeholder="Password"
+                    handleChange={( e ) => setPassword( e.target.value )} 
+                    required />
 
-                        <div className="form-group col">
-                            <input
-                                className="form-control"
-                                placeholder="First Name"
-                                name="first_name"
-                                onChange={this.handleChange}
-                                required />
-                        </div>
+                <Input
+                    type="password"  
+                    name="password2"
+                    label="Confirm Password"
+                    placeholder="Confirm Password"
+                    handleChange={( e ) => setPassword2( e.target.value )} 
+                    required />
 
-                        <div className="form-group col">
-                            <input
-                                className="form-control"
-                                placeholder="Last Name"
-                                type="text"
-                                name="last_name"
-                                onChange={this.handleChange}
-                                required/>
-                        </div>
-
-                        <div className="form-group col">
-                            <input
-                                className="form-control"
-                                placeholder="Profession"
-                                type="text"
-                                name="profession"
-                                onChange={this.handleChange}
-                                required/>
-                        </div> 
-
-                    </div>
-
-                    {/* row 2 */}
-                    <div className="form-group">
-                        <input
-                            className="form-control"
-                            placeholder="E-mail address"
-                            name="email"
-                            onChange={this.handleChange}
-                            required />
-                            
-                    </div>
-
-                    {/* row 3  */}
-                    <div className="form-row">
-                            
-                        <div className="form-group col">
-                            <input
-                                className="form-control"
-                                placeholder="Password"
-                                type="password"
-                                name="password"
-                                onChange={this.handleChange}
-                                required />
-
-                        </div>
-
-                        <div className="form-group col">
-                            <input
-                                className="form-control"
-                                placeholder="Confirm Password"
-                                type="password"
-                                name="password2"
-                                onChange={this.handleChange}
-                                required/>
-                        </div>
-
-                    </div>
-
-                    <button type="submit" className="btn btn-primary btn-block" onClick={this.handleRegister}>
-                        Register
-                    </button>
+                <button type="submit" className="btn btn-primary btn-block" onClick={handleRegister}>
+                    Register
+                </button>
     
-                </form>
+            </form>
 
-                <Message message="Already have an Account?" url="/login" title="Login" />
+            <Message message="Back to" url="/" title="Home" />
+
+            <div style={{ 
+                textAlign: 'center', 
+                fontSize: '1.7rem',
+                color: '#000'
+            }}>
+                or
+            </div>
+                            
+            <Message message="Already have an Account?" url="/login" title="Login" />
             
 
-            </LoginRegisterContainer>
-        );
-    }
-}
+        </Container>
+    );
+};
 
 export default Register;

@@ -1,18 +1,4 @@
-@mixin clearfix {
-    &::after {
-        content: "";
-        display: table;
-        clear: both;
-    } 
-    
-}
 
-@mixin  align-element-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 
 // NOTE media query manager
@@ -37,6 +23,11 @@
 // - big-desktop
 
 @mixin respond ( $breakpoint ) {
+    
+    @if $breakpoint == sm-phone {
+        @media ( max-width: 32em ) { @content };  //300px
+    }
+
     @if $breakpoint == phone {
         @media ( max-width: 37.5em ) { @content };  //600px
     }
@@ -48,6 +39,10 @@
     }
     @if $breakpoint == big-desktop {
         @media ( min-width: 112.5em ) { @content }; // 1800 px
+    }
+
+    @if $breakpoint == xl-desktop {
+        @media ( min-width: 256em ) { @content }; // 2560 px
     }
 }
 
@@ -63,21 +58,49 @@
         background-image: linear-gradient( 45deg, $color-primary 35%, $color-primary-light );
         color: $color-grey-light-2;
         border: none;
+
+        &:hover {
+            background-image: linear-gradient( 45deg, $color-primary-light 35%, $color-primary  ); 
+        }
     }
 
     @if $type == danger {
         background-image: linear-gradient( 45deg, $color-primary-bright-b 35%, $color-primary-bright-a );
         color: $color-grey-light-2;
         border: none;
+
+        &:hover {
+            background-image: linear-gradient( 45deg, $color-primary-bright-a 35%, $color-primary-bright-b  ); 
+        }
     }
 
+    @if $type == info {
+        background-image: linear-gradient( 45deg, $color-info-b 35%, $color-info-a );
+        color: $color-grey-dark-3;
+        border: none;
+
+        &:hover {
+            background-image: linear-gradient( 45deg, $color-info-a 35%, $color-info-b ); 
+        }
+    }
+    
     @if $type == secondary {
         background-image: linear-gradient( 45deg, $color-grey-dark-3 35%, $color-grey-dark-2 );
         color: $color-grey-light-2;
         border: none;
+
+        &:hover {
+            background-image: linear-gradient( 45deg, $color-grey-dark-2 35%, $color-grey-dark-3 ); 
+        }
     }
+
     @if $type == warning {
         background-image: linear-gradient( 45deg, $color-secondary-light-b, $color-secondary-light-a );
         color: $color-grey-dark-3;
+        border: none;
+
+        &:hover {
+            background-image: linear-gradient( 45deg, $color-secondary-light-a 35%, $color-secondary-light-b ); 
+        }
     }
 }

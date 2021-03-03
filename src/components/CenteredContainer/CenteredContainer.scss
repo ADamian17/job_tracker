@@ -1,0 +1,25 @@
+@import '../../styles/main.scss';
+
+.container {
+  min-height: 100vh;
+  background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &__card {
+    width: 55rem;
+    min-height: 20rem;
+    box-shadow: 0 0 1.2rem #bababa;
+    border-radius: 1.5rem;
+    background-image: 
+        linear-gradient(#ffffff8e 100%, transparent ), 
+        url('./assets/career.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+}

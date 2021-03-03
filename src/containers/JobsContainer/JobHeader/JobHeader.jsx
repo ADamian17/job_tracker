@@ -1,18 +1,13 @@
 import React from 'react';
 
-import TableCard from '../../../components/TableCard/TableCard';
-
+import './JobHeader.scss';
 const JobHeaders = () => {
 
-    const headerFields = [ 'Applied Date', 'Company Name', 'Job Position', 'Job Post Url', 'Job Status' ];
+    const headerFields = [ 'Applied Date', 'Company Name', 'Point of Contact', 'Job Status' ];
 
-    const headers = headerFields.map( (header, idx) => <div className="col" key={idx}>{header}</div> );
+    const headers = headerFields.map( (header, idx) => <span key={idx}>{header}</span> );
 
-    return (
-        <TableCard>
-            { headers }
-        </TableCard>
-    );
+    return headers;
 };
 
 export default JobHeaders;

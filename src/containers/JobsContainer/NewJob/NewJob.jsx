@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
-import { Form, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { getJobs } from '../../../redux/jobs/jobs.actions';
 import { hideModal } from '../../../redux/modal/modal.action';
 
 import Job from '../../../models/Job';
+import ChevronDown from '../../../components/UI/Icons/ChevronDown/ChevronDown';
+import ChevronUp from '../../../components/UI/Icons/ChevronUp/ChevronUp';
+
+import './NewJob.scss';
 
 const JobFrom = ( props ) => {
     const { getJobs, hideModal, currentUser } = props;
 
-    const [job_position, setJobPosition] = useState('');
-    const [job_post_url, setJobPostUrl] = useState('');
-    const [company_name, setCompanyName] = useState('');
+    const [ job_position, setJobPosition ] = useState('');
+    const [ job_post_url, setJobPostUrl ] = useState('');
+    const [ company_name, setCompanyName ] = useState('');
     const [ point_of_contact, setPointOfContact ] = useState('');
     const [ error, setError ] = useState( null );
+
+    // for dropdown
+    const [ show, setShow ] = useState( false );
+
+    useEffect( () => {
+        return () => {
+            setJobPosition('');
+            setJobPostUrl('');
+            setCompanyName('');
+            setPointOfContact('');
+            setError(null);
+        };
+    }, []);
 
     const jobData = {
         job_position,
@@ -30,6 +46,13 @@ const JobFrom = ( props ) => {
             await Job.addJob( currentUser ,jobData );
             const jobs = await Job.getAllJobs( currentUser );
             getJobs( jobs.data.jobs );
+
+            setJobPosition('');
+            setJobPostUrl('');
+            setCompanyName('');
+            setPointOfContact('');
+            setError(null);
+
             hideModal();
             
         } catch ( error ) {
@@ -40,59 +63,151 @@ const JobFrom = ( props ) => {
     
     const handleCancel = (e) => {
         e.preventDefault();
+
+        setJobPosition('');
+        setJobPostUrl('');
+        setCompanyName('');
+        setError(null);
+        setPointOfContact('');
+            
         hideModal();
     };
-    
-    console.log('err', error);
+
+    const handlePointOfContact = ( value ) => {
+        setPointOfContact(value);
+        setShow( !show );
+    };
 
     return (
-        <>
-            <Form>
-                {/* row 1 */}
-                <Form.Row>
-                    <Form.Group as={Col}>
-                        <Form.Label>Job Position</Form.Label>
-                        <Form.Control type="text" name="job_position" placeholder="Job Position" onChange={(e) => setJobPosition( e.target.value) } />
-                    </Form.Group>
-  
-                    <Form.Group as={Col}>
-                        <Form.Label>Company Name</Form.Label>
-                        <Form.Control type="text" name="company_name" placeholder="Job Status" onChange={(e) => setCompanyName( e.target.value) } />
-                    </Form.Group>
-                </Form.Row>
-  
-                {/* row 2 */}
-                <Form.Row>
+      
+        <form className="form">
+            {
+                error ? <span style={{ color: 'red', fontSize: '1.5rem' }}>{error.data.message}</span> : ''
+            }
+            
+            <div className="form__group">
 
-                    <Form.Group as={Col}>
-                        <Form.Label>Job Post Url</Form.Label>
-                        <Form.Control type="text" name="job_post_url" placeholder="Job Post Url" onChange={(e) => setJobPostUrl(e.target.value)} />
-                    </Form.Group>
+                <input 
+                    id="job_position" 
+                    className="form__input" 
+                    type="text" 
+                    name="job_position" 
+                    placeholder="Job Position" 
+                    value={job_position}
+                    onChange={(e) => setJobPosition( e.target.value) } 
+                    required />
+
+                <label htmlFor="job_position" className="form__label">Job Position</label>
+            </div>
   
-                    <Form.Group as={Col}>
-                        <Form.Label>Point of Contact</Form.Label>
-                        <Form.Control as="select" name="point_of_contact" onChange={(e) => setPointOfContact( e.target.value )} >
-                            <option defaultValue value="">Select One...</option>
-                            <option value="linkedin">Linkedin</option>
-                            <option value="indeed">indeed</option>
-                            <option value="company website">Company Site</option>
-                            <option value="glassdoor">GlassDoor</option>
-                            <option value="angelList">AngelList</option>
-                        </Form.Control>
-                    </Form.Group>
+            <div className="form__group">
 
-                </Form.Row>
+                <input 
+                    id="company_name" 
+                    className="form__input" 
+                    type="text" name="company_name" 
+                    placeholder="Company Name"
+                    value={company_name} 
+                    onChange={(e) => setCompanyName( e.target.value) } 
+                    required />
 
-                <Form.Row>
-                    <button className="btn btn-secondary mr-2" onClick={handleCancel}>
-                        cancel
-                    </button>
-                    <button className="btn btn-primary" onClick={handleSubmit}>
-                        Add Job
-                    </button>
-                </Form.Row>
-            </Form>
-        </>
+                <label htmlFor="company_name" className="form__label">Company Name</label>
+            </div>
+           
+
+            <div className="form__group">
+
+                <input 
+                    id="job_post_url" 
+                    className="form__input" 
+                    type="text" 
+                    name="job_post_url" 
+                    placeholder="Job Post Url"
+                    value={job_post_url} 
+                    onChange={(e) => setJobPostUrl(e.target.value)} 
+                    required/>
+                    
+                <label htmlFor="job_post_url" className="form__label">Job Post Url</label>
+            </div>
+  
+            <div className="select__wrapper">
+
+                <div 
+                    id="point_of_contact" 
+                    className="select" 
+                    name="point_of_contact" 
+                    onClick={ () => setShow( !show ) }>
+                    {
+
+                        point_of_contact ? <span>{point_of_contact}</span> : <span>Point of Contact ...</span>
+                    }
+
+                    {
+                        show ? <ChevronDown /> : <ChevronUp />
+                    }  
+                </div>
+
+                <div 
+                    className="select__options"
+                    style={{ display: show ? 'flex' : 'none' }} >
+
+                    <div 
+                        className="option" 
+                        data-option=""
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        Point of Contact ...
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="linkedin"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        Linkedin
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="indeed"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        indeed
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="company website"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        company website
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="glassdoor"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        glassdoor
+                    </div>
+
+                    <div 
+                        className="option" 
+                        data-option="angelList"
+                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
+                        angelList
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+            <div className="btn-group btn-group--small">
+                <button className="btn btn-secondary mr-2" onClick={handleCancel}>
+                    cancel
+                </button>
+                <button className="btn btn-primary" onClick={handleSubmit}>
+                    Add Job
+                </button>
+            </div>
+        </form>
+    
     );
 
 };

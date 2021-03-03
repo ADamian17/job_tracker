@@ -1,0 +1,19 @@
+@import '../../styles/main.scss';
+
+.message {
+  font-size: 2rem;
+  text-align: center;
+  color: $color-grey-dark-3;
+  padding: .8rem;
+
+  &__link {
+    margin-left: 10px;
+    text-decoration: none;
+    color: $color-tertiary-light-b;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}

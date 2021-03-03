@@ -1,0 +1,106 @@
+.btn {
+    min-width: 13rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 100px;
+    border: none;
+    background-image: linear-gradient( 45deg, $color-tertiary-light-b, $color-tertiary-light-a );
+    color:#fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  
+    &__visible {
+      padding: 2rem 7.5rem;
+    }
+  
+    &__invisible {
+      position: absolute;
+      padding: 2rem 0;
+      left: 0;
+      top: -100%;
+      
+    }
+  
+    &:hover {
+        background-image: linear-gradient( 45deg, $color-tertiary-light-a, $color-tertiary-light-b );
+        box-shadow: 0 0 1rem rgba( $color-grey-light-2, .2);
+    }
+  
+    &:hover &__visible{
+      transform: translateY(100%);
+    }
+      
+  
+    &:hover &__invisible {
+      top: 0;
+    }
+  
+    &:focus {
+      outline: none;
+      animation: pulsate 1s infinite;
+    }
+  
+}
+
+.btn-primary {
+    @include btn-custom-color ( primary );
+}
+
+.btn-secondary {
+    @include btn-custom-color ( secondary ); 
+}
+
+.btn-success {
+    @include btn-custom-color ( success ); 
+}
+
+
+.btn-danger {
+    @include btn-custom-color ( danger ); 
+}
+
+.btn-warning {
+    @include btn-custom-color ( warning ); 
+}
+
+.btn-info {
+    @include btn-custom-color ( info ); 
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2.5rem;
+
+
+  @include respond ( phone ) {
+    flex-wrap: wrap;
+    height: 15rem;
+    padding: 2rem;
+    align-items: center;
+  }
+
+  &--small {
+    width: 60%;
+  }
+
+  &--start {
+    justify-content: space-evenly;
+    padding: 0;
+    width: 42%;
+
+    & > :last-of-type {
+      margin-left: 1rem;
+    }
+  }
+  
+}
+
+.center-Items {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

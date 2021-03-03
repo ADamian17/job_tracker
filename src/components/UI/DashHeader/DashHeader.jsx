@@ -6,6 +6,7 @@ import { showModal } from '../../../redux/modal/modal.action';
 
 import Modal from '../../UI/Modal/Modal';
 import NewJob from '../../../containers/JobsContainer/NewJob/NewJob';
+import PlusIcon from '../Icons/PlusIcon/PlusIcon';
 
 import './DashHeader.scss';
 
@@ -29,19 +30,22 @@ const DashBoardHeader = ( props ) => {
 
     return (
         <> 
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 className="header" >{ getTitle() }</h1>
-                <div className="btn-toolbar mb-2 mb-md-0">
-                    <div className="btn-group mr-2">
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={props.showModal}>Add Job</button>
-                    </div>
-                </div>
+            <div className="dashboard__main__header">
+
+                <h1 className="dashboard__main__header__title" >
+                    { getTitle() }
+                </h1>
+
+                <button className="btn btn-primary center-Items" onClick={props.showModal}>
+                    <PlusIcon />
+                    <span>Add Job</span>
+                </button>
+
             </div>
 
-            <Modal size="lg" >
+            <Modal>
                 <NewJob />
             </Modal>
-
         </>  
     );
 };

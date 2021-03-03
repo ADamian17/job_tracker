@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import {Button, Modal } from 'react-bootstrap';
 
 // NOTE REDUX
 import { connect } from 'react-redux';
@@ -19,14 +18,21 @@ import JobEdit from '../jobEdit/JobEdit';
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
-    const { match, showJobDetails, jobDetails, history, showModal, setTokenExp, setShowEdit, currentUser } = props;
+    const { 
+        match, 
+        showJobDetails, 
+        jobDetails, 
+        history, 
+        setTokenExp, 
+        setShowEdit, 
+        currentUser 
+    } = props;
+
     const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
     const jobId = match.params.id;
 
     const [ error, setError ] = useState( null );
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     
 
     useEffect( () => {
@@ -85,8 +91,8 @@ const JobDetails = ( props ) => {
                                         <>
                                             <JobCardBody details={ jobDetails } /> 
                                             <div className="card-footer p-3">
-                                                <button className="btn btn-danger float-right" onClick={handleShow}>Delete</button>
                                                 <button className="btn btn-success float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
+                                                <button className="btn btn-danger float-right" onClick={() => setShow( true ) }>Delete</button>
                                             </div>
                                         </>
                                     )
@@ -94,22 +100,21 @@ const JobDetails = ( props ) => {
 
                         </div>
 
-                        <Modal
-                            show={ show }
-                            onHide={ handleClose }
-                            size="lg"
-                            centered >
+                        <div 
+                            className="modal"
+                            style={{ display: show ? 'flex' : 'none' }}>
+                            <div className="modal__bg" onClick={ () => setShow( false ) }/>
 
-                            <Modal.Body>
+                            <div className="modal__main modal__main--small">
                                 <h4>Are you sure want to delete this job ? </h4>
-                            </Modal.Body>
 
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={ handleClose }>Close</Button>
-                                <Button variant="danger" onClick={ handleDeleteJob }>yes</Button>
-                            </Modal.Footer>
+                                <div className="btn-group btn-group--small" >
+                                    <button className="btn btn-secondary" onClick={ () => setShow( false ) }>Close</button>
+                                    <button className="btn btn-danger" onClick={ handleDeleteJob }>Yes</button>
+                                </div>
+                            </div>
 
-                        </Modal> 
+                        </div> 
                     </>
                 )
 

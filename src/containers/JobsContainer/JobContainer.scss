@@ -2,17 +2,70 @@
 
 .table {
     font-size: .5rem;
-    // padding: .6rem;
     background-color: $color-secondary-dark;
     color: $color-grey-dark-2;
+    transition: all .5s linear;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    letter-spacing: 1.5px;
 
     &__header {
-        color: $color-grey-dark-2 !important;
+        color: $color-grey-dark-2;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: center;
+        font-size: 1.6rem;
+        padding: 1.7rem;
+        text-transform: uppercase;
+
+        & > :nth-child( 3 ) {
+
+            @include respond ( phone ) {
+                display: none;
+            }
+        }
+
+        & > :last-of-type {
+            padding: 0 1.2rem;
+        }
+
+        @include respond ( phone ) {
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: center;
+        }
     }
 
-    &__body,
-    &__body a:visited,
-    &__body a:link {
-        color: $color-grey-dark-2 !important;
+    &__body {
+        color: $color-grey-dark-2;
+        overflow: scroll;
+        height: 55rem;
+
+        @include respond ( phone ) {
+            height: 48rem;
+        }
     }
-} 
+
+    &__body a {
+        color: $color-grey-dark-2;
+        text-decoration: none;
+    }
+
+    &__body a:hover {
+        color: $color-grey-dark-1;
+    }
+
+    &__footer {
+        padding: 1.3rem;
+        text-align: center;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.filter__section {
+    &__header {
+        text-align: center; 
+        font-size: 1.7rem; 
+    }
+}

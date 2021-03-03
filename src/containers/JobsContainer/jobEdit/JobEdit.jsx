@@ -83,7 +83,7 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
                     <option defaultValue value="" >Select One....</option>
                     <option value="applied">Applied</option>
                     <option value="no response">No Response</option>
-                    <option value="In progress">In Progress</option>
+                    <option value="in progress">In Progress</option>
                     <option value="rejected">Rejected</option>
                     <option value="complete">Complete</option>
                 </select> 

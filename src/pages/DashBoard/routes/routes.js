@@ -38,8 +38,8 @@ const mapStateToProps = state => ({
     tokenExpired: state.user.tokenExpired
 });
 
-// eslint-disable-next-line no-unused-vars
-export default connect( mapStateToProps )( withRouter(({ match, history, currentUser, tokenExpired }) => {
+
+export default connect( mapStateToProps )( withRouter(({ currentUser }) => {
 
     const PrivateRoute = ({ Component, ...rest }) => {
         return <Route 

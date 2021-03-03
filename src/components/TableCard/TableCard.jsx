@@ -1,12 +1,11 @@
 import React from 'react';
+import './TableCard.scss';
 
 const TableCard = ( { children } ) => {
 
     return (
-        <div className="card mb-2 bg-dark">
-            <div className="row text-center">
-                { children }
-            </div>
+        <div className="card p-2 jobs bg-dark">
+            { children }
         </div>
     );
 };
