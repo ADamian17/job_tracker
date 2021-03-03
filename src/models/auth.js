@@ -1,7 +1,4 @@
 import axios from 'axios';
-// import { API_LOCAL_URL } from '../utils/consts';
-// import { API_ROUTE_URL } from '../utils/consts';
-
 class Auth {
 
     static register ( userData ) {
