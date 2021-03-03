@@ -22,6 +22,7 @@ const Login = ( props ) => {
 
     const userData = { email, password };
 
+    // call to my api
     const handleLogin = async (event) => {
         event.preventDefault();
 
@@ -68,6 +69,7 @@ const Login = ( props ) => {
                         <form>
                             <Input 
                                 name="email"
+                                type="text"
                                 label="E-mail address"
                                 placeholder="E-mail address"
                                 handleChange={( e ) => setEmail( e.target.value ) } 
@@ -95,7 +97,7 @@ const Login = ( props ) => {
 
                 </div>
 
-                <Message message="New to Us ?" url="/register" title="Sign Up" />
+                <Message message="Back to" url="/" title="Home" />
 
                 <div style={{ 
                     textAlign: 'center', 
@@ -105,7 +107,7 @@ const Login = ( props ) => {
                     or
                 </div>
                             
-                <Message message="Back to Home" url="/" title="Home" />
+                <Message message="New to Us ?" url="/register" title="Sign Up" />
             </>
 
         </Container>
