@@ -32,7 +32,6 @@ const Login = ( props ) => {
         try {
             const user = await Auth.login( userData );
             const token = await user.data.signedJwt;
-            console.log('login');
 
             setCurrentUser(token);
             
