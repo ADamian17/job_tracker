@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './Container.scss';
+import './CenteredContainer.scss';
 
-const LoginRegisterContainer = ( { children } ) => {
+const Container = ( { children } ) => {
     return (
         <section className="container">
 
@@ -15,4 +15,4 @@ const LoginRegisterContainer = ( { children } ) => {
 
 };
 
-export default LoginRegisterContainer;
+export default Container;

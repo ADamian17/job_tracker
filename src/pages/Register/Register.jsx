@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 // NOTE components
-import Container from '../../components/Container/Container';
+import Container from '../../components/CenteredContainer/CenteredContainer';
 import Message from '../../components/Message/Message';
 import ErrorBanner from '../../components/ErrorBanner/ErrotBanner';
 

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { setCurrentUser, setTokenExp } from '../../redux/user/user.actions';
 
 // NOTE components
-import Container from '../../components/Container/Container';
+import Container from '../../components/CenteredContainer/CenteredContainer';
 import Message from '../../components/Message/Message';
+import Input from '../../components/Input/Input';
 
 // NOTE helpers
 import Auth from '../../models/auth';
@@ -44,7 +45,7 @@ const Login = ( props ) => {
         
     return (
          
-        <Container >
+        <Container>
 
             <>
 
@@ -55,17 +56,9 @@ const Login = ( props ) => {
                     : '' 
                 }
 
-                <div className="row mb-2">
+                <div className="primary__heading">
 
-                    <div className="col">
-
-                        <header className="text-center">
-
-                            Log-in to your account
-
-                        </header>
-
-                    </div>
+                    <p>Login to your account</p>
 
                 </div>
 
@@ -73,33 +66,26 @@ const Login = ( props ) => {
 
                     <div className="col-6">
                         <form>
+                            <Input 
+                                name="email"
+                                label="E-mail address"
+                                placeholder="E-mail address"
+                                handleChange={( e ) => setEmail( e.target.value ) } 
+                                required />
 
-                            <div className="form-group">
-                                <input
-                                    className="form-control"
-                                    placeholder="E-mail address"
-                                    name="email"
-                                    onChange={ ( e ) => setEmail( e.target.value ) }
-                                    required />
-                    
-                                {/* <div className="invalid-feedback">
-                                    Please choose a username.
-                                </div> */}
-                            </div>
+                            <Input 
+                                type="password"
+                                name="password"
+                                label="Password"
+                                placeholder="Password"
+                                
+                                handleChange={(e) => setPassword( e.target.value ) } 
+                                required />
 
-                            <div className="form-group">
-
-                                <input
-                                    className="form-control"
-                                    placeholder="Password"
-                                    type="password"
-                                    name="password"
-                                    onChange={ (e) => setPassword( e.target.value ) }
-                                    required/>
-
-                            </div>
-
-                            <button type="submit"  className="btn btn-primary btn-block" onClick={handleLogin} >
+                            <button 
+                                type="submit"  
+                                className="btn btn-primary btn-block" 
+                                onClick={handleLogin} >
                                 Login
                             </button>
 
@@ -107,11 +93,19 @@ const Login = ( props ) => {
 
                     </div>
 
-                    <div className="col-6" />
                 </div>
 
-                <Message message=" New to us?" url="/register" title="Sign Up" />
+                <Message message="New to Us ?" url="/register" title="Sign Up" />
+
+                <div style={{ 
+                    textAlign: 'center', 
+                    fontSize: '1.7rem',
+                    color: '#000'
+                }}>
+                    or
+                </div>
                             
+                <Message message="Back to Home" url="/" title="Home" />
             </>
 
         </Container>
