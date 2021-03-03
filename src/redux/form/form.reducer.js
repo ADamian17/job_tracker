@@ -1,4 +1,3 @@
-import { showEdit } from './form.actions';
 import { formActionTypes } from './form.types';
 
 const INITIAL_STATE = {
