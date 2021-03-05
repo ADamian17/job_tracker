@@ -1,8 +1,48 @@
-.fields {
-    text-transform: uppercase;
-    letter-spacing: 1px;
+@import '../../../../styles/main.scss';
+
+.job-details__body {
+    margin-bottom: 1.2rem;
 }
 
-.job_post_url {
-    text-transform: lowercase;
+.row {
+    // background-color: aqua;
+    height: 10rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20rem;
+    
+    &:not( :last-child ) {
+        margin-bottom: 1.2rem;
+    }
+
+    &__content-start {
+        justify-content: flex-start;
+    }
+
+}
+
+.col {
+    text-align: start;
+    flex: 1;
+}
+
+
+.fields {
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+}
+
+.job_post_url, 
+.job_post_url:active,
+.job_post_url:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $color-tertiary-light-a;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

@@ -1,0 +1,11 @@
+.primary__heading {
+  font-size: 3rem;
+  text-align: center;
+  padding: 1rem;
+  color: $color-grey-dark-3;
+
+  &--light {
+    color: $color-grey-dark-2;
+  }
+
+}

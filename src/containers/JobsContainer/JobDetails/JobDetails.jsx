@@ -13,7 +13,6 @@ import { formatDate } from '../../../utils/functs';
 
 import JobCardBody from './JobCardBody/JobCardBody';
 import JobEdit from '../jobEdit/JobEdit';
-// import Modal from '../../../components/UI/Modal/Modal';
 
 import './JobDetails.scss';
 
@@ -75,9 +74,9 @@ const JobDetails = ( props ) => {
             {
                 jobDetails && (
                     <>
-                        <div className="card main-bg-card">
-                            <div className="card-header">
-                                <p className="text-center m-0 fields">
+                        <div className="job-details dark-bg">
+                            <div className="primary__heading primary__heading--light">
+                                <p>
                                     applied date: { date }
                                 </p> 
                             </div>
@@ -90,7 +89,8 @@ const JobDetails = ( props ) => {
                                     ( 
                                         <>
                                             <JobCardBody details={ jobDetails } /> 
-                                            <div className="card-footer p-3">
+
+                                            <div className="btn-group btn-group--start">
                                                 <button className="btn btn-success float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
                                                 <button className="btn btn-danger float-right" onClick={() => setShow( true ) }>Delete</button>
                                             </div>
