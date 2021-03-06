@@ -1,8 +1,86 @@
-.fields {
-    text-transform: uppercase;
-    letter-spacing: 1px;
+@import '../../../../styles/main.scss';
+
+.job-details__body {
+    margin-bottom: 1.2rem;
 }
 
-.job_post_url {
-    text-transform: lowercase;
+.row {
+    width: 100%;
+    height: 10rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20rem;
+    
+    &:not( :last-child ) {
+        margin-bottom: 1.2rem;
+    }
+
+    &__content-start {
+        justify-content: flex-start;
+    }
+
+    &--small-p {
+        padding: 0 10rem;
+    }
+
+    &--100 {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0 12rem;
+
+        & > :last-child {
+            margin-left: 1.5rem;
+        }
+    }
+
+}
+
+// margin right 
+.mr {
+    margin-right: 1.5rem;
+}
+
+.j-content-end {
+    justify-content: flex-end;
+}
+
+.col {
+    width: 100%;
+    flex: 1;
+    text-align: start;
+
+    display: flex;
+    align-items: center;
+
+    &--small > :last-child {
+        margin-left: 1.5rem;
+        flex: 0 0 50%;
+    }
+
+    &--lg > :last-child {
+        margin-left: 1.5rem;
+    } 
+}
+
+
+
+.fields {
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+}
+
+.job_post_url, 
+.job_post_url:active,
+.job_post_url:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $color-tertiary-light-a;
+
+    &:hover {
+        text-decoration: underline;
+        color: lighten( $color-tertiary-light-a, 18% ) ;
+    }
 }

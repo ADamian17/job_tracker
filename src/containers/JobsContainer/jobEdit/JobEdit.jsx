@@ -7,8 +7,11 @@ import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 
 import Job from '../../../models/Job';
 
+import Input from '../../../components/Input/Input';
+import Select from '../../../components/Select/Select';
 
-const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } ) => {
+
+const JobEdit = ( { details, setShowEdit, setJobDetails, jobId, currentUser } ) => {
     console.log( 'details', details);
 
     const [job_position, setJobPosition] = useState(details.job_position);
@@ -34,89 +37,147 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
         setShowEdit();
     };
 
+   
     const handleSubmit = async ( e ) => {
         e.preventDefault();
 
         try {
 
             const updatedJob = await Job.editJob( currentUser, jobData, jobId );
-            showJobDetails(updatedJob.data.data );
+            setJobDetails( updatedJob.data.data );
             setShowEdit();
             
         } catch (error) {
             return console.log(error);
         }
     };
-
     
     return (
-        <form className="card-body p-5">
+        <form className="jobEdit">
 
-            <p className="fields">
-                <span className="mr-1">Company Name:</span> 
-                <input type="text" placeholder={company_name} value={company_name} onChange={ (e) => setCompanyName(e.target.value) } />
-            </p>
-             
-            <p className="fields">
-                <span className="align-self-center mr-2"> Job Position:</span>  
-                <input type="text" placeholder={job_position} value={job_position} onChange={ (e) => setJobPosition(e.target.value) } />
-            </p>
+            {/* r-1 */}
+            <div className="row row--small-p">
 
-            <p className="fields">
-                <span className="align-self-center mr-2"> Job Post Url:</span>  
-                <input type="text" placeholder={ job_post_url } value={job_post_url} onChange={ (e) => setJobPostUrl(e.target.value) } />
-            </p>
+                <div className="col col--small">
 
-            <p className="fields">
-                <span className="align-self-center mr-2">On Site: </span>
-                <select className="custom-select col-2" name="on_site" value={on_site} onChange={ (e) => setOnSite(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                </select>  
-            </p>
+                    <p className="fields">
+                        <span>Company Name:</span> 
+                    </p>
 
-            <p className="fields">
-                <span className="align-self-center mr-2">Job Status:</span>
+                    <Input 
+                        type="text" 
+                        placeholder={company_name}
+                        label="Company Name" 
+                        value={company_name} onChange={ (e) => setCompanyName(e.target.value) } />
+                </div>
+
+                <div className="col col--small">
+                    <p className="fields">
+                        <span> Job Position:</span>  
+                    </p>
+
+                    <Input 
+                        type="text" 
+                        placeholder={job_position} 
+                        value={job_position}
+                        label="Job Position" 
+                        onChange={ (e) => setJobPosition(e.target.value) } />
+                </div>
+            </div>
+
+            {/* r-2 */}
+
+            <div className="row row--small-p">
+
+                <div className="col">
+
+                    <p className="fields mr">
+                        <span> Job Post Url:</span>  
+                    </p>
+                    
+                    <Input 
+                        type="text" 
+                        placeholder={ job_post_url } 
+                        value={job_post_url} 
+                        label="Job Post Url"
+                        onChange={ (e) => setJobPostUrl(e.target.value) } />
+                </div>
+
+            </div>
+
+            {/* r-3 */}
+            <div className="row row--small-p">
+
+                <div className="col col--small">
+
+                    <p className="fields">
+                        <span>On Site: </span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={on_site}
+                        setOption={setOnSite}
+                        options={[ 'no', 'yes' ]} />  
+                </div>
+
+                {/* col 2 */}
+                <div className="col col--small">
+
+                    <p className="fields">
+                        <span>Job Status:</span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={job_status}
+                        setOption={setJobStatus}
+                        options={['applied', 'no response', 'in progress', 'rejected', 'complete' ]} />
+                </div>
+
+            </div>
+
+            {/* r-4 */}
+            <div className="row row--small-p">
+
+                <div className="col col--small">
+                    <p className="fields">
+
+                        <span>
+                            Phone Screen:
+                        </span> 
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={phone_screen}
+                        setOption={setPhoneScreen}
+                        options={['no', 'scheduled' ]} />
+                </div>
+
+                <div className="col col--small">
+
+                    <p className="fields"  >
+                        <span> Point Of Contact: </span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={point_of_contact}
+                        setOption={setPointOfContact}
+                        options={['linkedin', 'indeed', 'company website', 'glassdoor', 'angelList' ]} />
+
+                </div>
+            </div>
             
-                <select className="custom-select col-2" value={job_status} onChange={ (e) => setJobStatus(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="applied">Applied</option>
-                    <option value="no response">No Response</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="rejected">Rejected</option>
-                    <option value="complete">Complete</option>
-                </select> 
-            </p>
+            <div className="row row--small-p j-content-end">
 
-            <p className="fields">
+                <div className="btn-group">
+                    <button className="btn btn-primary mr" onClick={handleCancel}>cancel</button>
+                    <button className="btn btn-success" onClick={handleSubmit}>Edit</button>
+                </div>
 
-                <span className="align-items-center">
-                    Phone Screen:
-                </span>
-            
-                <select className="custom-select col-2" value={phone_screen} onChange={ (e) => setPhoneScreen(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="no">No</option>
-                    <option value="scheduled">Scheduled</option>
-                </select> 
-            </p>
-
-            <p className="fields"  >
-                <span className="align-self-center mr-2"> Point Of Contact: </span>
-            
-                <select className="custom-select col-2" value={point_of_contact} onChange={ (e) => setPointOfContact(e.target.value) }>
-                    <option defaultValue value="">Select One...</option>
-                    <option value="linkedin">Linkedin</option>
-                    <option value="indeed">indeed</option>
-                    <option value="company website">Company Site</option>
-                    <option value="glassdoor">GlassDoor</option>
-                    <option value="angelList">AngelList</option>
-                </select> 
-            </p>
-
-            <button className="btn btn-primary float-right" onClick={handleSubmit}>Edit</button>
-            <button className="btn btn-danger float-right mr-2" onClick={handleCancel}>cancel</button>
+            </div>    
 
         </form>
 
