@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { getJobs } from '../../../redux/jobs/jobs.actions';
 import { hideModal } from '../../../redux/modal/modal.action';
 
+/* api calls */
 import Job from '../../../models/Job';
-import ChevronDown from '../../../components/UI/Icons/ChevronDown/ChevronDown';
-import ChevronUp from '../../../components/UI/Icons/ChevronUp/ChevronUp';
+
+/* components */
+import Select from '../../../components/Select/Select';
 
 import './NewJob.scss';
 
@@ -18,19 +20,6 @@ const JobFrom = ( props ) => {
     const [ company_name, setCompanyName ] = useState('');
     const [ point_of_contact, setPointOfContact ] = useState('');
     const [ error, setError ] = useState( null );
-
-    // for dropdown
-    const [ show, setShow ] = useState( false );
-
-    useEffect( () => {
-        return () => {
-            setJobPosition('');
-            setJobPostUrl('');
-            setCompanyName('');
-            setPointOfContact('');
-            setError(null);
-        };
-    }, []);
 
     const jobData = {
         job_position,
@@ -73,10 +62,10 @@ const JobFrom = ( props ) => {
         hideModal();
     };
 
-    const handlePointOfContact = ( value ) => {
-        setPointOfContact(value);
-        setShow( !show );
-    };
+    // const handlePointOfContact = ( value ) => {
+    //     setPointOfContact(value);
+    //     setShow( !show );
+    // };
 
     return (
       
@@ -129,75 +118,12 @@ const JobFrom = ( props ) => {
                     
                 <label htmlFor="job_post_url" className="form__label">Job Post Url</label>
             </div>
-  
-            <div className="select__wrapper">
 
-                <div 
-                    id="point_of_contact" 
-                    className="select" 
-                    name="point_of_contact" 
-                    onClick={ () => setShow( !show ) }>
-                    {
-
-                        point_of_contact ? <span>{point_of_contact}</span> : <span>Point of Contact ...</span>
-                    }
-
-                    {
-                        show ? <ChevronDown /> : <ChevronUp />
-                    }  
-                </div>
-
-                <div 
-                    className="select__options"
-                    style={{ display: show ? 'flex' : 'none' }} >
-
-                    <div 
-                        className="option" 
-                        data-option=""
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        Point of Contact ...
-                    </div>
-
-                    <div 
-                        className="option" 
-                        data-option="linkedin"
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        Linkedin
-                    </div>
-
-                    <div 
-                        className="option" 
-                        data-option="indeed"
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        indeed
-                    </div>
-
-                    <div 
-                        className="option" 
-                        data-option="company website"
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        company website
-                    </div>
-
-                    <div 
-                        className="option" 
-                        data-option="glassdoor"
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        glassdoor
-                    </div>
-
-                    <div 
-                        className="option" 
-                        data-option="angelList"
-                        onClick={ (e) => handlePointOfContact( e.currentTarget.dataset.option ) }>
-                        angelList
-                    </div>
-
-                </div>
-
-            </div>
+            <Select
+                option={point_of_contact}
+                setOption={setPointOfContact}
+                options={['linkedin', 'indeed', 'company website', 'glassdoor', 'angelList' ]} />
             
-
             <div className="btn-group btn-group--small">
                 <button className="btn btn-secondary mr-2" onClick={handleCancel}>
                     cancel

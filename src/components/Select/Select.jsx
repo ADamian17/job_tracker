@@ -1,10 +1,18 @@
-import React  from 'react';
+import React, { useState } from 'react';
 
 import ChevronDown from '../UI/Icons/ChevronDown/ChevronDown';
 import ChevronUp from '../UI/Icons/ChevronUp/ChevronUp';
 
 
-const Select = ({ handleOption,  option, setOption, setShow, show, options }) => {
+const Select = ({  option, setOption, options }) => {
+
+    // for dropdown
+    const [ show, setShow ] = useState( false );
+
+    const handleOption = ( value ) => {
+        setOption(value);
+        setShow( !show );
+    };
 
     return (
         <div className="select__wrapper">

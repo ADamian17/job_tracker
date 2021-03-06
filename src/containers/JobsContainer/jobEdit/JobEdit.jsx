@@ -22,9 +22,6 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
     const [phone_screen, setPhoneScreen ] = useState(details.phone_screen);
     const [ point_of_contact, setPointOfContact ] = useState(details.point_of_contact);
 
-    // for dropdown
-    const [ show, setShow ] = useState( false );
-
     const jobData = {
         job_position,
         job_post_url,
@@ -40,11 +37,7 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
         setShowEdit();
     };
 
-    const handleOption = ( value, setFunc ) => {
-        setFunc(value);
-        setShow( !show );
-    };
-
+   
     const handleSubmit = async ( e ) => {
         e.preventDefault();
 
@@ -80,8 +73,9 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
 
                 <div className="col col--small">
                     <p className="fields">
-                        <span className="align-self-center mr-2"> Job Position:</span>  
+                        <span> Job Position:</span>  
                     </p>
+
                     <Input 
                         type="text" 
                         placeholder={job_position} 
@@ -93,87 +87,94 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
 
             {/* r-2 */}
 
-            <div className="row row--100">
+            <div className="row row--small-p">
 
-                <p className="fields">
-                    <span className="align-self-center mr-2"> Job Post Url:</span>  
-                </p>
+                <div className="col">
+
+                    <p className="fields mr">
+                        <span> Job Post Url:</span>  
+                    </p>
                     
-                <Input 
-                    type="text" 
-                    placeholder={ job_post_url } 
-                    value={job_post_url} 
-                    label="Job Post Url"
-                    onChange={ (e) => setJobPostUrl(e.target.value) } />
+                    <Input 
+                        type="text" 
+                        placeholder={ job_post_url } 
+                        value={job_post_url} 
+                        label="Job Post Url"
+                        onChange={ (e) => setJobPostUrl(e.target.value) } />
+                </div>
+
             </div>
 
             {/* r-3 */}
-            <div className="row">
-                <div className="col">
+            <div className="row row--small-p">
+
+                <div className="col col--small">
 
                     <p className="fields">
-                        <span className="align-self-center mr-2">On Site: </span>
+                        <span>On Site: </span>
                     </p>
 
                     {/* select */}
                     <Select
-                        show={show}
-                        setShow={setShow}
                         option={on_site}
                         setOption={setOnSite}
-                        options={['no', 'yes' ]} 
-                        handleOption={handleOption} />
-                    
+                        options={[ 'no', 'yes' ]} />  
                 </div>
 
                 {/* col 2 */}
-                <div className="col">
+                <div className="col col--small">
+
                     <p className="fields">
-                        <span className="align-self-center mr-2">Job Status:</span>
+                        <span>Job Status:</span>
                     </p>
 
                     {/* select */}
                     <Select
-                        show={show}
-                        setShow={setShow}
                         option={job_status}
                         setOption={setJobStatus}
-                        options={['applied', 'no response', 'in progress', 'rejected', 'complete' ]} 
-                        handleOption={handleOption} />
-                        
+                        options={['applied', 'no response', 'in progress', 'rejected', 'complete' ]} />
                 </div>
 
             </div>
+
+            {/* r-4 */}
+            <div className="row row--small-p">
+
+                <div className="col col--small">
+                    <p className="fields">
+
+                        <span>
+                            Phone Screen:
+                        </span> 
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={phone_screen}
+                        setOption={setPhoneScreen}
+                        options={['no', 'scheduled' ]} />
+                </div>
+
+                <div className="col col--small">
+
+                    <p className="fields"  >
+                        <span> Point Of Contact: </span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        option={point_of_contact}
+                        setOption={setPointOfContact}
+                        options={['linkedin', 'indeed', 'company website', 'glassdoor', 'angelList' ]} />
+
+                </div>
+            </div>
             
 
-            <p className="fields">
-
-                <span className="align-items-center">
-                    Phone Screen:
-                </span>
-            
-                <select className="custom-select col-2" value={phone_screen} onChange={ (e) => setPhoneScreen(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="no">No</option>
-                    <option value="scheduled">Scheduled</option>
-                </select> 
-            </p>
-
-            <p className="fields"  >
-                <span className="align-self-center mr-2"> Point Of Contact: </span>
-            
-                <select className="custom-select col-2" value={point_of_contact} onChange={ (e) => setPointOfContact(e.target.value) }>
-                    <option defaultValue value="">Select One...</option>
-                    <option value="linkedin">Linkedin</option>
-                    <option value="indeed">indeed</option>
-                    <option value="company website">Company Site</option>
-                    <option value="glassdoor">GlassDoor</option>
-                    <option value="angelList">AngelList</option>
-                </select> 
-            </p>
-
-            <button className="btn btn-primary float-right" onClick={handleSubmit}>Edit</button>
-            <button className="btn btn-danger float-right mr-2" onClick={handleCancel}>cancel</button>
+            <div className="btn-group btn-group--start">
+                <button className="btn btn-primary float-right" onClick={handleSubmit}>Edit</button>
+                <button className="btn btn-danger float-right mr-2" onClick={handleCancel}>cancel</button>
+            </div>
 
         </form>
 
