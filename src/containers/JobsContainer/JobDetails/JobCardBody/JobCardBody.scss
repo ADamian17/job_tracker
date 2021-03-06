@@ -5,7 +5,6 @@
 }
 
 .row {
-    // background-color: aqua;
     height: 10rem;
 
     display: flex;
@@ -22,12 +21,36 @@
         justify-content: flex-start;
     }
 
+    &--small-p {
+        padding: 0 10rem;
+    }
+
+    &--100 {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0 12rem;
+
+        & > :last-child {
+            margin-left: 1.5rem;
+        }
+    }
+
 }
 
 .col {
-    text-align: start;
+    width: 100%;
     flex: 1;
+    text-align: start;
+
+    display: flex;
+    align-items: center;
+
+    &--small > :last-child {
+        margin-left: 1.5rem;
+        flex: 0 0 50%;
+    } 
 }
+
 
 
 .fields {
@@ -44,5 +67,6 @@
 
     &:hover {
         text-decoration: underline;
+        color: lighten( $color-tertiary-light-a, 18% ) ;
     }
 }

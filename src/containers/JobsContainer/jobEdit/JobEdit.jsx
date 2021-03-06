@@ -7,6 +7,9 @@ import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 
 import Job from '../../../models/Job';
 
+import Input from '../../../components/Input/Input';
+import Select from '../../../components/Select/Select';
+
 
 const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } ) => {
     console.log( 'details', details);
@@ -18,6 +21,9 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
     const [on_site, setOnSite] = useState(details.on_site);
     const [phone_screen, setPhoneScreen ] = useState(details.phone_screen);
     const [ point_of_contact, setPointOfContact ] = useState(details.point_of_contact);
+
+    // for dropdown
+    const [ show, setShow ] = useState( false );
 
     const jobData = {
         job_position,
@@ -34,60 +40,111 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
         setShowEdit();
     };
 
+    const handleOption = ( value, setFunc ) => {
+        setFunc(value);
+        setShow( !show );
+    };
+
     const handleSubmit = async ( e ) => {
         e.preventDefault();
 
         try {
 
             const updatedJob = await Job.editJob( currentUser, jobData, jobId );
-            showJobDetails(updatedJob.data.data );
+            showJobDetails( updatedJob.data.data );
             setShowEdit();
             
         } catch (error) {
             return console.log(error);
         }
     };
-
     
     return (
-        <form className="card-body p-5">
+        <form className="jobEdit">
 
-            <p className="fields">
-                <span className="mr-1">Company Name:</span> 
-                <input type="text" placeholder={company_name} value={company_name} onChange={ (e) => setCompanyName(e.target.value) } />
-            </p>
-             
-            <p className="fields">
-                <span className="align-self-center mr-2"> Job Position:</span>  
-                <input type="text" placeholder={job_position} value={job_position} onChange={ (e) => setJobPosition(e.target.value) } />
-            </p>
+            {/* r-1 */}
+            <div className="row row--small-p">
 
-            <p className="fields">
-                <span className="align-self-center mr-2"> Job Post Url:</span>  
-                <input type="text" placeholder={ job_post_url } value={job_post_url} onChange={ (e) => setJobPostUrl(e.target.value) } />
-            </p>
+                <div className="col col--small">
 
-            <p className="fields">
-                <span className="align-self-center mr-2">On Site: </span>
-                <select className="custom-select col-2" name="on_site" value={on_site} onChange={ (e) => setOnSite(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                </select>  
-            </p>
+                    <p className="fields">
+                        <span>Company Name:</span> 
+                    </p>
 
-            <p className="fields">
-                <span className="align-self-center mr-2">Job Status:</span>
+                    <Input 
+                        type="text" 
+                        placeholder={company_name}
+                        label="Company Name" 
+                        value={company_name} onChange={ (e) => setCompanyName(e.target.value) } />
+                </div>
+
+                <div className="col col--small">
+                    <p className="fields">
+                        <span className="align-self-center mr-2"> Job Position:</span>  
+                    </p>
+                    <Input 
+                        type="text" 
+                        placeholder={job_position} 
+                        value={job_position}
+                        label="Job Position" 
+                        onChange={ (e) => setJobPosition(e.target.value) } />
+                </div>
+            </div>
+
+            {/* r-2 */}
+
+            <div className="row row--100">
+
+                <p className="fields">
+                    <span className="align-self-center mr-2"> Job Post Url:</span>  
+                </p>
+                    
+                <Input 
+                    type="text" 
+                    placeholder={ job_post_url } 
+                    value={job_post_url} 
+                    label="Job Post Url"
+                    onChange={ (e) => setJobPostUrl(e.target.value) } />
+            </div>
+
+            {/* r-3 */}
+            <div className="row">
+                <div className="col">
+
+                    <p className="fields">
+                        <span className="align-self-center mr-2">On Site: </span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        show={show}
+                        setShow={setShow}
+                        option={on_site}
+                        setOption={setOnSite}
+                        options={['no', 'yes' ]} 
+                        handleOption={handleOption} />
+                    
+                </div>
+
+                {/* col 2 */}
+                <div className="col">
+                    <p className="fields">
+                        <span className="align-self-center mr-2">Job Status:</span>
+                    </p>
+
+                    {/* select */}
+                    <Select
+                        show={show}
+                        setShow={setShow}
+                        option={job_status}
+                        setOption={setJobStatus}
+                        options={['applied', 'no response', 'in progress', 'rejected', 'complete' ]} 
+                        handleOption={handleOption} />
+                        
+                </div>
+
+            </div>
             
-                <select className="custom-select col-2" value={job_status} onChange={ (e) => setJobStatus(e.target.value) } >
-                    <option defaultValue value="" >Select One....</option>
-                    <option value="applied">Applied</option>
-                    <option value="no response">No Response</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="rejected">Rejected</option>
-                    <option value="complete">Complete</option>
-                </select> 
-            </p>
 
             <p className="fields">
 

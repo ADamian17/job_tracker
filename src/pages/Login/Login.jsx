@@ -76,38 +76,32 @@ const Login = ( props ) => {
                     loading ? 
                         ( <div>loading...</div> ) :
                         ( 
-                            <div className="row">
-                                <div className="col-6">
-                                    <form>
-                                        <Input 
-                                            name="email"
-                                            type="text"
-                                            label="E-mail address"
-                                            placeholder="E-mail address"
-                                            handleChange={( e ) => setEmail( e.target.value ) } 
-                                            required />
+                            <form>
+                                <Input 
+                                    name="email"
+                                    type="text"
+                                    label="E-mail address"
+                                    placeholder="E-mail address"
+                                    handleChange={( e ) => setEmail( e.target.value ) } 
+                                    required />
 
-                                        <Input 
-                                            type="password"
-                                            name="password"
-                                            label="Password"
-                                            placeholder="Password"
+                                <Input 
+                                    type="password"
+                                    name="password"
+                                    label="Password"
+                                    placeholder="Password"
                                 
-                                            handleChange={(e) => setPassword( e.target.value ) } 
-                                            required />
+                                    handleChange={(e) => setPassword( e.target.value ) } 
+                                    required />
 
-                                        <button 
-                                            type="submit"  
-                                            className="btn btn-primary btn-block" 
-                                            onClick={handleLogin} >
-                                            Login
-                                        </button>
+                                <button 
+                                    type="submit"  
+                                    className="btn btn-primary btn-block" 
+                                    onClick={handleLogin} >
+                                    Login
+                                </button>
 
-                                    </form>
-
-                                </div>
-
-                            </div>
+                            </form>
                         ) 
                 }
                     
