@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 // NOTE REDUX
 import { connect } from 'react-redux';
-import { showJobDetails } from '../../../redux/jobs/jobs.actions';
 import { showModal } from '../../../redux/modal/modal.action';
 import { setShowEdit } from '../../../redux/form/form.actions';
 import { setTokenExp } from '../../../redux/user/user.actions';
@@ -17,23 +16,23 @@ import JobEdit from '../jobEdit/JobEdit';
 import './JobDetails.scss';
 
 const JobDetails = ( props ) => {
+
     const { 
         match, 
-        showJobDetails, 
-        jobDetails, 
         history, 
-        setTokenExp, 
         setShowEdit, 
         currentUser 
     } = props;
+
+    const [ jobDetails, setJobDetails ] = useState({});
 
     const date = jobDetails ? formatDate( jobDetails.applied_date ) : '';
     const jobId = match.params.id;
 
     const [ error, setError ] = useState( null );
     const [show, setShow] = useState(false);
-    
 
+    
     useEffect( () => {
 
         getJobDetails();
@@ -43,16 +42,15 @@ const JobDetails = ( props ) => {
     const getJobDetails = async () => {
 
         try {
-            const jobDetails = await Job.getJobDetails( currentUser, jobId );
+            const job = await Job.getJobDetails( currentUser, jobId );
 
-            const { data } = jobDetails.data; 
-            showJobDetails(data);
+            const { data } = job.data; 
+            setJobDetails(data);
 
         } catch (error) {
 
             setError( error.response );
 
-            setTokenExp( true );
         }
     };
 
@@ -84,15 +82,15 @@ const JobDetails = ( props ) => {
                             {
                                 props.showEdit ? 
                                     (
-                                        <JobEdit details={ jobDetails } jobId={jobId} />
+                                        <JobEdit details={ jobDetails } jobId={jobId} setJobDetails={setJobDetails} />
                                     ) : 
                                     ( 
                                         <>
                                             <JobCardBody details={ jobDetails } /> 
 
                                             <div className="btn-group btn-group--start">
-                                                <button className="btn btn-success float-right mr-3" onClick={() => setShowEdit( !props.showEdit )}>Edit</button>
-                                                <button className="btn btn-danger float-right" onClick={() => setShow( true ) }>Delete</button>
+                                                <button className="btn btn-danger" onClick={() => setShow( true ) }>Delete</button>
+                                                <button className="btn btn-success" onClick={() => setShowEdit( !props.showEdit )}>Edit Job</button>
                                             </div>
                                         </>
                                     )
@@ -131,7 +129,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    showJobDetails: ( job ) => dispatch(showJobDetails( job )),
     showModal: () => dispatch( showModal() ),
     setTokenExp:  (boolean) => dispatch( setTokenExp( boolean ) ),
     setShowEdit: () => dispatch( setShowEdit() )

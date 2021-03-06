@@ -11,7 +11,7 @@ import Input from '../../../components/Input/Input';
 import Select from '../../../components/Select/Select';
 
 
-const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } ) => {
+const JobEdit = ( { details, setShowEdit, setJobDetails, jobId, currentUser } ) => {
     console.log( 'details', details);
 
     const [job_position, setJobPosition] = useState(details.job_position);
@@ -44,7 +44,7 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
         try {
 
             const updatedJob = await Job.editJob( currentUser, jobData, jobId );
-            showJobDetails( updatedJob.data.data );
+            setJobDetails( updatedJob.data.data );
             setShowEdit();
             
         } catch (error) {
@@ -170,11 +170,14 @@ const JobEdit = ( { details, setShowEdit, showJobDetails, jobId, currentUser } )
                 </div>
             </div>
             
+            <div className="row row--small-p j-content-end">
 
-            <div className="btn-group btn-group--start">
-                <button className="btn btn-primary float-right" onClick={handleSubmit}>Edit</button>
-                <button className="btn btn-danger float-right mr-2" onClick={handleCancel}>cancel</button>
-            </div>
+                <div className="btn-group">
+                    <button className="btn btn-primary mr" onClick={handleCancel}>cancel</button>
+                    <button className="btn btn-success" onClick={handleSubmit}>Edit</button>
+                </div>
+
+            </div>    
 
         </form>
 
