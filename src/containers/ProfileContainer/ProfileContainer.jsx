@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { setUserDetails } from '../../redux/user/user.actions'; 
 
 import User from '../../models/User';
+import ProfileEdit from './ProfileEdit/ProfileEdit';
 
 // utils
 import { formatDate } from '../../utils/functs';
@@ -132,18 +133,22 @@ const ProfileContainer = ( props ) => {
                     {
                         !show ?
                             <>
-                                <p>full name: {first_name} {last_name}</p>
+                                <p>first name: {first_name}</p>
+                                <p>last name: {last_name}</p>
                                 <p>email: { email }</p>
                                 <p>profession: {profession}</p> 
+
+                                <div className="btn-group btn-group--small btn-group--start">
+                                    <button className="btn btn-danger" onClick={handleDelete}>delete</button>
+                                    <button className="btn btn-success" onClick={() => setShow(!show) }>edit profile</button>
+                                </div>
                             </>
                             :
-                            <div>form</div>
+                            <ProfileEdit 
+                                show={show} 
+                                setShow={setShow} />
                     }   
 
-                    <div className="btn-group btn-group--small btn-group--start">
-                        <button className="btn btn-danger" onClick={handleDelete}>delete</button>
-                        <button className="btn btn-success" onClick={() => setShow(!show) }>edit</button>
-                    </div>
                 </section>
                
             </article>

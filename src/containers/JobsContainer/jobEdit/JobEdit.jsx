@@ -170,12 +170,12 @@ const JobEdit = ( { details, setShowEdit, setJobDetails, jobId, currentUser } ) 
                 </div>
             </div>
             
-            <div className="row row--small-p j-content-end">
+            <div className="row row--small-p">
 
-                <div className="btn-group">
+                <div className="btn-group btn-group--center">
                     <button className="btn btn-primary mr" onClick={handleCancel}>cancel</button>
                     <button className="btn btn-success" onClick={handleSubmit}>Edit</button>
-                </div>
+                </div> 
 
             </div>    
 
