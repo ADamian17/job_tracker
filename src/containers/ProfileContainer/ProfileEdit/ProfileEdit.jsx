@@ -25,7 +25,7 @@ const ProfileEdit = ({ details, show, setShow, currentUser, setUserDetails }) =>
             console.log(error);
         }
     };
-
+    
     return (
         <form onSubmit={handleSubmit}>
             <div className="col col--small">
@@ -73,20 +73,20 @@ const ProfileEdit = ({ details, show, setShow, currentUser, setUserDetails }) =>
             <div className="col col--small">
 
                 <p className="fields">
-                    <span>Email:</span> 
+                    <span>Profession:</span> 
                 </p>
 
                 <Input 
                     type="text" 
                     placeholder={profession}
-                    label="Email" 
-                    value={profession} 
+                    label="Profession" 
+                    value={profession}
                     onChange={ (e) => setProfession(e.target.value) } />
             </div>
 
             <div className="btn-group">
                 <button className="btn btn-primary mr" onClick={() => setShow( !show )}>cancel</button>
-                <button className="btn btn-success" >Edit</button>
+                <button className="btn btn-success">Edit</button>
             </div>      
 
         </form>
