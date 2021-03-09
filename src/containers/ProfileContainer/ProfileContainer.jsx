@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 
 import { connect } from 'react-redux';
 import { setUserDetails } from '../../redux/user/user.actions'; 
 
 import User from '../../models/User';
+import ProfileEdit from './ProfileEdit/ProfileEdit';
 
 // utils
 import { formatDate } from '../../utils/functs';
@@ -31,7 +33,10 @@ const LineChart = ( props ) => (
 
 const ProfileContainer = ( props ) => {
 
+    const history = useHistory();
     const [ userJobs, setUserJobs ] = useState({});
+    const [ error, setError ] = useState( null );
+    const [ show, setShow ] = useState( false );
 
     useEffect(() => {
         getUserDetails();
@@ -84,6 +89,24 @@ const ProfileContainer = ( props ) => {
         ]
     };
 
+    const handleDelete = async () => {
+        try {
+            const { currentUser } = props;
+
+            const deletedUSer = await User.deleteUser( currentUser );
+
+            if ( deletedUSer.data.status === 200 ) {
+                localStorage.removeItem('uid');
+                history.push('/login');
+            }
+            
+        } catch (error) {
+            setError(error);
+        }
+    };
+
+    console.log(error);
+
     return (
         <section className="user__profile dark-bg">
 
@@ -107,21 +130,33 @@ const ProfileContainer = ( props ) => {
                 </section>
 
                 <section className="card-profile__info">
-                    <p>full name: {first_name} {last_name}</p>
-                    <p>email: { email }</p>
-                    <p>profession: {profession}</p>
+                    {
+                        !show ?
+                            <>
+                                <p>first name: {first_name}</p>
+                                <p>last name: {last_name}</p>
+                                <p>email: { email }</p>
+                                <p>profession: {profession}</p> 
 
-                    <div className="btn-group btn-group--small btn-group--start" >
-                        <button className="btn btn-danger">delete</button>
-                        <button className="btn btn-success">edit</button>
-                    </div>
+                                <div className="btn-group btn-group--small btn-group--start">
+                                    <button className="btn btn-danger" onClick={handleDelete}>delete</button>
+                                    <button className="btn btn-success" onClick={() => setShow(!show) }>edit profile</button>
+                                </div>
+                            </>
+                            :
+                            <ProfileEdit 
+                                show={show} 
+                                setShow={setShow} />
+                    }   
+
                 </section>
                
             </article>
 
+            <section className="chart">
+                <LineChart data={data} />
+            </section>
 
-            <LineChart data={data} />
-    
         </section>
     );
 };
