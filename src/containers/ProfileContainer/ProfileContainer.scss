@@ -1,3 +1,5 @@
+@import '../../styles/main.scss';
+
 .user__profile {
   padding: 1.5rem;
   border-radius: 1.5rem;
@@ -48,4 +50,8 @@
 .image {
   width: 100%;
   height: 100%;
+}
+
+canvas {
+  background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
 }

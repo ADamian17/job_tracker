@@ -88,7 +88,7 @@ const JobDetails = ( props ) => {
                                         <>
                                             <JobCardBody details={ jobDetails } /> 
 
-                                            <div className="btn-group btn-group--start">
+                                            <div className="btn-group btn-group--center">
                                                 <button className="btn btn-danger" onClick={() => setShow( true ) }>Delete</button>
                                                 <button className="btn btn-success" onClick={() => setShowEdit( !props.showEdit )}>Edit Job</button>
                                             </div>
