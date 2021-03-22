@@ -75,7 +75,7 @@ const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
                 labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>' 
                 labelMaxFileSizeExceeded="File is too large"/>
             {
-                file ? <button type="submit">submit</button> : ''
+                file ? <button type="submit" className="btn btn-primary">submit</button> : ''
             }    
                
         </form>
