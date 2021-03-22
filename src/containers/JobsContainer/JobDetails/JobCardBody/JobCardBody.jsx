@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { truncateString } from '../../../../utils/functs';
+
 import './JobCardBody.scss';
 
 const JobCardBody = ( { details } ) => {
@@ -40,7 +42,7 @@ const JobCardBody = ( { details } ) => {
             <div className="row">
                 {/* justify-self-start */}
                 <p className="fields">
-                    Job Post Url: <a className="job_post_url" href={ job_post_url } target="blank">{ job_post_url }</a>
+                    Job Post Url: <a className="job_post_url" href={ job_post_url } target="blank">{ truncateString(job_post_url, 30) }</a>
                 </p>
             </div>
 
