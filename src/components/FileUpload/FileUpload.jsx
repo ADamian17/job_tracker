@@ -56,7 +56,7 @@ const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
             console.log(error.response);
         }
     };
-    
+
     return (
         <form className="file" onSubmit={handleSubmit}>
             <FilePond
