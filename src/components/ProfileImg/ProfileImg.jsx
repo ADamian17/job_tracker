@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import FileUpload from '../FileUpload/FileUpload';
+
 import './ProfileImg.scss';
 
 const ProfileImg = ({ imgSrc }) => {
@@ -25,9 +27,7 @@ const ProfileImg = ({ imgSrc }) => {
                 <div className="modal__bg" onClick={() => setShow(!show)} />
 
                 <div className="modal__main modal__main--small">
-                    <form>
-                        <input type="text" />
-                    </form>
+                    <FileUpload show={show} setShow={setShow}/>
                 </div>
 
             </div>
