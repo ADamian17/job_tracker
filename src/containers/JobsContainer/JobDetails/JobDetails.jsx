@@ -8,7 +8,7 @@ import { setShowEdit } from '../../../redux/form/form.actions';
 import { setTokenExp } from '../../../redux/user/user.actions';
 
 import Job from '../../../models/Job';
-import { formatDate } from '../../../utils/functs';
+import { formatDate, truncateString } from '../../../utils/functs';
 
 import JobCardBody from './JobCardBody/JobCardBody';
 import JobEdit from '../jobEdit/JobEdit';
@@ -34,9 +34,7 @@ const JobDetails = ( props ) => {
 
     
     useEffect( () => {
-
         getJobDetails();
-
     }, []);
 
     const getJobDetails = async () => {
@@ -44,12 +42,13 @@ const JobDetails = ( props ) => {
         try {
             const job = await Job.getJobDetails( currentUser, jobId );
 
-            const { data } = job.data; 
+            const { data } = job.data;
+            data.jobPost = truncateString( data.job_post_url, 30 );
             setJobDetails(data);
 
         } catch (error) {
 
-            setError( error.response );
+            setError( error.response.message );
 
         }
     };
