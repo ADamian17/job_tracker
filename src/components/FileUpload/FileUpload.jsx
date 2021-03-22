@@ -17,6 +17,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
@@ -26,7 +27,13 @@ import User from '../../models/User';
 import './FileUpload.scss';
 
 // Register the plugins
-registerPlugin(FilePondPluginImagePreview, FilePondPluginFileEncode, FilePondPluginImageResize, FilePondPluginImageTransform);
+registerPlugin( 
+    FilePondPluginImagePreview, 
+    FilePondPluginFileEncode, 
+    FilePondPluginImageResize, 
+    FilePondPluginImageTransform,
+    FilePondPluginFileValidateSize
+);
 
 const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
     // eslint-disable-next-line no-unused-vars
@@ -46,7 +53,7 @@ const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
             }
 
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
         }
     };
     
@@ -56,14 +63,17 @@ const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
                 allowFileEncode={true}
                 allowImageResize={true}
                 allowImagePreview={true}
+                allowFileSizeValidation={true}
+                maxFileSize={'100KB'}
                 allowImageTransform={true}
-                imageResizeTargetWidth={500}
+                imageResizeTargetWidth={100}
+                imageResizeTargetHeight={100}
                 oninitfile={(file) => setFile(file)}
                 allowMultiple={false}
                 server={null}
-                // credits={false}
                 name="profile_image"
-                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>' />
+                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>' 
+                labelMaxFileSizeExceeded="File is too large"/>
             {
                 file ? <button type="submit">submit</button> : ''
             }    
