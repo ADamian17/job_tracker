@@ -6,7 +6,6 @@
     text-transform: uppercase;
     border-radius: 100px;
     border: none;
-    background-image: linear-gradient( 45deg, $color-tertiary-light-b, $color-tertiary-light-a );
     color:#fff;
     position: relative;
     overflow: hidden;
@@ -21,13 +20,12 @@
       padding: 2rem 0;
       left: 0;
       top: -100%;
-      
     }
   
-    &:hover {
-        background-image: linear-gradient( 45deg, $color-tertiary-light-a, $color-tertiary-light-b );
-        box-shadow: 0 0 1rem rgba( $color-grey-light-2, .2);
-    }
+    // &:hover {
+    //     background-image: linear-gradient( 45deg, $color-tertiary-light-a, $color-tertiary-light-b );
+    //     box-shadow: 0 0 1rem rgba( $color-grey-light-2, .2);
+    // }
   
     &:hover &__visible{
       transform: translateY(100%);
@@ -68,6 +66,10 @@
 
 .btn-info {
     @include btn-custom-color ( info ); 
+}
+
+.btn-link {
+  @include btn-custom-color ( link ); 
 }
 
 .btn-group {
