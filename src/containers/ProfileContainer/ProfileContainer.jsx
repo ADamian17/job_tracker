@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
 
 import { connect } from 'react-redux';
 import { setUserDetails } from '../../redux/user/user.actions';
@@ -8,29 +7,12 @@ import { setUserDetails } from '../../redux/user/user.actions';
 import User from '../../models/User';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import ProfileImg from '../../components/ProfileImg/ProfileImg';
+import LineChart from '../../components/LineChart/LineChart';
 
 // utils
 import { formatDate } from '../../utils/functs';
 
 import './ProfileContainer.scss';
-
-const options = {
-    scales: {
-        yAxes: [
-            {
-                ticks: {
-                    beginAtZero: true
-                }
-            }
-        ]
-    }
-};
-
-const LineChart = (props) => (
-    <>
-        <Line data={props.data} options={options} />
-    </>
-);
 
 const ProfileContainer = (props) => {
 
@@ -59,7 +41,6 @@ const ProfileContainer = (props) => {
                 if (!obj[key]) {
                     obj[key] = 0;
                 }
-
                 obj[key]++;
 
             });
@@ -74,22 +55,6 @@ const ProfileContainer = (props) => {
     // eslint-disable-next-line no-unused-vars
     const { createdAt, email, first_name, last_name, profession, profile_image } = props.userDetails;
 
-    const count = Object.keys(userJobs).map(label => userJobs[label]);
-
-    const data = {
-
-        labels: Object.keys(userJobs),
-
-        datasets: [
-            {
-                label: 'application count by status',
-                data: count,
-                fill: false,
-                backgroundColor: '#3310b0',
-                borderColor: '#3310b0'
-            }
-        ]
-    };
 
     const handleDelete = async () => {
         try {
@@ -146,7 +111,7 @@ const ProfileContainer = (props) => {
             </article>
 
             <section className="chart">
-                <LineChart data={data} />
+                <LineChart userJobs={userJobs}/>
             </section>
 
         </section>
