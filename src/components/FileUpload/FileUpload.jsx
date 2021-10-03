@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { connect } from 'react-redux'; 
-import { setUserDetails } from '../../redux/user/user.actions'; 
+import { connect } from 'react-redux';
+import { setUserDetails } from '../../redux/user/user.actions';
 
 // Import React FilePond
 // eslint-disable-next-line no-unused-vars
@@ -27,68 +27,68 @@ import User from '../../models/User';
 import './FileUpload.scss';
 
 // Register the plugins
-registerPlugin( 
-    FilePondPluginImagePreview, 
-    FilePondPluginFileEncode, 
-    FilePondPluginImageResize, 
-    FilePondPluginImageTransform,
-    FilePondPluginFileValidateSize
+registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginFileEncode,
+  FilePondPluginImageResize,
+  FilePondPluginImageTransform,
+  FilePondPluginFileValidateSize
 );
 
-const FileUpload = ( {  currentUser, setUserDetails, show, setShow }) => {
-    // eslint-disable-next-line no-unused-vars
-    const [file, setFile] = useState(null);
+const FileUpload = ({ currentUser, setUserDetails, show, setShow }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [file, setFile] = useState(null);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const profile_image = file.getFileEncodeDataURL();
-        
-        try {
-            const updateUser = await User.editUser( currentUser, { profile_image } );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const profile_image = file.getFileEncodeDataURL();
 
-            if (updateUser.data.status === 200 ) {
-                setUserDetails( updateUser.data.data );
-                setFile(null);
-                setShow(!show);
-            }
+    try {
+      const updateUser = await User.editUser(currentUser, { profile_image });
 
-        } catch (error) {
-            console.log(error.response);
-        }
-    };
+      if (updateUser.data.status === 200) {
+        setUserDetails(updateUser.data.data);
+        setFile(null);
+        setShow(!show);
+      }
 
-    return (
-        <form className="file" onSubmit={handleSubmit}>
-            <FilePond
-                allowFileEncode={true}
-                allowImageResize={true}
-                allowImagePreview={true}
-                allowFileSizeValidation={true}
-                maxFileSize={'100KB'}
-                allowImageTransform={true}
-                imageResizeTargetWidth={100}
-                imageResizeTargetHeight={100}
-                oninitfile={(file) => setFile(file)}
-                allowMultiple={false}
-                server={null}
-                name="profile_image"
-                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>' 
-                labelMaxFileSizeExceeded="File is too large"/>
-            {
-                file ? <button type="submit" className="btn btn-primary">submit</button> : ''
-            }    
-               
-        </form>
-    );
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  return (
+    <form className="file" onSubmit={handleSubmit}>
+      <FilePond
+        allowFileEncode={true}
+        allowImageResize={true}
+        allowImagePreview={true}
+        allowFileSizeValidation={true}
+        maxFileSize={'100KB'}
+        allowImageTransform={true}
+        imageResizeTargetWidth={100}
+        imageResizeTargetHeight={100}
+        oninitfile={(file) => setFile(file)}
+        allowMultiple={false}
+        server={null}
+        name="profile_image"
+        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+        labelMaxFileSizeExceeded="File is too large" />
+      {
+        file ? <button type="submit" className="btn btn-primary">submit</button> : ''
+      }
+
+    </form>
+  );
 };
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+  currentUser: state.user.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
-    setUserDetails: ( user ) => dispatch( setUserDetails( user ) )
+  setUserDetails: (user) => dispatch(setUserDetails(user))
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( FileUpload );
+export default connect(mapStateToProps, mapDispatchToProps)(FileUpload);
 
