@@ -1,22 +1,23 @@
 import axios from 'axios';
 // import { API_ROUTE_URL } from '../utils/consts';
 
+const api_url = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/v1';
 class User {
     static getUser(currentUser) {
-        return axios.get(`${process.env.REACT_APP_API_URL}/users/profile`, {
+        return axios.get(`${api_url}/users/profile`, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
     static editUser(currentUser, state) {
-        return axios.put(`${process.env.REACT_APP_API_URL}/users/update`, state, {
+        return axios.put(`${api_url}/users/update`, state, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }
 
     static addProfileImg( currentUser, state ) {
         return axios.put(
-            `${process.env.REACT_APP_API_URL}/users/addprofileimg`,
+            `${api_url}/users/addprofileimg`,
             state,
             {
                 headers: { authorization: `Bearer ${currentUser}` }
@@ -25,7 +26,7 @@ class User {
     }
 
     static deleteUser(currentUser) {
-        return axios.delete(`${process.env.REACT_APP_API_URL}/users/delete`, {
+        return axios.delete(`${api_url}/users/delete`, {
             headers: { authorization: `Bearer ${currentUser}` }
         });
     }

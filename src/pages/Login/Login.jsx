@@ -13,14 +13,12 @@ import Auth from '../../models/auth';
 
 import './Login.scss';
 
-const Login = ( props ) => {
+const Login = (props) => {
 
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
-
-    const [ message, setMessage ] = useState('');
-
-    const [ loading, setLoading ] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
 
     const userData = { email, password };
@@ -32,17 +30,17 @@ const Login = ( props ) => {
         const { setCurrentUser } = props;
 
         try {
-            const user = await Auth.login( userData );
+            const user = await Auth.login(userData);
             const token = await user.data.signedJwt;
 
             setCurrentUser(token);
 
-            if ( !token ) {
+            if (!token) {
                 setLoading(true);
             } else {
                 props.history.push('/dashboard/jobs');
             }
-            
+
 
         } catch (error) {
             setMessage(error.response);
@@ -51,18 +49,18 @@ const Login = ( props ) => {
     };
 
     const errMessage = message;
-        
+
     return (
-         
+
         <Container>
 
             <>
 
-                { errMessage ?  
-                    <div className=" alert alert-danger text-center" role="alert" > 
-                        { errMessage } 
-                    </div> 
-                    : '' 
+                {errMessage ?
+                    <div className=" alert alert-danger text-center" role="alert" >
+                        {errMessage}
+                    </div>
+                    : ''
                 }
 
                 <div className="primary__heading">
@@ -71,51 +69,51 @@ const Login = ( props ) => {
 
                 </div>
 
-                
+
                 {
-                    loading ? 
-                        ( <div>loading...</div> ) :
-                        ( 
+                    loading ?
+                        (<div>loading...</div>) :
+                        (
                             <form>
-                                <Input 
+                                <Input
                                     name="email"
                                     type="text"
                                     label="E-mail address"
                                     placeholder="E-mail address"
-                                    handleChange={( e ) => setEmail( e.target.value ) } 
+                                    handleChange={(e) => setEmail(e.target.value)}
                                     required />
 
-                                <Input 
+                                <Input
                                     type="password"
                                     name="password"
                                     label="Password"
                                     placeholder="Password"
-                                
-                                    handleChange={(e) => setPassword( e.target.value ) } 
+
+                                    handleChange={(e) => setPassword(e.target.value)}
                                     required />
 
-                                <button 
-                                    type="submit"  
-                                    className="btn btn-primary btn-block" 
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary btn-block"
                                     onClick={handleLogin} >
                                     Login
                                 </button>
 
                             </form>
-                        ) 
+                        )
                 }
-                    
+
 
                 <Message message="Back to" url="/" title="Home" />
 
-                <div style={{ 
-                    textAlign: 'center', 
+                <div style={{
+                    textAlign: 'center',
                     fontSize: '1.7rem',
                     color: '#000'
                 }}>
                     or
                 </div>
-                            
+
                 <Message message="New to Us ?" url="/register" title="Sign Up" />
             </>
 
@@ -125,7 +123,7 @@ const Login = ( props ) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentUser: (token) => dispatch(setCurrentUser(token)) 
+    setCurrentUser: (token) => dispatch(setCurrentUser(token))
 });
 
-export default connect( null, mapDispatchToProps )(Login);
+export default connect(null, mapDispatchToProps)(Login);
