@@ -1,0 +1,3 @@
+@function ligthenTen($color) {
+  @return lighten($color, 10%);
+}

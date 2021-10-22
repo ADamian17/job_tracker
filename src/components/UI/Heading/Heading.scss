@@ -1,0 +1,19 @@
+@import "../../../styles/abstracts/mixins";
+
+.heading {
+  &__primary {
+    @include getHeading(2.4rem, .33px);
+  }
+
+  &__secondary {
+    @include getHeading(2rem, .25px);
+  }
+
+  &__tertiary {
+    @include getHeading(1.8rem, .25px);
+  }
+
+  &__quaternary {
+    @include getHeading(1.4rem, .2px);
+  }
+}

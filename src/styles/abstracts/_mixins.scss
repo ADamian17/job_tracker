@@ -1,20 +1,4 @@
-
-
-
-// NOTE media query manager
-
-/*
-0 - 600px:      Phone
-600 - 900px:    Table portrait
-900 - 1200px:   Table Landscape
-
-[ 1200 - 1880 ] is wher our normal styles apply
-
-1800px + :      Big Desktop    
-*/
-
-// ORDER _Base + TYpography > general layout grid > page layout > component
-
+@import "./functions";
 
 // NOTE argument choises
 // - phone
@@ -22,92 +6,138 @@
 // - tab-land
 // - big-desktop
 
-@mixin respond ( $breakpoint ) {
-    
-    @if $breakpoint == sm-phone {
-        @media ( max-width: 32em ) { @content };  //300px
-    }
-
-    @if $breakpoint == phone {
-        @media ( max-width: 37.5em ) { @content };  //600px
-    }
-    @if $breakpoint == tab-port {
-        @media ( max-width: 56.25em ) { @content };  // 900px
-    }
-    @if $breakpoint == tab-land {
-        @media ( max-width: 75em ) { @content };  // 1200 px
-    }
-    @if $breakpoint == big-desktop {
-        @media ( min-width: 112.5em ) { @content }; // 1800 px
-    }
-
-    @if $breakpoint == xl-desktop {
-        @media ( min-width: 256em ) { @content }; // 2560 px
-    }
+@mixin getHeading ($font-size, $letter-spancing) {
+  font-size: $font-size;
+  letter-spacing: $letter-spancing;
 }
 
-@mixin btn-custom-color ( $type ) {
+@mixin getParagraph ($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $font-size;
+  font-weight: 400;
+}
 
-    @if $type == primary {
-        background-image: linear-gradient( 45deg, $color-tertiary-light-b 35%, $color-tertiary-light-a );
-        color: $color-grey-light-2;
-        border: none;
+@mixin setBtnStyle ($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: ligthenTen($color); // __function.scss
+  }
+}
+
+@mixin respond ($breakpoint) {
+
+  @if $breakpoint==sm-phone {
+    @media (max-width: 32em) {
+      @content
     }
 
-    @if $type == success {
-        background-image: linear-gradient( 45deg, $color-primary 35%, $color-primary-light );
-        color: $color-grey-light-2;
-        border: none;
+    ; //300px
+  }
 
-        &:hover {
-            background-image: linear-gradient( 45deg, $color-primary-light 35%, $color-primary  ); 
-        }
+  @if $breakpoint==phone {
+    @media (max-width: 37.5em) {
+      @content
     }
 
-    @if $type == danger {
-        background-image: linear-gradient( 45deg, $color-primary-bright-b 35%, $color-primary-bright-a );
-        color: $color-grey-light-2;
-        border: none;
+    ; //600px
+  }
 
-        &:hover {
-            background-image: linear-gradient( 45deg, $color-primary-bright-a 35%, $color-primary-bright-b  ); 
-        }
+  @if $breakpoint==tab-port {
+    @media (max-width: 56.25em) {
+      @content
     }
 
-    @if $type == info {
-        background-image: linear-gradient( 45deg, $color-info-b 35%, $color-info-a );
-        border: none;
+    ; // 900px
+  }
 
-        &:hover {
-            background-image: linear-gradient( 45deg, $color-info-a 35%, $color-info-b ); 
-        }
-    }
-    
-    @if $type == secondary {
-        background-image: linear-gradient( 45deg, $color-grey-dark-3 35%, $color-grey-dark-2 );
-        border: none;
-
-        &:hover {
-            background-image: linear-gradient( 45deg, $color-grey-dark-2 35%, $color-grey-dark-3 ); 
-        }
+  @if $breakpoint==tab-land {
+    @media (max-width: 75em) {
+      @content
     }
 
-    @if $type == warning {
-        background-image: linear-gradient( 45deg, $color-secondary-light-b, $color-secondary-light-a );
-        border: none;
+    ; // 1200 px
+  }
 
-        &:hover {
-            background-image: linear-gradient( 45deg, $color-secondary-light-a 35%, $color-secondary-light-b ); 
-        }
+  @if $breakpoint==big-desktop {
+    @media (min-width: 112.5em) {
+      @content
     }
 
-    @if $type == link {
-        background: none;
-        color: $color-grey-dark-3;
-        border: none;
+    ; // 1800 px
+  }
 
-        &:hover {
-            text-decoration: underline; 
-        }
+  @if $breakpoint==xl-desktop {
+    @media (min-width: 256em) {
+      @content
     }
+
+    ; // 2560 px
+  }
+}
+
+@mixin btn-custom-color ($type) {
+
+  @if $type==primary {
+    background-image: linear-gradient(45deg, $color-tertiary-light-b 35%, $color-tertiary-light-a);
+    color: $color-grey-light-2;
+    border: none;
+  }
+
+  @if $type==success {
+    background-image: linear-gradient(45deg, $color-primary 35%, $color-primary-light);
+    color: $color-grey-light-2;
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(45deg, $color-primary-light 35%, $color-primary);
+    }
+  }
+
+  @if $type==danger {
+    background-image: linear-gradient(45deg, $color-primary-bright-b 35%, $color-primary-bright-a);
+    color: $color-grey-light-2;
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(45deg, $color-primary-bright-a 35%, $color-primary-bright-b);
+    }
+  }
+
+  @if $type==info {
+    background-image: linear-gradient(45deg, $color-info-b 35%, $color-info-a);
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(45deg, $color-info-a 35%, $color-info-b);
+    }
+  }
+
+  @if $type==secondary {
+    background-image: linear-gradient(45deg, $color-grey-dark-3 35%, $color-grey-dark-2);
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(45deg, $color-grey-dark-2 35%, $color-grey-dark-3);
+    }
+  }
+
+  @if $type==warning {
+    background-image: linear-gradient(45deg, $color-secondary-light-b, $color-secondary-light-a);
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(45deg, $color-secondary-light-a 35%, $color-secondary-light-b);
+    }
+  }
+
+  @if $type==link {
+    background: none;
+    color: $color-grey-dark-3;
+    border: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
