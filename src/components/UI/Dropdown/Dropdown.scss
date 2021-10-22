@@ -1,0 +1,80 @@
+@import "../../../styles/abstracts/colors";
+
+.dropdown {
+  background-color: $color-black-blue;
+  color: #fff;
+  font-weight: 400;
+  position: relative;
+
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    svg {
+      stroke: #fff;
+    }
+
+    span {
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    &--grey {
+      color: #d2d4e1;
+
+      svg {
+        stroke: #d2d4e1;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__items {
+    width: 25.5rem;
+    min-height: 19.2rem;
+
+    position: absolute;
+    top: 2rem;
+    left: 0;
+
+    background-color: #fff;
+    border-radius: .8rem;
+    box-shadow: 0 .2rem 1rem #d2d4e1;
+
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #647196;
+
+    &>* {
+      padding: 1.2rem 2.4rem;
+    }
+
+    &--show {
+      display: grid;
+    }
+
+    &--hidde {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--current {
+      color: #AD1FEA;
+    }
+  }
+
+  &__item:not( :last-of-type) {
+    border-bottom: .8px solid #dfdede;
+  }
+}
