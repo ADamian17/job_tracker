@@ -1,0 +1,53 @@
+@import "../../../styles/abstracts/colors";
+@import "../../../styles/abstracts/break-point";
+
+.aside__inner-sidebar {
+  width: 100%;
+  height: calc(100vh - 7.2rem);
+  padding: 2.4rem;
+  background-color: #0000004a;
+  backdrop-filter: blur(.2rem);
+
+  transition: all .5s ease-out;
+  backface-visibility: hidden;
+  z-index: 100;
+
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 2.4rem;
+
+  position: absolute;
+  top: 7.2rem;
+  left: 0;
+
+  z-index: 1;
+
+  &::after {
+    content: '';
+
+    width: 27.1rem;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: $default-white-bg;
+    z-index: -1;
+  }
+
+  &--hidden {
+    transform: translateX(-100%);
+  }
+
+  &--show {
+    transform: translateX(0);
+  }
+
+  &--hidden,
+  &--show {
+    @media screen and (min-width: $bp-medium) {
+      transform: translateX(0);
+    }
+  }
+}

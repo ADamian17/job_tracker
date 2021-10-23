@@ -1,0 +1,43 @@
+@import "../../../styles/abstracts/colors";
+@import "../../../styles/abstracts/break-point";
+
+.aside__header {
+  height: 7.2rem;
+  padding: 0 2.4rem;
+
+  display: flex;
+  align-items: center;
+
+  background-image: url(../assets/background-header.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  text-transform: capitalize;
+
+  &__title {
+    color: $color-white-default;
+    margin-right: auto;
+    mix-blend-mode: normal;
+    letter-spacing: 1.5px;
+
+    strong {
+      opacity: 0.75;
+    }
+  }
+
+
+  @media screen and (min-width: $bp-medium) {
+    min-height: 17.8rem;
+  }
+
+  &__icon {
+    @media screen and (min-width: $bp-medium) {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
