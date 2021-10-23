@@ -1,0 +1,75 @@
+@import "../../styles/abstracts/colors";
+@import "../../styles/abstracts/break-point";
+
+.aside {
+  position: relative;
+
+  @media screen and (min-width: $bp-medium) {
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 2.4rem;
+  }
+
+  &__header {
+    height: 7.2rem;
+    padding: 0 2.4rem;
+
+    display: flex;
+    align-items: center;
+
+    background-image: url(../../assets/background-header.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media screen and (min-width: $bp-medium) {
+      min-height: 17.8rem;
+    }
+  }
+
+  &__title-container {
+    margin-right: auto;
+  }
+
+  &__inner-sidebar {
+    width: 100%;
+    height: calc(100vh - 7.2rem);
+    padding: 2.4rem;
+    background-color: #0000004a;
+    backdrop-filter: blur(.2rem);
+
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 2.4rem;
+
+    position: absolute;
+    top: 7.2rem;
+    left: 0;
+
+    z-index: 1;
+
+    &::after {
+      content: '';
+
+      width: 27.1rem;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      background-color: $default-white-bg;
+      z-index: -1;
+    }
+  }
+
+  &__main,
+  &__footer {
+    justify-self: end;
+    min-height: 17.8rem;
+    width: 22.3rem;
+    background-color: $color-white-default;
+    border-radius: $default-border-radius;
+  }
+
+}
