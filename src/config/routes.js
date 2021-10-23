@@ -9,6 +9,7 @@ import Login from '../pages/Login/Login';
 import DashBoard from '../pages/DashBoard/DashBoard';
 import NotFound from '../pages/404/404';
 import Ui from '../pages/Ui';
+import NewDash from '../pages/NewDash';
 
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser
@@ -42,6 +43,10 @@ export default connect( mapStateToProps )( withRouter( ({ history, currentUser }
             <Route 
                 path="/ui" 
                 component={Ui} />
+
+            <Route 
+                path="/newdash" 
+                component={NewDash} />
 
             <Route
                 path="/login"

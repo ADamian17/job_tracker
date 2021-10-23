@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 
-import IconCheck from '../Icons/IconCheck';
+import IconCheck from '../Icons/Check-icon/IconCheck';
+
+import './DropdownOptions.scss';
 
 const DropdownOptions = ({ options, show, setCurrent, ...rest }) => {
   const ref = useRef(null);
@@ -9,7 +11,7 @@ const DropdownOptions = ({ options, show, setCurrent, ...rest }) => {
     <div
       {...rest}
       id="dropdown-options"
-      className={`dropdown__items dropdown__items${show ? '--show' : '--hidde'}`}>
+      className={`options options${show ? '--show' : '--hidde'}`}>
       {
         options.map(option => {
           return (
@@ -19,7 +21,7 @@ const DropdownOptions = ({ options, show, setCurrent, ...rest }) => {
               data-target={option.name}
               data-value={option.value}
               onClick={(e) => setCurrent(e)}
-              className={`dropdown__item ${option.current ? 'dropdown__item--current' : ''}`}>
+              className={`options__item ${option.current ? 'options__item--current' : ''}`}>
               {
                 option.current ?
                   <>
@@ -29,7 +31,6 @@ const DropdownOptions = ({ options, show, setCurrent, ...rest }) => {
                     {option.name}
                   </>
               }
-
             </div>
           )
         })

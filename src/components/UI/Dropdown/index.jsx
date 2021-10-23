@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import IconArrowUp from '../Icons/IconArrowUp';
-import IconArrowDown from '../Icons/IconArrowDown';
+import IconArrowUp from '../Icons/ChevronUp/IconArrowUp';
+import IconArrowDown from '../Icons/ChevronDown/IconArrowDown';
 
 import DropdownOptions from '../DropdownOptions';
 

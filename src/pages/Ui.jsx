@@ -5,9 +5,13 @@ import * as Heading from '../components/UI/Heading';
 import Paragraph from '../components/UI/Paragraph';
 import Button from '../components/UI/Button';
 import Dropdown from '../components/UI/Dropdown';
+import Category from '../components/UI/Category';
+import * as Form from '../components/UI/FormElements';
 
 const Ui = () => (
-  <>
+  <div style={{
+    margin: '10rem'
+  }}>
     <h1>Typography</h1>
     <br />
     <Heading.Primary text="Login to your account" />
@@ -53,7 +57,25 @@ const Ui = () => (
     <h1>Interactive Elements</h1>
     <br />
     <Dropdown />
-  </>
+    <br />
+    <br />
+    <Category name='all' active />
+    <br />
+    <Category name='UX' />
+    <br />
+    <Category name='UI' />
+    <br />
+    <br />
+    <h1>Form Elements</h1>
+    <br />
+    <Form.Input />
+    <br />
+    <br />
+    <Form.Textarea />
+    <br />
+    <br />
+    <Form.Select show dropOptions={[]} />
+  </div>
 );
 
-export default Ui
+export default Ui;
