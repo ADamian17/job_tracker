@@ -22,6 +22,13 @@
 
   z-index: 1;
 
+  @media screen and (min-width: $bp-medium) {
+    padding: 0;
+    position: relative;
+    top: 0;
+    background-color: transparent;
+  }
+
   &::after {
     content: '';
 
@@ -34,6 +41,10 @@
 
     background-color: $default-white-bg;
     z-index: -1;
+
+    @media screen and (min-width: $bp-medium) {
+      display: none;
+    }
   }
 
   &--hidden {

@@ -17,5 +17,9 @@
     width: 22.3rem;
     background-color: $color-white-default;
     border-radius: $default-border-radius;
+
+    @media screen and (min-width: $bp-medium) {
+      width: 100%;
+    }
   }
 }

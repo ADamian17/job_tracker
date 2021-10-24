@@ -26,9 +26,11 @@
     }
   }
 
-
   @media screen and (min-width: $bp-medium) {
     min-height: 17.8rem;
+    border-radius: $default-border-radius;
+    align-items: flex-end;
+    padding: 2.4rem;
   }
 
   &__icon {
