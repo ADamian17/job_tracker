@@ -17,9 +17,11 @@
 
   &__main,
   &__footer {
-    justify-self: end;
-    min-height: 17.8rem;
     width: 35rem;
+    min-height: 17.8rem;
+    padding: 2.4rem;
+
+    justify-self: end;
     background-color: $color-white-default;
     border-radius: $default-border-radius;
 

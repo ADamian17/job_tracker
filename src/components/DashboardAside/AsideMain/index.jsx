@@ -49,6 +49,8 @@ const AsideMain = () => {
 
   return (
     <section className="aside__main">
+      <h2 className="aside__main__title">filter by Status</h2>
+
       {
         Object.values(categories).map(category => (
           <Category

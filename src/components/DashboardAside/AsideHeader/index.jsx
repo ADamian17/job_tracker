@@ -1,4 +1,4 @@
-import { Tertiary, Quaternary } from '../../UI/Heading';
+import { Tertiary } from '../../UI/Heading';
 
 import hamburger from '../assets/icon-hamburger.svg';
 import close from '../assets/icon-close.svg';
@@ -9,7 +9,7 @@ const AsideHeader = ({ toggle, setToggle }) => {
   return (
     <section className="aside__header">
       <div className="aside__header__title">
-        <Quaternary text="track that job" />
+        <Tertiary text="track that job" />
         <strong>Jobs Board</strong>
       </div>
 

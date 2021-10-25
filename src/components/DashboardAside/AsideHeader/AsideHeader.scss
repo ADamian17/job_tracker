@@ -27,10 +27,14 @@
   }
 
   @media screen and (min-width: $bp-medium) {
-    min-height: 17.8rem;
+    height: 100%;
     border-radius: $default-border-radius;
     align-items: flex-end;
     padding: 2.4rem;
+  }
+
+  @media screen and (min-width: $bg-largest) {
+    min-height: 17.8rem;
   }
 
   &__icon {
