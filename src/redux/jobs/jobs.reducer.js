@@ -2,7 +2,6 @@ import JobsActionTypes from './jobs.types';
 
 const INITIAL_STATE = {
   items: null,
-  jobDetails: {},
   error: null
 };
 

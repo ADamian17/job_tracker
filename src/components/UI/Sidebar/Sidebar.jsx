@@ -19,12 +19,6 @@ const SIDEBAR_ROUTES = [
         icon: <Briefcase />,
         active: true
     },
-    // {
-    //     name: 'reports',
-    //     url: '/dashboard/reports',
-    //     icon: 'sidebar__nav__icon fas fa-chart-line',
-    //     active: false
-    // },
     {
         name: 'profile',
         url: '/dashboard/profile',
@@ -39,8 +33,8 @@ const SIDEBAR_ROUTES = [
     }
 ];
 
-const Sidebar = ( props ) => {
-    
+const Sidebar = (props) => {
+
     const location = props.history.location.pathname.split('/');
 
     const handleLogout = () => {
@@ -49,25 +43,25 @@ const Sidebar = ( props ) => {
         history.push('/login');
     };
 
-    const links = SIDEBAR_ROUTES.map( (route, idx) =>  {
+    const links = SIDEBAR_ROUTES.map((route, idx) => {
 
-        if( route.name === 'logout') {
+        if (route.name === 'logout') {
             route.logout = () => handleLogout();
         }
 
-        if (location[2] === route.name ) {
+        if (location[2] === route.name) {
             route.active = true;
         } else {
             route.active = false;
         }
-    
-        return (
-            <li 
-                key={idx} 
-                className={`sidebar__nav__item  ${ route.active === true ? 'sidebar__nav__item--active' : '' }`}>
 
-                <Link 
-                    to={route.url} 
+        return (
+            <li
+                key={idx}
+                className={`sidebar__nav__item  ${route.active === true ? 'sidebar__nav__item--active' : ''}`}>
+
+                <Link
+                    to={route.url}
                     onClick={route.logout}
                     className="sidebar__nav__link">
                     {route.icon}
@@ -76,9 +70,9 @@ const Sidebar = ( props ) => {
 
             </li>
         );
-    }); 
+    });
 
-    {/* NOTE sidebar */}
+    {/* NOTE sidebar */ }
     return (
         <nav className="sidebar">
 
@@ -91,10 +85,10 @@ const Sidebar = ( props ) => {
             </ul>
 
         </nav>
-    ); 
-    
+    );
+
 };
-                    
+
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout())

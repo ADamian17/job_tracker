@@ -24,8 +24,8 @@ const AsideMain = () => {
       name: 'response',
       active: false
     },
-    progress: {
-      name: 'progress',
+    'in progress': {
+      name: 'in progress',
       active: false
     },
     rejected: {

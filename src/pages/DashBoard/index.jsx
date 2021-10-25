@@ -34,7 +34,6 @@ const Dashboard = () => {
                   className="main__job">
                   job info
                 </article>
-
               ))
             }
           </section>

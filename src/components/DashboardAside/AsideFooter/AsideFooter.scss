@@ -1,0 +1,42 @@
+@import "../../../styles/abstracts/colors";
+
+.aside__footer {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 1.5rem;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  &__items {
+    list-style: none;
+    font-size: 1.6rem;
+    color: #647196;
+    line-height: 2.7rem;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    align-items: center;
+    gap: .8rem;
+
+    svg {
+      width: .8rem;
+      height: .8rem;
+    }
+
+    a {
+      font-size: 1.2rem;
+      justify-self: flex-end;
+      font-weight: bold;
+      text-decoration: none;
+
+      color: $color-blue-dark;
+    }
+  }
+}
