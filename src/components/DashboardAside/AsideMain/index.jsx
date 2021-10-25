@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { fetchJobs } from '../../../redux/jobs/jobs.actions';
+
 import Category from '../../UI/Category';
 
 import './AsideMain.scss';
 
 const AsideMain = () => {
+  const dispatch = useDispatch();
+
   const [currentCat, setCurrentCat] = useState('all')
   const [categories, setCategories] = useState({
     all: {
@@ -42,6 +47,7 @@ const AsideMain = () => {
         prevCats[selectedCat].active = true;
         return prevCats;
       });
+      dispatch(fetchJobs(selectedCat))
     }
 
     setCurrentCat(selectedCat)
