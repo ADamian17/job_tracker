@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.actions';
 
 // NOTE components
@@ -14,6 +15,8 @@ import Auth from '../../models/auth';
 import './Login.scss';
 
 const Login = (props) => {
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,18 +30,16 @@ const Login = (props) => {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    const { setCurrentUser } = props;
-
     try {
       const user = await Auth.login(userData);
       const token = await user.data.signedJwt;
 
-      setCurrentUser(token);
+      dispatch(setCurrentUser(token));
 
       if (!token) {
         setLoading(true);
       } else {
-        props.history.push('/dashboard/jobs');
+        history.push('/dashboard/jobs');
       }
 
 
@@ -122,8 +123,4 @@ const Login = (props) => {
 
 };
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: (token) => dispatch(setCurrentUser(token))
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

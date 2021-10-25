@@ -1,9 +1,11 @@
 import './Category.scss'
 
-const Category = ({ name, active }) => {
+const Category = ({ name, active, setActive }) => {
   return (
     <div
-      className={`category ${active ? 'category--active' : ''} `}>
+      data-target={name}
+      className={`category ${active ? 'category--active' : ''} `}
+      onClick={setActive}>
       {name}
     </div>
   )

@@ -1,66 +1,60 @@
 import React from 'react';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Home from '../pages/Home/Home';
 import Register from '../pages/Register/Register';
 import Login from '../pages/Login/Login';
-import DashBoard from '../pages/DashBoard/DashBoard';
+import DashBoard from '../pages/Dashboard';
 import NotFound from '../pages/404/404';
 import Ui from '../pages/Ui';
-import NewDash from '../pages/NewDash';
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
-});
+const Routes = ({ history  }) => {
+  const currentUser = useSelector(({ user }) => user.currentUser);
+  const PrivateRoute = ({ Component, ...rest }) => {
+    return <Route 
+      {...rest} 
+      render={ ( props ) => (
+          currentUser ? ( 
+            <Component {...props} />
+          ) : ( 
+            <Redirect to="/login" />
+          )
+      )} />;
+  };
 
-export default connect( mapStateToProps )( withRouter( ({ history, currentUser }) => {
+  return (
+    <Switch>
+      <Route 
+        exact 
+        path="/" 
+        component={Home} />
 
-    const PrivateRoute = ({ Component, ...rest }) => {
-        return <Route 
-            {...rest} 
-            render={ ( props ) => (
-                currentUser ? ( 
-                    <Component {...props} />
-                ) : ( 
-                    <Redirect to="/login" />
-                )
-            )} />;
-    };
+      <Route 
+        path="/register" 
+        component={Register} />
 
-    return (
-        <Switch>
-            <Route 
-                exact 
-                path="/" 
-                component={Home} />
+      <Route 
+        path="/ui" 
+        component={Ui} />
 
-            <Route 
-                path="/register" 
-                component={Register} />
+      <Route
+        path="/login"
+        render={() => (
+            <Login 
+                history={history} />
+      )}/>
 
-            <Route 
-                path="/ui" 
-                component={Ui} />
+      <PrivateRoute 
+        path="/dashboard" 
+        Component={DashBoard} /> 
+        
+      <Route path="*">
+          <NotFound />
+      </Route>  
+    </Switch>
+  );
+};
 
-            <Route 
-                path="/newdash" 
-                component={NewDash} />
-
-            <Route
-                path="/login"
-                render={() => (
-                    <Login 
-                        history={history} />
-                )}/>
-
-            <PrivateRoute path="/dashboard" Component={DashBoard} /> 
-            
-            <Route path="*">
-                <NotFound />
-            </Route>
-            
-        </Switch>
-    );
-}));
+export default Routes;

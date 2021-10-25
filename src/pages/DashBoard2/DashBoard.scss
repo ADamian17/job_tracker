@@ -1,0 +1,37 @@
+@import '../../styles/main.scss';
+
+.dashboard {
+    background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+
+    &__container{
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+
+        display: flex;
+
+        @include respond( tab-land ) { // width < 1200?
+            flex-direction: column;
+        }
+    }
+
+    &__main {
+        flex: 1;
+        background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+        min-height: 80rem;
+        padding: 0 15rem;
+
+        @include respond( tab-land ) {
+            padding: 0 8rem;
+        }
+
+        @include respond( phone ) {
+            padding: 0 0;
+        }
+    } 
+}
+
+.main-content {
+    background-image: linear-gradient( $color-tertiary-dark, $color-primary-dark );
+    min-height: 100vh;
+}

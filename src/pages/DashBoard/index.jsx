@@ -1,4 +1,4 @@
-import './New-Dashboard.scss';
+import './Dashboard.scss';
 
 import DashboardAside from '../../components/DashboardAside';
 
