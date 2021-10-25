@@ -8,21 +8,27 @@
 }
 
 .main-padding {
+  min-height: 100vh;
+
   @media screen and (min-width: $bp-medium) {
-    background-color: $default-white-bg;
-    min-height: 100vh;
-    padding: 9.4rem 16.5rem;
-    height: 85vh;
-    overflow: hidden;
+    padding: 2.4rem;
   }
 
+  @media screen and (min-width: $bg-largest) {
+    padding: 9.4rem 16.5rem;
+  }
 }
 
 .new-dashboard {
   @media screen and (min-width: $bp-medium) {
     display: grid;
+    grid-auto-rows: min-content;
+    gap: 2.4rem
+  }
+
+  @media screen and (min-width: $bg-largest) {
+    padding: 9.4rem 16.5rem;
     grid-template-columns: 35.5rem 1fr;
-    column-gap: 3rem
   }
 }
 

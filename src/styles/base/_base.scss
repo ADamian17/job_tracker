@@ -15,20 +15,16 @@ html {
   box-sizing: border-box;
 
   @media screen and (min-width: $bp-medium) {
-    font-size: 62.5%; // 1rem = 10px
-  }
-
-  @include respond(tab-port) {
-    // width < 900?
-    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    font-size: 50%; // 1rem = 10px
   }
 }
 
 body {
+  min-height: 100vh;
+  background-color: $default-white-bg;
   font-family: $default-font-family;
   color: $color-black-blue;
   box-sizing: border-box;
-  min-height: 100vh;
 }
 
 ul {
