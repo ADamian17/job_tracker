@@ -10,6 +10,7 @@ import './AsideFooter.scss';
 
 const AsideFooter = () => {
   const { path } = useRouteMatch();
+  console.log({path});
   const jobsStatusCount = useSelector(jobsByStatus);
 
   return (

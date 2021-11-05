@@ -15,7 +15,7 @@
   }
 
   @media screen and (min-width: $bg-largest) {
-    padding: 6.2rem 19.5rem;
+    padding: 5.2rem 19.5rem;
   }
 }
 
@@ -46,6 +46,11 @@
 
     height: 76vh;
     overflow-y: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     @media screen and (min-width: $bp-medium) {
       padding: 0;

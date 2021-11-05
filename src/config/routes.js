@@ -12,6 +12,7 @@ import Ui from '../pages/Ui';
 
 const Routes = ({ history  }) => {
   const currentUser = useSelector(({ user }) => user.currentUser);
+  
   const PrivateRoute = ({ Component, ...rest }) => {
     return <Route 
       {...rest} 
