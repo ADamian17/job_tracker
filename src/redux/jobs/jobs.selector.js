@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 const jobsSelector = (state) => state.jobs.items;
 
+export const jobsItems = createSelector(
+  [jobsSelector],
+  (jobs) => jobs
+) 
+
 export const jobsByStatus = createSelector(
   [jobsSelector],
   (jobs) => {    

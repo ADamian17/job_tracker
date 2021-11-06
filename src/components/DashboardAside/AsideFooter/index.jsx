@@ -5,6 +5,7 @@ import { jobsByStatus } from '../../../redux/jobs/jobs.selector';
 
 import { Tertiary } from '../../UI/Heading';
 import Circle from '../../UI/Icons/Circle/Circle';
+import logoutIcon from '../assets/logout.svg';
 
 import './AsideFooter.scss';
 
@@ -39,8 +40,8 @@ const AsideFooter = () => {
 
       <div className="aside__footer__item">
         <Tertiary text="Logout" />
+        <img src={logoutIcon} alt="logout icon" />
       </div>
-
     </section>
   )
 }

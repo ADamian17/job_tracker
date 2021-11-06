@@ -38,5 +38,13 @@
 
       color: $color-blue-dark;
     }
+
+    img {
+      justify-self: flex-end;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

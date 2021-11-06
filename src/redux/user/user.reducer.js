@@ -1,38 +1,32 @@
 import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-    currentUser: localStorage.getItem('uid'),
-    userDetails: {},
-    tokenExpired: ''
+  currentUser: localStorage.getItem('uid'),
+  error: null,
 };
 
 const userReducer = ( state = INITIAL_STATE, action ) => {
-    switch (action.type) {
-        case UserActionTypes.SET_CURRENT_USER:
-            localStorage.setItem('uid', action.payload);
-            return {
-                ...state,
-                currentUser: localStorage.getItem('uid')
-            };
-        case UserActionTypes.SET_TOKEN_EXP:
-            return {
-                ...state,
-                tokenExpired: action.payload
-            };    
-        case UserActionTypes.SET_USER_DETAILS:
-            return {
-                ...state,
-                userDetails: action.payload
-            };    
-        case UserActionTypes.LOGOUT:
-            localStorage.removeItem('uid');
-            return {
-                ...state,
-                currentUser: localStorage.getItem('uid')
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case UserActionTypes.SET_CURRENT_USER_SUCCESS: 
+      return {
+        ...state,
+        currentUser: action.payload,
+        error: null
+      } 
+    case UserActionTypes.SET_CURRENT_USER_ERROR: 
+      return {
+        ...state,
+        error: action.payload
+      } 
+    case UserActionTypes.LOGOUT:
+      localStorage.removeItem('uid');
+      return {
+        ...state,
+        currentUser: localStorage.getItem('uid')
+      };
+    default:
+      return state;
+  }
 };
 
 export default userReducer;

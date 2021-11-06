@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.actions';
 
 // NOTE components
@@ -24,28 +24,16 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
 
 
-  const userData = { email, password };
 
   // call to my api
   const handleLogin = async (event) => {
     event.preventDefault();
-
     try {
-      const user = await Auth.login(userData);
-      const token = await user.data.signedJwt;
-
-      dispatch(setCurrentUser(token));
-
-      if (!token) {
-        setLoading(true);
-      } else {
-        history.push('/dashboard/jobs');
-      }
-
+      dispatch(setCurrentUser({ email, password }));
+      history.push('/dashboard');
 
     } catch (error) {
       setMessage(error.response);
-
     }
   };
 
@@ -54,70 +42,59 @@ const Login = (props) => {
   return (
 
     <Container>
-
-      <>
-
-        {errMessage ?
-          <div className=" alert alert-danger text-center" role="alert" >
-            {errMessage}
-          </div>
-          : ''
-        }
-
-        <div className="primary__heading">
-
-          <p>Login to your account</p>
-
+      {errMessage ?
+        <div className=" alert alert-danger text-center" role="alert" >
+          {errMessage}
         </div>
+        : ''
+      }
+
+      <div className="primary__heading">
+        <p>Login to your account</p>
+      </div>
 
 
-        {
-          loading ?
-            (<div>loading...</div>) :
-            (
-              <form>
-                <Input
-                  name="email"
-                  type="text"
-                  label="E-mail address"
-                  placeholder="E-mail address"
-                  handleChange={(e) => setEmail(e.target.value)}
-                  required />
+      <form>
+        <Input
+          name="email"
+          type="text"
+          label="E-mail address"
+          placeholder="E-mail address"
+          handleChange={(e) => setEmail(e.target.value)}
+          required />
 
-                <Input
-                  type="password"
-                  name="password"
-                  label="Password"
-                  placeholder="Password"
+        <Input
+          type="password"
+          name="password"
+          label="Password"
+          placeholder="Password"
 
-                  handleChange={(e) => setPassword(e.target.value)}
-                  required />
+          handleChange={(e) => setPassword(e.target.value)}
+          required />
 
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  onClick={handleLogin} >
-                  Login
-                </button>
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          onClick={handleLogin} >
+          {
+            loading ? '...loading' : 'login'
+          }
+        </button>
 
-              </form>
-            )
-        }
+      </form>
 
 
-        <Message message="Back to" url="/" title="Home" />
+      <Message message="Back to" url="/" title="Home" />
 
-        <div style={{
-          textAlign: 'center',
-          fontSize: '1.7rem',
-          color: '#000'
-        }}>
-          or
-        </div>
+      <div style={{
+        textAlign: 'center',
+        fontSize: '1.7rem',
+        color: '#000'
+      }}>
+        or
+      </div>
 
-        <Message message="New to Us ?" url="/register" title="Sign Up" />
-      </>
-
+      <Message message="New to Us ?" url="/register" title="Sign Up" />
     </Container>
   );
 
