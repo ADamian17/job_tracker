@@ -17,7 +17,7 @@
         transition: all .8s linear;
 
         &--move-left {
-            transform: translateX(-45%);
+            transform: translateX(-47%);
         }
     }
 
@@ -57,14 +57,30 @@
             background-color: transparent;
             border: none;
             text-transform: capitalize;
+            font-size: 1.8rem;
             font-weight: bold;
             color: $color-blue-dark;
             z-index: 15;
 
-            &--btn:hover {
+            &:hover {
                 cursor: pointer;
-                text-decoration: underline;
+                // text-decoration: underline;
+            }
+
+            div>strong {
+                animation: arrowAnimation 1.5s ease infinite;
+                animation-delay: calc(var(--order) * 100ms);
             }
         }
+    }
+}
+
+@keyframes arrowAnimation {
+    from {
+        color: $color-blue-dark;
+    }
+
+    to {
+        color: lighten($color-blue-dark, 28%);
     }
 }

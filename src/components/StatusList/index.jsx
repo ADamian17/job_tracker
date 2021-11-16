@@ -18,7 +18,11 @@ const StatusList = () => {
                     className="status__ctrls--btn"
                     onClick={() => setMoveLeft(!moveLeft)}>
                     {
-                        moveLeft ? 'less' : 'more'
+                        moveLeft ? (
+                            <ArrowLeft />
+                        ) : (
+                            <ArrowRight />
+                        )
                     }
                 </button>
             </div>

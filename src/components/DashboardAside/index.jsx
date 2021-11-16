@@ -9,8 +9,8 @@ const DashboardAside = () => {
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    const handleCloseSidebar = () => {
-      if (toggle) {
+    const handleCloseSidebar = (e) => {
+      if (toggle && !e.target.classList.contains('arrow')) {
         setToggle(!toggle)
       }
     }
