@@ -1,34 +1,28 @@
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
-import { jobsByStatus } from '../../../redux/jobs/jobs.selector';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/user/user.actions';
 
 import { Tertiary } from '../../UI/Heading';
-import Circle from '../../UI/Icons/Circle/Circle';
-import logoutIcon from '../assets/logout.svg';
+import StatusList from '../../StatusList';
+import LogoutIcon from '../../UI/Icons/LogoutIcon/indx';
 
 import './AsideFooter.scss';
 
 const AsideFooter = () => {
   const { path } = useRouteMatch();
-  console.log({path});
-  const jobsStatusCount = useSelector(jobsByStatus);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    history.push('/login');
+  }
 
   return (
     <section className="aside__footer">
 
-      {/* <ul className="navigation-menu__roadmap__items" id="list">
-        {
-          jobsStatusCount && Object.values(jobsStatusCount).map((status, idx) => (
-            <li
-              key={`${status.name}-${idx}`}
-              className="navigation-menu__roadmap__item">
-              <Circle color={status.color} />
-              {status.name} <span>{status.count}</span>
-            </li>
-          ))
-        }
-      </ul> */}
+      <StatusList />
 
       <div className="aside__footer__item">
         <Tertiary text="Profile" />
@@ -40,7 +34,7 @@ const AsideFooter = () => {
 
       <div className="aside__footer__item">
         <Tertiary text="Logout" />
-        <img src={logoutIcon} alt="logout icon" />
+        <LogoutIcon onClick={handleLogout} />
       </div>
     </section>
   )

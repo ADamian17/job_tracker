@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 import { useDispatch } from 'react-redux';
@@ -23,17 +23,28 @@ const Login = (props) => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-
+  useEffect(() => {
+    return () => {
+      setLoading(false)
+    }
+  }, []);
 
   // call to my api
   const handleLogin = async (event) => {
     event.preventDefault();
+
     try {
-      dispatch(setCurrentUser({ email, password }));
+      const user = await Auth.login({ email, password });
+      const token = await user.data.signedJwt;
+
+      if (!token) setLoading(!loading);
+
+      dispatch(setCurrentUser(token));
       history.push('/dashboard');
 
     } catch (error) {
       setMessage(error.response);
+
     }
   };
 
@@ -77,13 +88,11 @@ const Login = (props) => {
           className="btn btn-primary btn-block"
           onClick={handleLogin} >
           {
-            loading ? '...loading' : 'login'
+            loading ? '...loading' : 'Login'
           }
         </button>
 
       </form>
-
-
       <Message message="Back to" url="/" title="Home" />
 
       <div style={{
@@ -93,11 +102,10 @@ const Login = (props) => {
       }}>
         or
       </div>
-
       <Message message="New to Us ?" url="/register" title="Sign Up" />
+
     </Container>
   );
-
 };
 
 export default Login;

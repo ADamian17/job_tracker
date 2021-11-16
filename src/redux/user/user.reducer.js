@@ -13,17 +13,18 @@ const userReducer = ( state = INITIAL_STATE, action ) => {
         currentUser: action.payload,
         error: null
       } 
+    case UserActionTypes.LOGOUT_ERROR: 
     case UserActionTypes.SET_CURRENT_USER_ERROR: 
       return {
         ...state,
         error: action.payload
-      } 
-    case UserActionTypes.LOGOUT:
-      localStorage.removeItem('uid');
+      }
+    case UserActionTypes.LOGOUT_SUCCESS:
       return {
         ...state,
-        currentUser: localStorage.getItem('uid')
-      };
+        currentUser: localStorage.getItem('uid'),
+        error: null
+      }
     default:
       return state;
   }

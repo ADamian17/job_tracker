@@ -16,16 +16,12 @@ const jobReducer = ( state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload
-      };
-    case JobsActionTypes.GET_JOBS:
+      };   
+    case JobsActionTypes.RESET_JOBS_SUCCESS:
       return {
         ...state,
-        jobsList: action.payload
-      };
-    case JobsActionTypes.SHOW_JOB_DETAILS:
-      return {
-        ...state,
-        jobDetails: action.payload
+        items: null,
+        error: null
       };   
     default:
       return state;

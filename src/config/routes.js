@@ -14,6 +14,7 @@ const Routes = ({ history  }) => {
   const currentUser = useSelector(({ user }) => user.currentUser);
   
   const PrivateRoute = ({ Component, ...rest }) => {
+    console.log({currentUser});
     return <Route 
       {...rest} 
       render={ ( props ) => (

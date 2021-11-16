@@ -5,12 +5,6 @@
   grid-auto-rows: min-content;
   gap: 1.5rem;
 
-  &__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
 
   &__items {
     list-style: none;
@@ -25,25 +19,30 @@
     align-items: center;
     gap: .8rem;
 
-    svg {
-      width: .8rem;
-      height: .8rem;
-    }
-
     a {
       font-size: 1.2rem;
       justify-self: flex-end;
       font-weight: bold;
       text-decoration: none;
-
       color: $color-blue-dark;
+      transition: all .5s linear;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
-    img {
+    svg {
       justify-self: flex-end;
+      width: 3rem;
+      height: 2rem;
+      transition: all .3s linear;
+      fill: $color-blue-dark;
 
       &:hover {
         cursor: pointer;
+        background-color: $color-white-blue;
+        border-radius: .4rem;
       }
     }
   }

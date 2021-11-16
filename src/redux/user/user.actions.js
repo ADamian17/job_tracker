@@ -1,18 +1,20 @@
 import { UserActionTypes } from './user.types';
+import JobsActionTypes from '../jobs/jobs.types';
+
 import Auth from '../../models/auth';
 
-export const setCurrentUser = (userData) => async (dispatch) => {
+export const setCurrentUser = (token) => async (dispatch) => {
   try {
     dispatch({
       type: UserActionTypes.SET_CURRENT_USER_START,
     });
 
-    const user = await Auth.login(userData);
-    localStorage.setItem('uid', user.data.signedJwt);
-    
+    localStorage.setItem('uid', token);
+    const currentUser = localStorage.getItem('uid')
+
     dispatch({
       type: UserActionTypes.SET_CURRENT_USER_SUCCESS,
-      payload: localStorage.getItem('uid')
+      payload: currentUser
     });
 
   } catch (error) {
@@ -23,16 +25,15 @@ export const setCurrentUser = (userData) => async (dispatch) => {
   }
 };
 
-export const setTokenExp = ( message ) => ({
-    type: UserActionTypes.SET_TOKEN_EXP,
-    payload: message
-});
-
-export const setUserDetails = ( user ) => ({
-    type: UserActionTypes.SET_USER_DETAILS,
-    payload: user
-});
-
-export const logout = () => ({
-    type: UserActionTypes.LOGOUT
-});
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: UserActionTypes.LOGOUT_START
+  });
+  localStorage.removeItem('uid');
+  dispatch({
+    type: JobsActionTypes.RESET_JOBS_SUCCESS
+  });
+  dispatch({
+    type: UserActionTypes.LOGOUT_SUCCESS
+  });
+};
